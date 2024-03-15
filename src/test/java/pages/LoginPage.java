@@ -53,6 +53,7 @@ public class LoginPage {
 
         ReusableMethods.waitForVisibility(driver,homePage.logout,10);
         homePage.logout.click();
+
     }
 
 
