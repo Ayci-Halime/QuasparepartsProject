@@ -131,7 +131,7 @@
                 <argLine>-Dfile.encoding=UTF-8</argLine>
                 <useFile>false</useFile>
                 <includes>
-                    <include>runners.RunnerRegression.java</include> <!-- Burada çalışacak Runner class belirtilir -->
+                    <include>runners.RunnerHalime.java</include> <!-- Burada çalışacak Runner class belirtilir -->
                 </includes>
                 <testFailureIgnore>true</testFailureIgnore>
             </configuration>
