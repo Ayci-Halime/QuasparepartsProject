@@ -11,5 +11,8 @@ public class RemoteUnitsPage {
         PageFactory.initElements(ParallelDriver.getDriver(), this);
     }
 
+    @FindBy(id="v")
+    public WebElement rf;
+
 
 }
