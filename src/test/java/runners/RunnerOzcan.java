@@ -15,8 +15,8 @@ import org.junit.runner.RunWith;
         monochrome = false,
         features = "src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@Ilk",
-        dryRun = false
+        tags = "@Department",
+        dryRun = true
 
 )
 public class RunnerOzcan {}
