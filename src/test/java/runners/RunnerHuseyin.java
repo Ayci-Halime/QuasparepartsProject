@@ -15,8 +15,8 @@ import org.junit.runner.RunWith;
         monochrome = false,
         features = "src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@Ilk",
-        dryRun = false
+        tags = "@Users",
+        dryRun = true
 
 )
 public class RunnerHuseyin {}
