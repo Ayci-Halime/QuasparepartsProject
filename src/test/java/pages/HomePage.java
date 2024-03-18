@@ -51,4 +51,8 @@ public class HomePage {
     @FindBy(linkText = "Logout")
     public WebElement logout;
 
+    @FindBy (xpath = "(//span[@class='fw-bold'])[2]")
+    public WebElement profile;
+
+
 }
