@@ -36,6 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
-!/test-output/
-
-!/pom.xml
+/test-output/
+/pom.xml

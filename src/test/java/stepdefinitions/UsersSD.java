@@ -35,5 +35,7 @@ public class UsersSD {
     }
 
 
-
+    @And("Benutzer bestaetigt dass die gruene Hacken nicht sichtbar ist")
+    public void benutzerBestaetigtDassDieGrueneHackenNichtSichtbarIst() {
+    }
 }
