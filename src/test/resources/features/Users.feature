@@ -51,7 +51,13 @@ Feature: US_0015, US_0016, US_0017
       And Benutzer meldet sich ab
 
 
-    Scenario:
+    Scenario:TC_0016_004 Der Benutzer sollte die beim Anlegen des Benutzers eingegebene E-Mail-Adresse nicht ändern können
+      When Benutzer klickt auf das Menu Benutzer
+      And Benutzer fuegt einen Benutzer hinzu
+      And Benutzer sucht die E-Mail Adresse des neuen Benutzers
+      And Benutzer klickt auf den gesuchten Benutzer
+      And Benutzer klickt auf das Bearbeitungssymbol (Stift) oben rechts
+
 
 
 
