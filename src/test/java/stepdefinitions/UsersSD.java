@@ -21,6 +21,7 @@ public class UsersSD {
     public void benutzer_fuegt_einen_benutzer_hinzu() {
 
     }
+
     @When("Benutzer sucht die E-Mail Adresse des neuen Benutzers")
     public void benutzer_sucht_die_e_mail_adresse_des_neuen_benutzers() {
 
