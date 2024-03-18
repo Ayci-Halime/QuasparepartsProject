@@ -11,6 +11,7 @@ import utilities.ReusableMethods;
 public class LoginPage {
 
     public LoginPage() { // bu constructor her page sayfasında standart olacak
+
         PageFactory.initElements(ParallelDriver.getDriver(), this);
     }
 
@@ -29,6 +30,8 @@ public class LoginPage {
     @FindBy (linkText = "Forgot password ?")
     public WebElement forgotPasswordLink;
 
+    @FindBy (tagName = "h5")
+    public WebElement errorMessage;
 
     public void loginMethod (WebDriver driver) {
         ReusableMethods.waitForVisibility(driver,login,10);
