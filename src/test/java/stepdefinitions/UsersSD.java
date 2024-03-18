@@ -5,10 +5,11 @@ import pages.LoginPage;
 import utilities.ParallelDriver;
 
 public class UsersSD {
+    LoginPage loginPage;
 
     @Given("Benutzer meldet sich an")
     public void benutzer_meldet_sich_an() {
-        LoginPage loginPage = new LoginPage();
+        loginPage = new LoginPage();
         loginPage.loginMethod(ParallelDriver.getDriver());
     }
     @When("Benutzer klickt auf das Menu Benutzer")
