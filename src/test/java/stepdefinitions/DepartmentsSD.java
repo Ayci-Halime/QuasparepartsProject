@@ -13,7 +13,9 @@ import org.openqa.selenium.support.ui.Select;
 import pages.DepartmentsPage;
 import pages.HomePage;
 import utilities.ConfigReader;
+import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
+import utilities.ReusableMethods;
 
 import java.awt.*;
 import java.util.List;
@@ -207,5 +209,73 @@ public class DepartmentsSD {
     public void uberpruftObDemAbschnittAbteilungKeineNeueAbteilungHinzugefugtWurde() {
         departmentsPage = new DepartmentsPage();
         departmentsPage.Type_Leer.isDisplayed();
+    }
+
+    @And("Der Benutzer klickt auf eine gespeicherte Abteilung")
+    public void derBenutzerKlicktAufEineGespeicherteAbteilung() {
+        homePage = new HomePage();
+        departmentsPage = new DepartmentsPage();
+        homePage.departments.click();
+        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag=false;
+        for (WebElement element : list) {
+            if(element.getText().contains("Personel")){
+                flag=true;
+                element.click();
+            }
+
+        }
+        if (flag==false) Assert.fail();
+    }
+
+    @And("Der Benutzer klickt auf „Abteilung bearbeiten“.")
+    public void derBenutzerKlicktAufAbteilungBearbeiten() {
+        departmentsPage = new DepartmentsPage();
+        departmentsPage.Edit_Department.click();
+        ParallelDriver.getDriver().navigate().refresh();
+        ParallelDriver.getDriver().navigate().refresh();
+    }
+
+    @And("Andert den Benutzernamen.")
+    public void andertDenBenutzernamen() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+       // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Name,20);
+        Thread.sleep(6000);
+        Actions actions=new Actions(ParallelDriver.getDriver());
+       Thread.sleep(3000);
+       departmentsPage.Department_Name.clear();
+        Thread.sleep(3000);
+        actions.click(departmentsPage.Department_Name).sendKeys("P1").perform();
+    }
+
+    @And("Der Benutzer klickt auf den Abteilungsbereich")
+    public void derBenutzerKlicktAufDenAbteilungsbereich() {
+        homePage = new HomePage();
+        homePage.departments.click();
+
+
+    }
+
+    @Then("Der Benutzer bestätigt den neuen Namen")
+    public void derBenutzerBestatigtDenNeuenNamen() throws InterruptedException {
+Thread.sleep(5000);
+        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag=false;
+        for (WebElement element2 : list){
+            System.out.println(element2.getText());
+        }
+        Thread.sleep(3000);
+        for (WebElement element : list) {
+            if(element.getText().contains("P1")){
+                Thread.sleep(3000);
+                flag=true;
+                Assert.assertTrue(true);
+            }
+
+        }
+        Thread.sleep(3000);
+        if (flag==false)
+        {Assert.fail();}
+
     }
 }
