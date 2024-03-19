@@ -42,6 +42,7 @@ public class ProfilePage {
 @FindBy(xpath= "//div[@role='alert']//div[1]")
     public WebElement alertAccept;
 
+
 @FindBy(xpath= "//div[text()='Password must be between 8 to 20 characters long.']")
     public WebElement alertlong;
 
@@ -59,6 +60,13 @@ public class ProfilePage {
 
 @FindBy(xpath= "//div[@role='alert']")
     public WebElement alertDigit;
+
+    @FindBy(xpath= "//div[@role='alert']")
+    public WebElement alert;
+
+
+@FindBy(xpath = "//button[@aria-label='Close']")
+public WebElement alertClose;
 
 
 
@@ -96,6 +104,31 @@ public class ProfilePage {
         confirm.click();
         cancel.click();
 
+    }
+
+
+    public boolean alertNegativeExpectedMessage(WebDriver driver,WebElement alert){
+       boolean flag=false;
+
+       String alertText= ReusableMethods.getElementText(alert);
+        if(alertText.contains("Password must be between 8 to 20 characters long.")){
+           flag=true;
+
+        }else if(alertText.contains("Password must contain at least one uppercase.")){
+            flag=true;
+        }else if(alertText.contains("Password may contain only uppercase (A-Z) letters, lowercase (a-z) letters, numbers (0-9), and special characters of .@#$%_&")){
+            flag=true;
+        }else if(alertText.contains("Password must contain at least one lowercase.")){
+            flag=true;
+        }else if(alertText.contains("Password must contain special characters from .@#$%_&")){
+            flag=true;
+        }else if(alertText.contains("Password must contain at least one digit.")){
+            flag=true;
+        }else {flag=false;}
+
+
+
+    return flag;
     }
 
 }
