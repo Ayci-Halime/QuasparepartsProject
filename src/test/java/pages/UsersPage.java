@@ -79,7 +79,7 @@ public class UsersPage {
     @FindBy(xpath = "//img[contains(@class,'cursor-pointer')]")
     public WebElement plusRoles;
 
-    @FindBy(xpath = "//div[@class=' css-19bb58m']/input")
+    @FindBy(xpath = "//input[@type='text']")
     public WebElement addNewRole;
 
     @FindBy(xpath = "//button[.='Save']")
