@@ -17,7 +17,6 @@ Feature: US_0015, US_0016, US_0017
     Scenario: TC_0016_002 Der Benutzer muss in der Lage sein, dem von ihm erstellten Benutzer eine neue Rolle hinzuzufügen
       When Benutzer klickt auf das Menu Benutzer
       And Benutzer fuegt einen Benutzer hinzu
-      And Benutzer sucht die E-Mail Adresse des neuen Benutzers
       And Benutzer klickt auf den gesuchten Benutzer
       And Benutzer klickt auf das + Symbol neben den Rollen unten rechts
       And Benutzer fuegt eine neue Rolle hinzu "new_user_another_role"
