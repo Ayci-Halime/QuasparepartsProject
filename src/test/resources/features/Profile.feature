@@ -11,20 +11,41 @@ Feature: US_0004
     Then Benutzer bestaetigt, dass sich die E-Mail-Adresse nicht geaendert hat
     And Benutzer meldet sich ab
 
+  @PositiveScnario @Smoke
   Scenario Outline: TC_0004_002,TC_0004_011,TC_0004_012
     When Benutzer klickt auf dieSchaltflaeche Change Password
-    And Benutzer gibt ein  "<Password>" ein
-    And Benutzer gibt ein  "<Password>" ein
+    And Benutzer gibt   "<Password>" "<Password2>" ein
     And Benutzer klickt auf die Schaltflaeche Confirm
-    Then Benutzer bestaetigt, Der Text 'Change password successfully' wurde angezeigt
+    Then Benutzer bestaetigt, Password wurde aktualisiert
     And Benutzer klickt auf dieSchaltflaeche cancel
     And Benutzer aktualisiert altes Passwort
     And Benutzer meldet sich ab
+    Examples:
+      | Password             | Password2            |
+      | 5eIxXyQ7TyLH8x9.     | 5eIxXyQ7TyLH8x9.     |
+      | 5eIxXyQ.             | 5eIxXyQ.             |
+      | 5eIxXyQ7TyLH8x.5exXy | 5eIxXyQ7TyLH8x.5exXy |
+
+  @NegativeScnario @Smoke
+  Scenario Outline:TC_0004_003,TC_0004_004,TC_0004_005,TC_0004_006,TC_0004_007,TC_0004_008,TC_0004_009,TC_0004_010
+
+    When Benutzer klickt auf dieSchaltflaeche Change Password
+    And Benutzer gibt   "<Password>" "<Password2>" ein
+    And Benutzer klickt auf die Schaltflaeche Confirm
+    Then Benutzer bestaetigt, Password wurde nicht aktualisiert
+    And Benutzer klickt auf dieSchaltflaeche cancel
+    And Benutzer meldet sich ab
+
 
     Examples:
-      | Password             |
-      | 5eIxXyQ7TyLH8x9.     |
-      | 5eIxXyQ.             |
-      | 5eIxXyQ7TyLH8x.5exXy |
+      | Password              | Password2             |
+      | 5eIxXy.               | 5eIxXy.               |
+      | 5eIxXy.12345678912345 | 5eIxXy.12345678912345 |
+      |                       |                       |
+      | 5eixxyq7tylh8x.       | 5eixxyq7tylh8x.       |
+      | 5EIXXYQ7TYLH8X.       | 5EIXXYQ7TYLH8X.       |
+      | 5eIxXyQ7TyLH8x        | 5eIxXyQ7TyLH8x        |
+      | 5eIxXyQ7TyLH8x.§      | 5eIxXyQ7TyLH8x.§      |
+      | eIxXyQTyLHx.          | eIxXyQTyLHx.          |
 
 

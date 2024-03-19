@@ -1,15 +1,17 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.ParallelDriver;
+import utilities.ReusableMethods;
 
 import java.util.List;
 
 public class RemoteUnitsPage {
 
-    public RemoteUnitsPage() { // bu constructor her page sayfasında standart olacak
+    public RemoteUnitsPage() {
         PageFactory.initElements(ParallelDriver.getDriver(), this);
     }
 
@@ -32,32 +34,32 @@ public class RemoteUnitsPage {
     @FindBy(name = "(//input[@name='description'])[1]")
     public WebElement description;
 
-    @FindBy(xpath = "((//div[@class='col-4'])[1]")
+    @FindBy(xpath = "(//div[@class='col-9']//b)[1]")
     public WebElement ilkRemoteUnit;
 
     @FindBy(xpath = "//div[@class='col-4']")
     public List<WebElement> remoteUnits;
 
     @FindBy(xpath = "(//button[@type='button'])[3]")
-    public List<WebElement> editRemoteUnitButton;
+    public WebElement editRemoteUnitButton;
 
     @FindBy(xpath = "//button[text()='Delete Department']")
-    public List<WebElement> deleteDepartmentButton;
+    public WebElement deleteDepartmentButton;
 
  @FindBy(xpath = "//button[text()='Confirm']")
-    public List<WebElement> deleteconfirmButton;
+    public WebElement deleteconfirmButton;
 
 
 
     @FindBy(xpath = "//input[@name='file']")
-    public List<WebElement> changeImageButton;
+    public WebElement changeImageButton;
 
 
     @FindBy(xpath = "//button[text()='Crop']")
-    public List<WebElement> cropButton;
+    public WebElement cropButton;
 
     @FindBy(xpath = "(//button[@type='button'])[3]")
-    public List<WebElement> saveImageButton;
+    public WebElement saveImageButton;
 
     @FindBy(xpath = "//p[text()='An error occurred. The picture could not be changed.']")
     public WebElement imageErrorButton;
@@ -76,6 +78,18 @@ public class RemoteUnitsPage {
     public WebElement cancelButton;
 
 
+
+    public void loeschen(WebDriver driver,String newUnit){
+
+        search.sendKeys(newUnit);
+        ReusableMethods.waitForClickablility(driver,ilkRemoteUnit,10);
+        ilkRemoteUnit.click();
+        ReusableMethods.waitForClickablility(driver,editRemoteUnitButton,10);
+        editRemoteUnitButton.click();
+        ReusableMethods.waitForVisibility(driver,deleteDepartmentButton,10);
+        deleteDepartmentButton.click();
+
+    }
 
 
 }

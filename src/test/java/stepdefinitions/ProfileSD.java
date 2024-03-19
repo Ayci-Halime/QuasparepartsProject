@@ -22,6 +22,7 @@ public class ProfileSD {
 
     @And("Benutzer klickt auf die Schaltflaeche edit")
     public void benutzerKlicktAufDieSchaltflaecheEdit() {
+
         profilePage=new ProfilePage();
         ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),profilePage.editButton,10);
         profilePage.editButton.click();
@@ -51,9 +52,34 @@ public class ProfileSD {
         profilePage=new ProfilePage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.newPassword,10);
         profilePage.newPassword.sendKeys(password);
+
+
+    }
+
+    @And("Benutzer gibt ein  wiederholte {string} ein")
+    public void benutzerGibtEinWiederholteEin( String password) {
+
+
+        profilePage=new ProfilePage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.newPassword2,10);
         profilePage.newPassword2.sendKeys(password);
 
     }
+
+    @And("Benutzer gibt   {string} {string} ein")
+    public void benutzerGibtEin( String password, String password2) {
+
+        profilePage=new ProfilePage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.newPassword,10);
+        profilePage.newPassword.click();
+        profilePage.newPassword.sendKeys(password);
+        profilePage.newPassword2.click();
+        profilePage.newPassword2.sendKeys(password2);
+
+
+    }
+
+
 
     @And("Benutzer klickt auf die Schaltflaeche Confirm")
     public void benutzerKlicktAufDieSchaltflaecheConfirm() {
@@ -64,14 +90,6 @@ public class ProfileSD {
 
     }
 
-    @Then("Benutzer bestaetigt, Der Text {string} wurde angezeigt")
-    public void benutzerBestaetigtDerTextChangePasswordSuccessfullyWurdeAngezeigt() {
-        profilePage=new ProfilePage();
-        String alertAcceptStr= ReusableMethods.getElementText(profilePage.alertAccept);
-
-       Assert.assertEquals(alertAcceptStr,"Change password successfully");
-    }
-
     @And("Benutzer klickt auf dieSchaltflaeche cancel")
     public void benutzerKlicktAufDieSchaltflaecheCancel() {
         profilePage=new ProfilePage();
@@ -79,9 +97,33 @@ public class ProfileSD {
         profilePage.cancel.click();
     }
 
+
+    @Then("Benutzer bestaetigt, Password wurde aktualisiert")
+    public void benutzerBestaetigtPasswordWurdeAktualisiert() {
+
+        profilePage=new ProfilePage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.alertAccept,10);
+        String alertAcceptStr= ReusableMethods.getElementText(profilePage.alertAccept);
+        System.out.println("alertAcceptStr = " + alertAcceptStr);
+
+        Assert.assertTrue(alertAcceptStr.contains("Change password successfully"));
+        profilePage.alertAccept.click();
+    }
+
+
+
     @And("Benutzer aktualisiert altes Passwort")
     public void benutzerAktualisiertAltesPasswort() {
+
         profilePage=new ProfilePage();
         profilePage.passwordAktualisieren(ParallelDriver.getDriver());
+    }
+
+
+    @Then("Benutzer bestaetigt, Password wurde nicht aktualisiert")
+    public void benutzerBestaetigtPasswordWurdeNichtAktualisiert() {
+        profilePage=new ProfilePage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.alert,10);
+        Assert.assertTrue(profilePage.alertNegativeExpectedMessage(ParallelDriver.getDriver(),profilePage.alert));
     }
 }
