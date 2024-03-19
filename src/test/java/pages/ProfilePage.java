@@ -1,9 +1,12 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ConfigReader;
 import utilities.ParallelDriver;
+import utilities.ReusableMethods;
 
 public class ProfilePage {
 
@@ -66,6 +69,33 @@ public class ProfilePage {
 
 
 
+    public void loginMethodProfile (WebDriver driver) {
+        LoginPage loginPage=new LoginPage();
+        ReusableMethods.waitForVisibility(driver,loginPage.login,10);
+        loginPage.login.click();
 
+        ReusableMethods.waitForVisibility(driver,username,10);
+        username.sendKeys(ConfigReader.getProperty("userNameProfile"));
+
+        ReusableMethods.waitForVisibility(driver,loginPage.password,10);
+        loginPage.password.sendKeys(ConfigReader.getProperty("passwordProfile"));
+
+        ReusableMethods.waitForVisibility(driver,loginPage.signin,10);
+        loginPage.signin.click();
+
+
+
+    }
+
+    public void passwordAktualisieren(WebDriver driver){
+        ReusableMethods.waitForVisibility(driver,changePasswordButton,10);
+        changePasswordButton.click();
+        ReusableMethods.waitForVisibility(driver,newPassword,10);
+        newPassword.sendKeys(ConfigReader.getProperty("passwordProfile"));
+        newPassword2.sendKeys(ConfigReader.getProperty("passwordProfile"));
+        confirm.click();
+        cancel.click();
+
+    }
 
 }

@@ -7,7 +7,7 @@ import utilities.ParallelDriver;
 
 public class HomePage {
 
-    public HomePage() { // bu constructor her page sayfasında standart olacak
+    public HomePage() {
         PageFactory.initElements(ParallelDriver.getDriver(), this);
     }
 
@@ -47,12 +47,39 @@ public class HomePage {
 
     @FindBy (xpath = "(//span[@class='fw-bold'])[1]")
     public WebElement profilDropDown;
+     @FindBy (xpath = "(//span[@class='fw-bold'])[2]")
+    public WebElement profilEmailTitel;
+
+     @FindBy(xpath = "(//td[contains(@class,'text-start text-nowrap')])[1]")
+     public WebElement profilDropDown2;
+
+
+
 
     @FindBy(linkText = "Logout")
     public WebElement logout;
 
     @FindBy (xpath = "(//span[@class='fw-bold'])[2]")
     public WebElement profile;
+     @FindBy (xpath = "//li[@id='link0']/a[1]")
+    public WebElement profileText;
+
+       @FindBy (id= "link0")
+    public WebElement profileText2;
+
+
+
+
+       @FindBy(xpath = "//div[@class='container-fluid sidenav minimize']")
+    public WebElement sidebarMin;
+
+   @FindBy(xpath = "//div[@class='container-fluid sidenav']")
+    public WebElement sidebarMax;
+   @FindBy (id="Sidebar")
+    public WebElement sidebar;
+
+
+
 
 
 }
