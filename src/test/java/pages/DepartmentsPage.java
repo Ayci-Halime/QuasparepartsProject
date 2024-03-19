@@ -37,6 +37,10 @@ public class DepartmentsPage {
 
     @FindBy(xpath = "//span[.='Please select a type for department']")
     public WebElement Type_Leer;
+@FindBy(xpath = "(//button[@type='button'])[3]")
+    public WebElement Edit_Department;
+
+
 
 
 }
