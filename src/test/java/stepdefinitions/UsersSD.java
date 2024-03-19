@@ -2,7 +2,9 @@ package stepdefinitions;
 
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import pages.HomePage;
 import pages.LoginPage;
@@ -39,20 +41,18 @@ public class UsersSD {
         usersPage.addNewMember.click();
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.departmentInAddNewMember,10);
+        usersPage.departmentInAddNewMember.click();
         usersPage.departmentInAddNewMember.sendKeys(ConfigReader.getProperty("new_user_department")+Keys.ESCAPE);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.roleInAddNewMember,10);
-        usersPage.roleInAddNewMember.sendKeys(ConfigReader.getProperty("new_user_default_role"));
+        usersPage.roleInAddNewMember.sendKeys(ConfigReader.getProperty("new_user_default_role")+Keys.ENTER);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.email,10);
         usersPage.email.sendKeys(ConfigReader.getProperty("new_user_mail"));
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.registerButton,10);
         usersPage.registerButton.click();
-
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.closeButton,10);
         usersPage.closeButton.click();
-
 
     }
 
@@ -68,10 +68,18 @@ public class UsersSD {
     public void benutzer_bestaetigt_dass_der_neue_benutzer_hinzugefuegt_ist() {
         usersPage = new UsersPage();
 
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.newUserEmailAfterSearch,10);
         Assert.assertTrue("New added user is not visible",usersPage.newUserEmailAfterSearch.isDisplayed());
+       // usersPage.searchBox.clear();
 
-        usersPage.searchBox.clear();
+        ParallelDriver.getDriver().navigate().refresh();
+        ParallelDriver.getDriver().navigate().refresh();
 
     }
     @Then("Benutzer loescht den neuen hinzugefuegten Benutzer")
@@ -80,44 +88,37 @@ public class UsersSD {
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.perPageDropDown,15);
         Select select = new Select(usersPage.perPageDropDown);
-        select.selectByValue("30");
+        select.selectByIndex(4);
 
-        JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),usersPage.userEmail);
+        WebElement element = ParallelDriver.getDriver().
+                findElement(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']"));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),element);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),element,10);
 
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.userEmail,10);
+        WebElement threeDots = ParallelDriver.getDriver().
+                findElement(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//button"));
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),threeDots,10);
 
-
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.threeDots,10);
-        usersPage.threeDots.click();
+        JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton,10);
-        usersPage.removeFromOrganizaiton.click();
+        JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton);
 
+        //
+        ParallelDriver.getDriver().navigate().refresh();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.searchBox,15);
+        usersPage.searchBox.sendKeys(ConfigReader.getProperty("new_user_mail"));
+       //
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.newUserEmailAfterSearch,10);
 
+        Assert.assertTrue("New added user is not visible",usersPage.newUserEmailAfterSearch.isDisplayed());
     }
 
 
-    @And("Benutzer klickt auf den gesuchten Benutzer")
-    public void benutzerKlicktAufDenGesuchtenBenutzer() {
 
-    }
-
-    @And("Benutzer klickt auf das + Symbol neben den Rollen unten rechts")
-    public void benutzerKlicktAufDasSymbolNebenDenRollenUntenRechts() {
-
-    }
-
-    @And("Benutzer fuegt eine neue Rolle hinzu {string}")
-    public void benutzerFuegtEineNeueRolleHinzu(String new_user_another_role) {
-
-    }
-
-    @Then("Benutzer prueft dass die Rolle hinzugefuegt ist")
-    public void benutzerPrueftDassDieRolleHinzugefuegtIst() {
-
-    }
-
-    @And("Benutzer kehrt zum Benutzermenu zuruck")
-    public void benutzerKehrtZumBenutzermenuZuruck() {
-    }
 }
