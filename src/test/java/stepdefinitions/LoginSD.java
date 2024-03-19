@@ -68,8 +68,8 @@ public class LoginSD {
         loginPage.password.sendKeys(password);
     }
 
-    @Then("Benutzer bestaetigt dass er eine Felhlermeldung erhalten hat")
-    public void benutzerBestaetigtDassErEineFelhlermeldungErhaltenHat() {
+    @Then("Benutzer bestaetigt dass er eine Fehlermeldung erhalten hat")
+    public void benutzerBestaetigtDassErEineFehlermeldungErhaltenHat() {
         loginPage = new LoginPage();
         String error  = "Invalid Credentials";
         Assert.assertEquals("Error message is not displayed",error,loginPage.errorMessage.getText());
@@ -80,4 +80,6 @@ public class LoginSD {
         homePage = new HomePage();
         Assert.assertTrue("Home button is not visible in homepage",homePage.home.isDisplayed());
     }
+
+
 }

@@ -18,7 +18,7 @@ Feature: US_0001
     When Benutzer gibt E-Mail oder Username ein "<username>"
     And Benutzer gibt Password ein "<password>"
     And Benutzer klickt auf die Schaltflaeche Sigin
-    Then Benutzer bestaetigt dass er eine Felhlermeldung erhalten hat
+    Then Benutzer bestaetigt dass er eine Fehlermeldung erhalten hat
     Examples:
       | username            | password         |
       | dsdt2004gmail.com   |  lcYtbIv7nBhIrqX |
