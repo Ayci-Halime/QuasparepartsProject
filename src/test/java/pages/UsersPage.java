@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ConfigReader;
 import utilities.ParallelDriver;
 
 import java.util.List;
@@ -30,11 +31,6 @@ public class UsersPage {
     @FindBy (xpath = "//tbody[@class='tableRows']/tr/td[2]/a")
     public WebElement newUserEmailAfterSearch;
 
-    @FindBy(linkText = "segesis@gmx.de")
-    public WebElement userEmail;
-
-    @FindBy (xpath = "(//div[@class='btn-group'])[2]/button")
-    public WebElement threeDots;
 
     @FindBy(linkText = "Reset Password")
     public WebElement resetPassword;
@@ -46,13 +42,13 @@ public class UsersPage {
     public WebElement removeFromOrganizaiton;
 
 
-    @FindBy (id = "react-select-4-input")
+    @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[1]")
     public  WebElement departmentInAddNewMember;
 
-    @FindBy (id = "react-select-5-input")
+    @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[2]")
     public WebElement roleInAddNewMember;
 
-    @FindBy (xpath = "//input[@id='email']")
+    @FindBy (xpath = "//input[@name='email']")
     public WebElement email;
 
     @FindBy (xpath = "//button[.='Register']")
@@ -64,10 +60,10 @@ public class UsersPage {
     @FindBy (xpath = "//button[.='Invite']")
     public WebElement inviteButton;
 
-    @FindBy (id = "react-select-2-input")
+    @FindBy (xpath = "(//div[@class=' css-19bb58m'])[1]")
     public WebElement departmentInInviteNewMember;
 
-    @FindBy (id = "react-select-3-input")
+    @FindBy (xpath = "(//div[@class=' css-19bb58m'])[2]")
     public WebElement roleInInviteNewMember;
 
     @FindBy(xpath = "//div[@class='toast-body']/p")

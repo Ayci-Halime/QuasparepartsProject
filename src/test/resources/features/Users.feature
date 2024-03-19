@@ -4,7 +4,7 @@ Feature: US_0015, US_0016, US_0017
     Given Benutzer geht zur URL
     And Benutzer meldet sich an
 
-
+    @day
     Scenario: TC_0015_001 Der Benutzer muss einen von ihm hinzugefügten Benutzer sehen
       When Benutzer klickt auf das Menu Benutzer
       And Benutzer fuegt einen Benutzer hinzu
