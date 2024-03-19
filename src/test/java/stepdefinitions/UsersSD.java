@@ -8,6 +8,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.UsersPage;
 import utilities.ConfigReader;
+import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
@@ -81,6 +82,9 @@ public class UsersSD {
         Select select = new Select(usersPage.perPageDropDown);
         select.selectByValue("30");
 
+        JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),usersPage.userEmail);
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.userEmail,10);
 
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.threeDots,10);
