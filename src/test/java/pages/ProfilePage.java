@@ -131,4 +131,30 @@ public WebElement alertClose;
     return flag;
     }
 
+    public boolean alertacceptMessage(WebDriver driver,WebElement alert){
+        boolean flag=false;
+
+        String alertText= ReusableMethods.getElementText(alert);
+        if(alertText.contains("New department successfully created")){
+            flag=true;
+            alertClose.click();
+
+        }else if(alertText.contains("Change password successfully")){
+            flag=true;
+            alertClose.click();
+
+        }else if(alertText.contains("Changes successfully saved")){
+            flag=true;
+            alertClose.click();
+
+        }
+
+
+        else {flag=false;}
+
+
+
+        return flag;
+    }
+
 }
