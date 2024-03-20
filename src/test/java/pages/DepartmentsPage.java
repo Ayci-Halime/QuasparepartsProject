@@ -46,6 +46,16 @@ public class DepartmentsPage {
 
 @FindBy(xpath = "(//span)[8]")
     public WebElement Kurzname_Department_Personel_assert;
+@FindBy(xpath = "//span[@class='roles-box p-2 me-2']")
+    public WebElement Department_Rolle_assert;
+
+@FindBy(xpath = "//button[.='Delete Department']")
+    public WebElement Department_Delete_button;
+
+@FindBy(xpath = "//button[.='Confirm']")
+    public WebElement Department_Delete_Confirm;
+@FindBy(xpath = "//input[@name='file']")
+    public WebElement Department_Chance_image;
 
 
 
