@@ -39,6 +39,13 @@ public class DepartmentsPage {
     public WebElement Type_Leer;
 @FindBy(xpath = "(//button[@type='button'])[3]")
     public WebElement Edit_Department;
+@FindBy(xpath = "//input[@name='description']")
+    public WebElement description_Department;
+@FindBy(xpath = "//div[@class='col-12']")
+    public WebElement description_Department_assert;
+
+@FindBy(xpath = "(//span)[8]")
+    public WebElement Kurzname_Department_Personel_assert;
 
 
 
