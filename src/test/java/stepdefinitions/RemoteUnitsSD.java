@@ -189,4 +189,12 @@ public class RemoteUnitsSD {
 
 
     }
+
+    @And("Benutzer klickt auf die Shalteflaeche Change Image")
+    public void benutzerKlicktAufDieShalteflaecheChangeImage() {
+    }
+
+    @Then("Benutzer bestaetigt, dass sich die Imageerrormessage betrachtet")
+    public void benutzerBestaetigtDassSichDieImageerrormessageBetrachtet() {
+    }
 }
