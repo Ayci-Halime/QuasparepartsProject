@@ -282,7 +282,8 @@ public class UsersSD {
         usersPage = new UsersPage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usersPage.usernameInUserDetail,10);
         usersPage.usernameInUserDetail.click();
-        usersPage.usernameInUserDetail.clear();
+        ReusableMethods.deleteFields(usersPage.usernameInUserDetail,ConfigReader.getProperty("new_user_mail"));
+
     }
 
     @Then("Benutzer bestaetigt dass er eine Fehlermeldung im Users erhalten hat")
