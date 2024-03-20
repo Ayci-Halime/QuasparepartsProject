@@ -3,6 +3,7 @@ package stepdefinitions;
 import io.cucumber.java.en.*;
 import net.bytebuddy.asm.Advice;
 import org.apache.commons.collections4.functors.TruePredicate;
+import org.apache.poi.ss.formula.functions.T;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -212,35 +213,36 @@ public class DepartmentsSD {
     }
 
     @And("Der Benutzer klickt auf eine gespeicherte Abteilung")
-    public void derBenutzerKlicktAufEineGespeicherteAbteilung() {
-        homePage = new HomePage();
+    public void derBenutzerKlicktAufEineGespeicherteAbteilung() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-        homePage.departments.click();
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
         boolean flag=false;
+        Thread.sleep(2000);
         for (WebElement element : list) {
-            if(element.getText().contains("Personel")){
+            if(element.getText().contains("P1")){
                 flag=true;
                 element.click();
             }
 
         }
         if (flag==false) Assert.fail();
+
     }
 
     @And("Der Benutzer klickt auf „Abteilung bearbeiten“.")
-    public void derBenutzerKlicktAufAbteilungBearbeiten() {
+    public void derBenutzerKlicktAufAbteilungBearbeiten() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
+        Thread.sleep(2000);
         departmentsPage.Edit_Department.click();
         ParallelDriver.getDriver().navigate().refresh();
-        ParallelDriver.getDriver().navigate().refresh();
+      // ParallelDriver.getDriver().navigate().refresh();
     }
 
     @And("Andert den Benutzernamen.")
     public void andertDenBenutzernamen() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
        // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Name,20);
-        Thread.sleep(6000);
+        Thread.sleep(12000);
         Actions actions=new Actions(ParallelDriver.getDriver());
        Thread.sleep(3000);
        departmentsPage.Department_Name.clear();
@@ -277,5 +279,76 @@ Thread.sleep(5000);
         if (flag==false)
         {Assert.fail();}
 
+    }
+
+    @And("Der Benutzer andert den Kurznamen.")
+    public void derBenutzerAndertDenKurznamen() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Short_Name,10);
+        Thread.sleep(2000);
+        departmentsPage.Department_Short_Name.clear();
+        Thread.sleep(2000);
+        departmentsPage.Department_Short_Name.sendKeys("sss");
+        Thread.sleep(2000);
+    }
+
+    @Then("Der Benutzer bestatigt den neuen Kurznamen")
+    public void derBenutzerBestatigtDenNeuenKurznamen() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Kurzname_Department_Personel_assert,10);
+        System.out.println(departmentsPage.Kurzname_Department_Personel_assert.getText());
+       // Assert.assertTrue(departmentsPage.Kurzname_Department_Personel_assert.getText().contains("sss"));
+    }
+
+    @And("Der Benutzer andert den „Abteilungstyp“.")
+    public void derBenutzerAndertDenAbteilungstyp() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+        Actions actions = new Actions(ParallelDriver.getDriver());
+        Thread.sleep(2000);
+        actions.click(departmentsPage.Department_Type).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+        Thread.sleep(2000);
+    }
+
+    @Then("Der Benutzer bestatigt, dass diese „Abteilung“ nicht zur Abteilung gehort")
+    public void derBenutzerBestatigtDassDieseAbteilungNichtZurAbteilungGehort() throws InterruptedException {
+        Thread.sleep(5000);
+        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag=false;
+        for (WebElement element2 : list){
+            System.out.println(element2.getText());
+        }
+        Thread.sleep(3000);
+        for (WebElement element : list) {
+            if(element.getText().contains("P1")){
+                Thread.sleep(3000);
+                flag=true;
+                Assert.assertTrue(true);
+            }
+
+        }
+        Thread.sleep(3000);
+        if (flag==true)
+        {Assert.fail();}
+
+    }
+
+    @And("Der Benutzer andert die „Abteilungsbeschreibung“.")
+    public void derBenutzerAndertDieAbteilungsbeschreibung() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+      //  ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.description_Department,20);
+        Thread.sleep(8000);
+        departmentsPage.description_Department.clear();
+        departmentsPage.description_Department.sendKeys("Personel abteilung");
+        Thread.sleep(2000);
+    }
+
+    @Then("Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat")
+    public void derBenutzerBestatigtDassSichBeschreibungInDerAbteilungGeandertHat() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+     //   ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.description_Department_assert,20);
+Thread.sleep(3000);
+        System.out.println("***********************************************");
+        System.out.println(departmentsPage.description_Department_assert.getText());
+        Assert.assertEquals("Personel abteilung", departmentsPage.description_Department_assert.getText());
     }
 }

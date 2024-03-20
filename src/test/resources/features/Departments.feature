@@ -86,7 +86,7 @@
       And Der Benutzer klickt auf die Schaltflache „Speichern“.
       Then Uberpruft, ob dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt wurde
 
-      @Benutzer
+
     Scenario: TC_0009_001
       Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
       And Der Benutzer klickt auf eine gespeicherte Abteilung
@@ -95,3 +95,32 @@
       And Der Benutzer klickt auf die Schaltflache „Speichern“.
       And Der Benutzer klickt auf den Abteilungsbereich
       Then Der Benutzer bestätigt den neuen Namen
+
+    Scenario:  TC_0009_002
+      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      And Der Benutzer klickt auf „Abteilung bearbeiten“.
+      And Der Benutzer andert den Kurznamen.
+      And Der Benutzer klickt auf die Schaltflache „Speichern“.
+      And Der Benutzer klickt auf den Abteilungsbereich
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      Then Der Benutzer bestatigt den neuen Kurznamen
+
+    Scenario:  TC_0009_003
+      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      And Der Benutzer klickt auf „Abteilung bearbeiten“.
+      And Der Benutzer andert den „Abteilungstyp“.
+      And Der Benutzer klickt auf die Schaltflache „Speichern“.
+      And Der Benutzer klickt auf den Abteilungsbereich
+      Then Der Benutzer bestatigt, dass diese „Abteilung“ nicht zur Abteilung gehort
+    @Benutzer
+    Scenario:  TC_0009_004
+      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      And Der Benutzer klickt auf „Abteilung bearbeiten“.
+      And Der Benutzer andert die „Abteilungsbeschreibung“.
+      And Der Benutzer klickt auf die Schaltflache „Speichern“.
+      And Der Benutzer klickt auf den Abteilungsbereich
+     And Der Benutzer klickt auf eine gespeicherte Abteilung
+      Then Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat
