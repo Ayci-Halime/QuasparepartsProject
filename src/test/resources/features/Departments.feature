@@ -129,8 +129,23 @@
       Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
       And Der Benutzer klickt auf eine gespeicherte Abteilung
       And Der Benutzer klickt auf „Abteilung bearbeiten“.
-    #  And Der Benutzer andert die Abteilungsrollen
+      And Der Benutzer andert die Abteilungsrollen
       And Der Benutzer klickt auf die Schaltflache „Speichern“.
       And Der Benutzer klickt auf den Abteilungsbereich
       And Der Benutzer klickt auf eine gespeicherte Abteilung
-     # Then Der Benutzer bestätigt, dass sich „Rollen“ in der Abteilung geändert haben
+     Then Der Benutzer bestatigt, dass sich „Rollen“ in der Abteilung geandert haben
+
+    Scenario:  TC_0009_006
+      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      And Der Benutzer klickt auf „Abteilung bearbeiten“.
+      And Der Benutzer klickt auf die Schaltflache „Abteilung loschen“.
+      And Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“
+      Then Der Benutzer Uberpruft, ob die geloschte Abteilung geloscht wurde
+
+    Scenario:  TC_0009_007
+      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      And Der Benutzer klickt auf „Abteilung bearbeiten“.
+      And Der Benutzer klickt auf „Bild andern“
+      And Der Benutzer ladt ein Bild vom Computer hoch

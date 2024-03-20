@@ -351,4 +351,69 @@ Thread.sleep(3000);
         System.out.println(departmentsPage.description_Department_assert.getText());
         Assert.assertEquals("Personel abteilung", departmentsPage.description_Department_assert.getText());
     }
+
+    @And("Der Benutzer andert die Abteilungsrollen")
+    public void derBenutzerAndertDieAbteilungsrollen() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+        Actions actions= new Actions(ParallelDriver.getDriver());
+        Thread.sleep(4000);
+        actions.click(departmentsPage.description_Department).
+                sendKeys(Keys.TAB).sendKeys("B"+Keys.ENTER).click().perform();
+        Thread.sleep(4000);
+    }
+
+    @Then("Der Benutzer bestatigt, dass sich „Rollen“ in der Abteilung geandert haben")
+    public void derBenutzerBestatigtDassSichRollenInDerAbteilungGeandertHaben() {
+        departmentsPage = new DepartmentsPage();
+        Assert.assertTrue(departmentsPage.Department_Rolle_assert.getText().contains("B"));
+    }
+
+    @And("Der Benutzer klickt auf die Schaltflache „Abteilung loschen“.")
+    public void derBenutzerKlicktAufDieSchaltflacheAbteilungLoschen() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+        Thread.sleep(2000);
+        departmentsPage.Department_Delete_button.click();
+    }
+
+    @And("Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“")
+    public void derBenutzerKlicktAufDemAngezeigtenBildschirmAufBestatigen() throws InterruptedException {
+        departmentsPage = new DepartmentsPage();
+        Thread.sleep(2000);
+        departmentsPage.Department_Delete_Confirm.click();
+    }
+
+    @Then("Der Benutzer Uberpruft, ob die geloschte Abteilung geloscht wurde")
+    public void derBenutzerUberpruftObDieGeloschteAbteilungGeloschtWurde() throws InterruptedException {
+        Thread.sleep(5000);
+        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag=false;
+        for (WebElement element2 : list){
+            System.out.println(element2.getText());
+        }
+        Thread.sleep(3000);
+        for (WebElement element : list) {
+            if(element.getText().contains("P1")){
+                Thread.sleep(3000);
+                flag=true;
+                Assert.assertTrue(true);
+            }
+
+        }
+        Thread.sleep(3000);
+        if (flag==true)
+        {Assert.fail();}
+    }
+
+    @And("Der Benutzer klickt auf „Bild andern“")
+    public void derBenutzerKlicktAufBildAndern() {
+        departmentsPage = new DepartmentsPage();
+        departmentsPage.Department_Chance_image.click();
+    }
+
+    @And("Der Benutzer ladt ein Bild vom Computer hoch")
+    public void derBenutzerLadtEinBildVomComputerHoch() throws AWTException {
+        Robot rbt=new Robot();
+
+
+    }
 }
