@@ -1,9 +1,13 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
@@ -31,7 +35,7 @@ public class RemoteUnitsPage {
     @FindBy(name = "short_name")
     public WebElement short_name;
 
-    @FindBy(name = "(//input[@name='description'])[1]")
+    @FindBy(xpath = "//input[@placeholder='Department Description']")
     public WebElement description;
 
     @FindBy(xpath = "(//div[@class='col-9']//b)[1]")
@@ -46,9 +50,11 @@ public class RemoteUnitsPage {
     @FindBy(xpath = "//button[text()='Delete Department']")
     public WebElement deleteDepartmentButton;
 
- @FindBy(xpath = "//button[text()='Confirm']")
+    @FindBy(xpath = "//button[text()='Confirm']")
     public WebElement deleteconfirmButton;
 
+    @FindBy(xpath = "//button[text()=' Edit']")
+    public WebElement editButton;
 
 
     @FindBy(xpath = "//input[@name='file']")
@@ -65,7 +71,7 @@ public class RemoteUnitsPage {
     public WebElement imageErrorButton;
 
 
-    @FindBy(xpath = "//div[text()='Department Type']")
+    @FindBy(xpath = "(//div[@class='col-md-4 row-cols-1']//div)[1]")
     public WebElement departmentTypeDropDown;
 
     @FindBy(xpath = "//div[text()='Department Roles']")
@@ -77,18 +83,112 @@ public class RemoteUnitsPage {
     @FindBy(xpath = "//button[text()='Cancel']")
     public WebElement cancelButton;
 
+    @FindBy(xpath = "//span[text()='Please enter a name for department']")
+    public WebElement nameErrorMessage;
+
+    @FindBy(xpath = "//span[@class='text-danger']")
+    public WebElement departmentTypeErrorMessage;
+
+    @FindBy(xpath = "(//span[@class=' css-1u9des2-indicatorSeparator']/following-sibling::div)[2]")
+    public WebElement rolesOk;
+
+    @FindBy(xpath = "//div[@role='alert']//div[1]")
+    public WebElement acceptMessage;
+    @FindBy(xpath = "//button[@aria-label='Close']")
+    public WebElement acceptMassageCloseButton;
 
 
-    public void loeschen(WebDriver driver,String newUnit){
 
+    public  void acceptMessageCloseMethod(WebDriver driver, WebElement element){
+
+        if (element.isDisplayed()){
+            acceptMassageCloseButton.click();
+        }
+    }
+    public void loeschenRemoteUnit(WebDriver driver, String newUnit) {
+
+        HomePage homePage = new HomePage();
+        homePage.remoteUnits.click();
+        ReusableMethods.waitForVisibility(driver, search, 10);
+        search.clear();
         search.sendKeys(newUnit);
-        ReusableMethods.waitForClickablility(driver,ilkRemoteUnit,10);
+        ReusableMethods.waitForClickablility(driver, ilkRemoteUnit, 10);
         ilkRemoteUnit.click();
-        ReusableMethods.waitForClickablility(driver,editRemoteUnitButton,10);
+        ReusableMethods.waitForClickablility(driver, editRemoteUnitButton, 10);
         editRemoteUnitButton.click();
-        ReusableMethods.waitForVisibility(driver,deleteDepartmentButton,10);
-        deleteDepartmentButton.click();
+        System.out.println("Löschen editButton");
+        if (!deleteDepartmentButton.isDisplayed()) {
+           // driver.navigate().refresh();
+              executeScript(ParallelDriver.getDriver());
 
+        }
+
+
+
+        ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
+        deleteDepartmentButton.click();
+        System.out.println("Löschen editButton tiklandi");
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), deleteconfirmButton, 10);
+        deleteconfirmButton.click();
+        // executeScript(ParallelDriver.getDriver());
+
+
+    }
+
+
+
+    public void erstellungRemoteUnit(WebDriver driver, String DepartmentName, String DepartmentType) {
+        HomePage homePage = new HomePage();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), homePage.remoteUnits, 10);
+        homePage.remoteUnits.click();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), addNewRemoteUnitButton, 10);
+        addNewRemoteUnitButton.click();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), name, 10);
+        name.sendKeys(DepartmentName);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentTypeDropDown, 10);
+        dropDownClick(ParallelDriver.getDriver(), DepartmentType, departmentTypeDropDown);
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), saveButton, 10);
+        saveButton.click();
+        if (acceptMassageCloseButton.isDisplayed()) {
+            acceptMassageCloseButton.click();
+        }
+
+    }
+
+    public void erstellungRemoteUnit(WebDriver driver, String DepartmentName, String DepartmentType, String shortName, String descriptionText, String roleText) {
+        HomePage homePage = new HomePage();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), homePage.remoteUnits, 10);
+        homePage.remoteUnits.click();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), addNewRemoteUnitButton, 10);
+        addNewRemoteUnitButton.click();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), name, 10);
+        name.sendKeys(DepartmentName);
+        ReusableMethods.waitForVisibility(driver, short_name, 10);
+        short_name.sendKeys(shortName);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentTypeDropDown, 10);
+        dropDownClick(ParallelDriver.getDriver(), DepartmentType, departmentTypeDropDown);
+        ReusableMethods.waitForVisibility(driver, description, 10);
+        description.sendKeys(descriptionText);
+        ReusableMethods.waitForVisibility(driver, departmentRolesDropDown, 10);
+        dropDownClick(driver, roleText, departmentRolesDropDown);
+        rolesOk.click();
+        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), saveButton, 10);
+        saveButton.click();
+        if (acceptMassageCloseButton.isDisplayed()) {
+            acceptMassageCloseButton.click();
+        }
+    }
+
+
+    public void dropDownClick(WebDriver driver, String text, WebElement dropdown) {
+        Actions actions = new Actions(driver);
+        actions.click(dropdown).sendKeys(text).sendKeys(Keys.ENTER).perform();
+
+    }
+
+    public void executeScript(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("location.reload()");
     }
 
 

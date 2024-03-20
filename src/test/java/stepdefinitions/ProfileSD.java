@@ -104,7 +104,6 @@ public class ProfileSD {
         profilePage=new ProfilePage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.alertAccept,10);
         String alertAcceptStr= ReusableMethods.getElementText(profilePage.alertAccept);
-        System.out.println("alertAcceptStr = " + alertAcceptStr);
 
         Assert.assertTrue(alertAcceptStr.contains("Change password successfully"));
         profilePage.alertAccept.click();
