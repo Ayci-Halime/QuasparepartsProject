@@ -39,8 +39,10 @@ public class CompanyPage {
         editCompanyButton.click();
 
         ReusableMethods.waitForVisibility(driver,companyName,10);
-        companyName.click();
+        companyName.clear();
 
+        ReusableMethods.waitForVisibility(driver,companyName,10);
+        companyName.click();
 
         ReusableMethods.waitForVisibility(driver,saveButton,10);
         saveButton.click();
