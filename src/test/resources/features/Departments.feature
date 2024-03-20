@@ -124,3 +124,13 @@
       And Der Benutzer klickt auf den Abteilungsbereich
      And Der Benutzer klickt auf eine gespeicherte Abteilung
       Then Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat
+
+    Scenario:  TC_0009_005
+      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+      And Der Benutzer klickt auf „Abteilung bearbeiten“.
+    #  And Der Benutzer andert die Abteilungsrollen
+      And Der Benutzer klickt auf die Schaltflache „Speichern“.
+      And Der Benutzer klickt auf den Abteilungsbereich
+      And Der Benutzer klickt auf eine gespeicherte Abteilung
+     # Then Der Benutzer bestätigt, dass sich „Rollen“ in der Abteilung geändert haben
