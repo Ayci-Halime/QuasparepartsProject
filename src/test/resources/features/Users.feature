@@ -13,7 +13,7 @@ Feature: US_0015, US_0016, US_0017
       And Benutzer loescht den neuen hinzugefuegten Benutzer
       And Benutzer meldet sich ab
 
-
+    @day1
     Scenario: TC_0016_002 Der Benutzer muss in der Lage sein, dem von ihm erstellten Benutzer eine neue Rolle hinzuzufügen
       When Benutzer klickt auf das Menu Benutzer
       And Benutzer fuegt einen Benutzer hinzu
@@ -25,13 +25,11 @@ Feature: US_0015, US_0016, US_0017
       And Benutzer loescht den neuen hinzugefuegten Benutzer
       And Benutzer meldet sich ab
 
-
+    @day2
     Scenario: TC_0016_003 Der Benutzer sollte in der Lage sein, die neue Rolle zu löschen, die er dem von ihm erstellten Benutzer hinzugefügt hat
-      When Benutzer geht zur URL
-      And Benutzer klickt auf das Menu Benutzer
+      When Benutzer klickt auf das Menu Benutzer
       And Benutzer fuegt einen Benutzer hinzu
-      And Benutzer sucht die E-Mail Adresse des neuen Benutzers
-      And Benutzer klickt den gesuchten Benutzer
+      And Benutzer klickt auf den gesuchten Benutzer
       And Benutzer klickt auf das + Symbol neben den Rollen unten rechts
       And Benutzer fuegt eine neue Rolle hinzu "new_user_another_role"
       And Benutzer loescht die hinzugefuegte Rolle
@@ -40,11 +38,10 @@ Feature: US_0015, US_0016, US_0017
       And Benutzer loescht den neuen hinzugefuegten Benutzer
       And Benutzer meldet sich ab
 
-
+    @day3
     Scenario:TC_0016_004 Der Benutzer sollte die beim Anlegen des Benutzers eingegebene E-Mail-Adresse nicht ändern können
       When Benutzer klickt auf das Menu Benutzer
       And Benutzer fuegt einen Benutzer hinzu
-      And Benutzer sucht die E-Mail Adresse des neuen Benutzers
       And Benutzer klickt auf den gesuchten Benutzer
       And Benutzer klickt auf das Bearbeitungssymbol (Stift) oben rechts
       Then Benutzer bestaetigt dass die E-Mail Adresse nicht geandert werden konnen
@@ -53,11 +50,10 @@ Feature: US_0015, US_0016, US_0017
       And Benutzer loescht den neuen hinzugefuegten Benutzer
       And Benutzer meldet sich ab
 
-
+    @day5
     Scenario: TC_0016_005 Der Benutzer darf das Feld für den Benutzernamen nicht leer lassen, wenn er den von ihm erstellten Benutzer bearbeitet
       When Benutzer klickt auf das Menu Benutzer
       And Benutzer fuegt einen Benutzer hinzu
-      And Benutzer sucht die E-Mail Adresse des neuen Benutzers
       And Benutzer klickt auf den gesuchten Benutzer
       And Benutzer klickt auf das Bearbeitungssymbol (Stift) oben rechts
       And Benutzer loescht das Feld fuer den Benutzernamen

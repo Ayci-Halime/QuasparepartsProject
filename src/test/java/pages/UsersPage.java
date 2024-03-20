@@ -1,6 +1,6 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -19,7 +19,10 @@ public class UsersPage {
     @FindBy (xpath = "//div[@class='col-12']/a/button")
     public WebElement addMultipleMembers;
 
-    @FindBy (xpath = "//div[@class='col-12']/button[2]")
+//    @FindBy (xpath = "//div[@class='col-12']/button[2]")
+//    public WebElement addNewMember;
+
+    @FindBy (xpath = "//button[.='+ Add New Member']")
     public WebElement addNewMember;
 
     @FindBy (xpath = "//div[@class='col-12']/button[1]")
@@ -94,10 +97,38 @@ public class UsersPage {
     @FindBy(xpath = "//select[@class='form-select form-select-sm']") // bu select tag ile çalışıyor
     public WebElement perPageDropDown;
 
+    @FindBy(xpath = "//div[contains(@class,'btn-group dropup')]/button")
+    public WebElement deleteRoleThreeDots;
 
+    @FindBy(xpath = "//a[.='Remove Role']")
+    public WebElement removeRole;
 
+    @FindBy(xpath = "//button[.='Confirm']")
+    public WebElement confirmButtonForDeleteRole;
 
+    @FindBy(xpath = "//div[@class='toast-body']/p")
+    public WebElement deleteRoleMessage;
 
+    @FindBy(xpath = "//span[contains(@class,'float-end')]/button")
+    public WebElement editIconInUserDetail;
+
+    @FindBy(xpath = "//span[contains(@class,'float-end')]/button[1]")
+    public WebElement saveIconInUserDetail;
+
+    @FindBy(xpath = "//span[contains(@class,'float-end')]/button[2]")
+    public WebElement closeIconInUserDetail;
+
+    @FindBy(xpath = "//input[@name='username']")
+    public WebElement usernameInUserDetail;
+
+    @FindBy(xpath = "//label[@name='email']")
+    public WebElement emailInUserDetail;
+
+    @FindBy(xpath = "//span[@class='text-danger']")
+    public WebElement usernameErrorMessageInUserDetail;
+
+    @FindBy(xpath = "(//div[@class='btn-group'])[2]/button")
+    public WebElement threeDots;
 
 
 
