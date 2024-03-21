@@ -1,20 +1,14 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.*;
-import net.bytebuddy.asm.Advice;
-import org.apache.commons.collections4.functors.TruePredicate;
-import org.apache.poi.ss.formula.functions.T;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import pages.DepartmentsPage;
 import pages.HomePage;
 import utilities.ConfigReader;
-import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
@@ -68,13 +62,13 @@ public class DepartmentsSD {
     @And("Der Benutzer schreibt den Abteilungsnamen")
     public void derBenutzerSchreibtDenAbteilungsnamen() {
         departmentsPage = new DepartmentsPage();
-        departmentsPage.Department_Name.sendKeys(ConfigReader.getProperty("Department"));
+        departmentsPage.Department_oder_Team_Name.sendKeys(ConfigReader.getProperty("Department"));
     }
 
     @And("Der Benutzer schreibt den Kurznamen der Abteilung")
     public void derBenutzerSchreibtDenKurznamenDerAbteilung() {
         departmentsPage = new DepartmentsPage();
-        departmentsPage.Department_Short_Name.sendKeys("Prs");
+        departmentsPage.Department_oder_Team_Short_Name.sendKeys("Prs");
 
     }
 
@@ -132,7 +126,7 @@ public class DepartmentsSD {
     @And("Drucken Sie im Abschnitt „Name der Benutzerabteilung“ einfach die Leertaste.")
     public void druckenSieImAbschnittNameDerBenutzerabteilungEinfachDieLeertaste() {
         departmentsPage = new DepartmentsPage();
-        departmentsPage.Department_Name.sendKeys(" ");
+        departmentsPage.Department_oder_Team_Name.sendKeys(" ");
     }
 
     @Then("Uberpruft, ob dem Abschnitt „Abteilung“ eine neue Abteilung hinzugefugt wurde")
@@ -156,7 +150,7 @@ public class DepartmentsSD {
     @And("Im Abschnitt „Name der Benutzerabteilung“ konnen nur Zahlen eingegeben werden.")
     public void imAbschnittNameDerBenutzerabteilungKonnenNurZahlenEingegebenWerden() {
         departmentsPage = new DepartmentsPage();
-        departmentsPage.Department_Name.sendKeys("1234");
+        departmentsPage.Department_oder_Team_Name.sendKeys("1234");
     }
 
     @Then("Uberpruft, ob dem Abschnitt „Abteilung“\\(mit Zahlen) eine neue Abteilung hinzugefugt wurde")
@@ -180,7 +174,7 @@ public class DepartmentsSD {
     @And("Im Abschnitt „Name der Benutzerabteilung“ konnen nur Sonderzeichen eingegeben werden.")
     public void imAbschnittNameDerBenutzerabteilungKonnenNurSonderzeichenEingegebenWerden() {
         departmentsPage = new DepartmentsPage();
-        departmentsPage.Department_Name.sendKeys("**");
+        departmentsPage.Department_oder_Team_Name.sendKeys("**");
     }
 
     @Then("Uberpruft, ob dem Abschnitt „Abteilung“\\(mit Sonderzeichen) eine neue Abteilung hinzugefugt wurde")
@@ -245,9 +239,9 @@ public class DepartmentsSD {
         Thread.sleep(12000);
         Actions actions=new Actions(ParallelDriver.getDriver());
        Thread.sleep(3000);
-       departmentsPage.Department_Name.clear();
+       departmentsPage.Department_oder_Team_Name.clear();
         Thread.sleep(3000);
-        actions.click(departmentsPage.Department_Name).sendKeys("P1").perform();
+        actions.click(departmentsPage.Department_oder_Team_Name).sendKeys("P1").perform();
     }
 
     @And("Der Benutzer klickt auf den Abteilungsbereich")
@@ -284,11 +278,11 @@ Thread.sleep(5000);
     @And("Der Benutzer andert den Kurznamen.")
     public void derBenutzerAndertDenKurznamen() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Short_Name,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_oder_Team_Short_Name,10);
         Thread.sleep(2000);
-        departmentsPage.Department_Short_Name.clear();
+        departmentsPage.Department_oder_Team_Short_Name.clear();
         Thread.sleep(2000);
-        departmentsPage.Department_Short_Name.sendKeys("sss");
+        departmentsPage.Department_oder_Team_Short_Name.sendKeys("sss");
         Thread.sleep(2000);
     }
 
@@ -416,4 +410,6 @@ Thread.sleep(3000);
 
 
     }
+
+
 }
