@@ -85,11 +85,13 @@ public class TeamsSD {
     @And("Der Benutzer klickt auf das gespeicherte Team")
     public void derBenutzerKlicktAufDasGespeicherteTeam() {
         teamsPage=new TeamsPage();
+
         List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
         boolean flag=false;
-
+        ReusableMethods.waitFor(2);
         for (WebElement element : list) {
             if(element.getText().contains("P1")){
+                ReusableMethods.waitFor(2);
                 flag=true;
                 element.click();
             }
@@ -108,26 +110,27 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
     @And("Der Benutzer bearbeiten Teamklicks")
     public void derBenutzerBearbeitenTeamklicks() {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Edit_Department,20);
-
+       // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Edit_Department,20);
+        ReusableMethods.waitFor(2);
         departmentsPage.Edit_Department.click();
         ParallelDriver.getDriver().navigate().refresh();
+        ParallelDriver.getDriver().navigate().refresh();
+        ReusableMethods.waitFor(2);
+
         // ParallelDriver.getDriver().navigate().refresh();
     }
 
     @And("Der Benutzer aendert den Benutzernamen")
     public void derBenutzerAendertDenBenutzernamen() {
         departmentsPage = new DepartmentsPage();
-        // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Name,20);
-
+        //ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_oder_Team_Short_Name,20);
+       ReusableMethods.waitForPageToLoad(10);
+       ReusableMethods.deleteFields(departmentsPage.Department_oder_Team_Name,"P1");
         Actions actions=new Actions(ParallelDriver.getDriver());
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_oder_Team_Name,20);
-       // ReusableMethods.waitFor(3);
-        departmentsPage.Department_oder_Team_Name.clear();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_oder_Team_Name,20);
-       // ReusableMethods.waitFor(3);
+
+       // departmentsPage.Department_oder_Team_Name.clear();
+
         actions.click(departmentsPage.Department_oder_Team_Name).sendKeys("P2").perform();
-      //  ReusableMethods.waitFor(3);
     }
 
 
@@ -135,25 +138,28 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
     public void derBenutzerKlicktAufDieSchaltflaecheSpeichern() {
         departmentsPage = new DepartmentsPage();
         departmentsPage.Department_Save.click();
+        ReusableMethods.waitFor(2);
     }
 
     @And("Der Benutzer klickt auf den Abschnitt Team")
     public void derBenutzerKlicktAufDenAbschnittTeam() {
         homePage = new HomePage();
         homePage.teams.click();
+        ReusableMethods.waitFor(2);
     }
 
     @Then("Der Benutzer bestätigt den neuen TNamen")
     public void derBenutzerBestatigtDenNeuenTNamen() {
         List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
         boolean flag=false;
+        ReusableMethods.waitFor(2);
         for (WebElement element2 : list){
             System.out.println(element2.getText());
         }
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),teamsPage.add_new_Team,20);
         for (WebElement element : list) {
             if(element.getText().contains("P2")){
-
+                ReusableMethods.waitFor(2);
                 flag=true;
                 Assert.assertTrue(true);
             }
@@ -162,6 +168,31 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
 
         if (flag==false)
         {Assert.fail();}
+
+    }
+
+
+    @And("Der Benutzer andert den TKurznamen.")
+    public void derBenutzerAndertDenTKurznamen() {
+        departmentsPage = new DepartmentsPage();
+        ReusableMethods.waitFor(4);
+        departmentsPage.Department_oder_Team_Short_Name.clear();
+        ReusableMethods.waitFor(2);
+        departmentsPage.Department_oder_Team_Short_Name.sendKeys("sss");
+        ReusableMethods.waitFor(2);
+    }
+
+    @Then("Der Benutzer bestatigt den neuen TKurznamen")
+    public void derBenutzerBestatigtDenNeuenTKurznamen() {
+        departmentsPage = new DepartmentsPage();
+
+        System.out.println("********");
+        ReusableMethods.waitForPageToLoad(10);
+        String str=departmentsPage.Kurzname_Department_Personel_assert.getText();
+        System.out.println(str);
+        ReusableMethods.waitFor(4);
+        System.out.println("********");
+         Assert.assertTrue(str.contains("sss"));
 
     }
 }

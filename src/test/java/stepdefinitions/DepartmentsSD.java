@@ -292,6 +292,7 @@ Thread.sleep(5000);
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Kurzname_Department_Personel_assert,10);
         System.out.println(departmentsPage.Kurzname_Department_Personel_assert.getText());
        // Assert.assertTrue(departmentsPage.Kurzname_Department_Personel_assert.getText().contains("sss"));
+
     }
 
     @And("Der Benutzer andert den „Abteilungstyp“.")

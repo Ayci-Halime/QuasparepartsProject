@@ -47,7 +47,8 @@ public class DepartmentsPage {
 @FindBy(xpath = "//div[@class='col-12']")
     public WebElement description_Department_assert;
 
-@FindBy(xpath = "(//span)[8]")
+//@FindBy(xpath = "(//span)[8]")
+@FindBy(xpath = "//span[text()='P2']/following-sibling::span")
     public WebElement Kurzname_Department_Personel_assert;
 @FindBy(xpath = "//span[@class='roles-box p-2 me-2']")
     public WebElement Department_Rolle_assert;
