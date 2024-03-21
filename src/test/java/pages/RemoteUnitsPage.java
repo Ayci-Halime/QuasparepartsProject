@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,6 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class RemoteUnitsPage {
@@ -101,9 +101,12 @@ public class RemoteUnitsPage {
 
     public  void acceptMessageCloseMethod(WebDriver driver, WebElement element){
 
-        if (element.isDisplayed()){
+        try {
             acceptMassageCloseButton.click();
+        }catch (Exception ignored){
+
         }
+
     }
     public void loeschenRemoteUnit(WebDriver driver, String newUnit) {
 
@@ -112,26 +115,34 @@ public class RemoteUnitsPage {
         ReusableMethods.waitForVisibility(driver, search, 10);
         search.clear();
         search.sendKeys(newUnit);
-        ReusableMethods.waitForClickablility(driver, ilkRemoteUnit, 10);
+        ReusableMethods.waitForVisibility(driver, ilkRemoteUnit, 10);
         ilkRemoteUnit.click();
-        ReusableMethods.waitForClickablility(driver, editRemoteUnitButton, 10);
+        ReusableMethods.waitForVisibility(driver, editRemoteUnitButton, 10);
         editRemoteUnitButton.click();
         System.out.println("Löschen editButton");
-        if (!deleteDepartmentButton.isDisplayed()) {
-           // driver.navigate().refresh();
-              executeScript(ParallelDriver.getDriver());
 
+
+
+        try {
+            driver.navigate().refresh();
+            ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
+
+        } catch (Exception e) {
+            driver.navigate().refresh();
         }
-
 
 
         ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
         deleteDepartmentButton.click();
         System.out.println("Löschen editButton tiklandi");
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), deleteconfirmButton, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), deleteconfirmButton, 10);
         deleteconfirmButton.click();
-        // executeScript(ParallelDriver.getDriver());
+        System.out.println("delete confirm butonu tiklandi");
 
+        ReusableMethods.waitFor(1);
+//        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profil,10);
+//        homePage.profil.click();
+//        System.out.println("profil butonu tiklandi");
 
     }
 
@@ -157,11 +168,11 @@ public class RemoteUnitsPage {
 
     public void erstellungRemoteUnit(WebDriver driver, String DepartmentName, String DepartmentType, String shortName, String descriptionText, String roleText) {
         HomePage homePage = new HomePage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), homePage.remoteUnits, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), homePage.remoteUnits, 10);
         homePage.remoteUnits.click();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), addNewRemoteUnitButton, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), addNewRemoteUnitButton, 10);
         addNewRemoteUnitButton.click();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), name, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), name, 10);
         name.sendKeys(DepartmentName);
         ReusableMethods.waitForVisibility(driver, short_name, 10);
         short_name.sendKeys(shortName);
@@ -172,7 +183,7 @@ public class RemoteUnitsPage {
         ReusableMethods.waitForVisibility(driver, departmentRolesDropDown, 10);
         dropDownClick(driver, roleText, departmentRolesDropDown);
         rolesOk.click();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), saveButton, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), saveButton, 10);
         saveButton.click();
         if (acceptMassageCloseButton.isDisplayed()) {
             acceptMassageCloseButton.click();
@@ -189,6 +200,49 @@ public class RemoteUnitsPage {
     public void executeScript(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("location.reload()");
+    }
+
+    public void imageHinzufuegen(WebDriver driver,WebElement imageButton){
+
+        String path=System.getProperty("user.dir")+"\\test-output\\image.jpg";//yükleyecegimiz dosyanin yolu
+        System.out.println("path = " + path);
+        //Click on Upload button.-->click yapilinca window acilacagi icin robot class gerekir.
+
+        //driver.findElement(By.xpath("(//td)[4]")).click();//Robot class kullanacagimiz icin click yaptik
+        ReusableMethods.waitFor(3);
+        changeImageButton.click();
+        ReusableMethods.waitFor(3);
+        //girilecek dosyanin yolunu hafizaya alalim
+        StringSelection ss=new StringSelection(path);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
+        ReusableMethods.waitFor(3);
+
+
+        //Robot class kullanarak hafizaya alinan yolu ctrl+V ile acilan pencereye yapistirabiliriz
+        Robot robot= null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+
+        //Enter e basalim
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+
+        //click yerine sendKeys metodu ile filepath gönderecegiz
+        WebElement chooseFileButton=driver.findElement(By.name("image.jpg"));
+        chooseFileButton.sendKeys(path);//input type file oldugu icin bu yöntem kullanilabilir.
+
+        chooseFileButton.submit();//enter e bastik.
+
+        ReusableMethods.waitFor(1);
+
     }
 
 
