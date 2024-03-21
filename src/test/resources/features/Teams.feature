@@ -15,7 +15,7 @@ Feature:US_0007
     Given Der Benutzer klickt auf der linken Seite der Seite auf Team
     And Der Benutzer klickt auf das gespeicherte Team
     Then Der Benutzer Uberpruft die Anklickbarkeit des gespeicherten Teams.
-@B1
+
   Scenario: TC_0014_001
     Given Der Benutzer klickt auf der linken Seite der Seite auf Team
     And Der Benutzer klickt auf das gespeicherte Team
@@ -24,4 +24,13 @@ Feature:US_0007
     And Der Benutzer klickt auf die Schaltflaeche Speichern
     And Der Benutzer klickt auf den Abschnitt Team
     Then Der Benutzer bestätigt den neuen TNamen
-
+  @B1
+  Scenario: TC_0014_002
+    Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+    And Der Benutzer klickt auf das gespeicherte Team
+    And Der Benutzer bearbeiten Teamklicks
+    And Der Benutzer andert den TKurznamen.
+    And Der Benutzer klickt auf die Schaltflaeche Speichern
+    And Der Benutzer klickt auf den Abschnitt Team
+    And Der Benutzer klickt auf das gespeicherte Team
+    Then Der Benutzer bestatigt den neuen TKurznamen
