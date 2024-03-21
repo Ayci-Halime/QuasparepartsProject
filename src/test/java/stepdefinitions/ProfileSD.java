@@ -24,7 +24,7 @@ public class ProfileSD {
     public void benutzerKlicktAufDieSchaltflaecheEdit() {
 
         profilePage=new ProfilePage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),profilePage.editButton,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.editButton,10);
         profilePage.editButton.click();
 
     }
@@ -42,7 +42,7 @@ public class ProfileSD {
     public void benutzerKlicktAufDieSchaltflaecheChangePassword() {
 
         profilePage=new ProfilePage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),profilePage.changePasswordButton,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.changePasswordButton,10);
         profilePage.changePasswordButton.click();
     }
 
