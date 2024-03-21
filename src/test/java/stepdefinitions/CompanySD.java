@@ -10,6 +10,9 @@ import utilities.ConfigReader;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CompanySD {
     HomePage homePage;
     CompanyPage companyPage;
@@ -39,15 +42,19 @@ public class CompanySD {
         companyPage=new CompanyPage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.saveButton,10);
         companyPage.saveButton.click();
-        Thread.sleep(5000);
+
     }
 
     @Then("Benutzer bestaetigt, dass unter dem Namen eine Warnung erscheint.")
     public void benutzerBestaetigtDassUnterDemNamenEineWarnungErscheint() {
         companyPage=new CompanyPage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.warning,10);
-        String warningText=companyPage.warning.getText();
-        Assert.assertEquals(warningText,"Please enter a name for company");
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.emailWarning,10);
+        List<String> errors = new ArrayList<>();
+        errors.add("Please enter a name for company");
+        errors.add("Company information successfully updated");
+        String actual = companyPage.emailWarning.getText();
+        Assert.assertTrue("Error message is not displayed",errors.contains(actual));
+
     }
 
     @And("Laesst den E-Mail leer.")
@@ -69,15 +76,35 @@ public class CompanySD {
 
     @And("Benutzer gibt einen Buchstaben in das E-Mail ein und füllt auch das Namens aus.")
     public void benutzerGibtEinenBuchstabenInDasEMailEinUndFulltAuchDasNamensAus() {
+        companyPage=new CompanyPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyEmail,20);
+        companyPage.companyEmail.sendKeys("a");
 
     }
 
     @Then("Der Benutzer sieht, dass die Nachricht Unternehmensinformationen aktualisiert wurde.")
     public void derBenutzerSiehtDassDieNachrichtUnternehmensinformationenAktualisiertWurde() throws InterruptedException {
         companyPage=new CompanyPage();
-       //ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.emailWarning,30);
-        Thread.sleep(3000);
-        String warningText=companyPage.emailWarning.getText();
+       ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.emailWarning,4);
+        //Thread.sleep(3000);
+        ReusableMethods.waitForPageToLoad(10);
+        String warningText=ReusableMethods.getElementText(companyPage.emailWarning);
+        System.out.println(warningText);
+
         Assert.assertEquals(warningText,"Company information successfully updated");
+    }
+
+    @And("Der Benutzer leert die volle Mail.")
+    public void derBenutzerLeertDieVolleMail() {
+        companyPage=new CompanyPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyEmail,20);
+        ReusableMethods.deleteFields(companyPage.companyEmail, ConfigReader.getProperty("CompanyEmail"));
+    }
+
+    @And("Benutzer fügt der E-Mail nicht das @-Zeichen hinzu, sondern trägt auch den Namen ein.")
+    public void benutzerFugtDerEMailNichtDasZeichenHinzuSondernTragtAuchDenNamenEin() {
+        companyPage=new CompanyPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyEmail,20);
+        companyPage.companyEmail.sendKeys("neueAcmegmail.com");
     }
 }
