@@ -43,6 +43,8 @@ public class RemoteUnitsPage {
 
     @FindBy(xpath = "//div[@class='col-4']")
     public List<WebElement> remoteUnits;
+    @FindBy(xpath = "(//div[@class='row'])[4]")
+    public WebElement remoteUnitsrow;
 
     @FindBy(xpath = "(//button[@type='button'])[3]")
     public WebElement editRemoteUnitButton;
@@ -125,15 +127,20 @@ public class RemoteUnitsPage {
 
         try {
             driver.navigate().refresh();
+
             ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
 
         } catch (Exception e) {
             driver.navigate().refresh();
+
+
+
         }
 
-
+        ReusableMethods.waitForPageToLoad(5);
         ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
         deleteDepartmentButton.click();
+
         System.out.println("Löschen editButton tiklandi");
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), deleteconfirmButton, 10);
         deleteconfirmButton.click();
@@ -204,42 +211,49 @@ public class RemoteUnitsPage {
 
     public void imageHinzufuegen(WebDriver driver,WebElement imageButton){
 
-        String path=System.getProperty("user.dir")+"\\test-output\\image.jpg";//yükleyecegimiz dosyanin yolu
-        System.out.println("path = " + path);
-        //Click on Upload button.-->click yapilinca window acilacagi icin robot class gerekir.
-
-        //driver.findElement(By.xpath("(//td)[4]")).click();//Robot class kullanacagimiz icin click yaptik
-        ReusableMethods.waitFor(3);
-        changeImageButton.click();
-        ReusableMethods.waitFor(3);
-        //girilecek dosyanin yolunu hafizaya alalim
-        StringSelection ss=new StringSelection(path);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
-        ReusableMethods.waitFor(3);
-
-
-        //Robot class kullanarak hafizaya alinan yolu ctrl+V ile acilan pencereye yapistirabiliriz
-        Robot robot= null;
         try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
+            String path=System.getProperty("user.dir")+"\\test-output\\image.jpg";//yükleyecegimiz dosyanin yolu
+            System.out.println("path = " + path);
+            //Click on Upload button.-->click yapilinca window acilacagi icin robot class gerekir.
+
+            //driver.findElement(By.xpath("(//td)[4]")).click();//Robot class kullanacagimiz icin click yaptik
+            ReusableMethods.waitFor(3);
+            changeImageButton.click();
+            ReusableMethods.waitFor(3);
+            //girilecek dosyanin yolunu hafizaya alalim
+            StringSelection ss=new StringSelection(path);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
+            ReusableMethods.waitFor(3);
+
+
+            //Robot class kullanarak hafizaya alinan yolu ctrl+V ile acilan pencereye yapistirabiliriz
+            Robot robot= null;
+            try {
+                robot = new Robot();
+            } catch (AWTException e) {
+                throw new RuntimeException(e);
+            }
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_V);
+
+            //Enter e basalim
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+
+
+//        //click yerine sendKeys metodu ile filepath gönderecegiz
+//        WebElement chooseFileButton=driver.findElement(By.name("image.jpg"));
+//        chooseFileButton.sendKeys(path);//input type file oldugu icin bu yöntem kullanilabilir.
+//
+//        chooseFileButton.submit();//enter e bastik.
+
+        }catch (Exception e) {
+
+
         }
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_V);
 
-        //Enter e basalim
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-
-        //click yerine sendKeys metodu ile filepath gönderecegiz
-        WebElement chooseFileButton=driver.findElement(By.name("image.jpg"));
-        chooseFileButton.sendKeys(path);//input type file oldugu icin bu yöntem kullanilabilir.
-
-        chooseFileButton.submit();//enter e bastik.
 
         ReusableMethods.waitFor(1);
 

@@ -12,7 +12,7 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer meldet sich ab
 
 
-  @PositiveScnarioRemoteUnits @E
+  @PositiveScnarioRemoteUnits @Ef
   Scenario: TC_0010_002 Remote Units Anzeigen
     When Benutzer erstellt Remote unit "New RemoteUnit"
     And Benutzer klickt auf dieSchaltflaeche RemoteUnits
@@ -129,7 +129,7 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
-  @NegativeScnarioRemoteUnits @F
+  @NegativeScnarioRemoteUnits @Image
   Scenario:TC_0012_006  image nicht aktualisieren
     When Benutzer erstellt Remote unit "New RemoteUnit" "Remote Unit" "NR" "Remote" "Sales Manager"
     And Benutzer klickt auf die Schaltflaeche editButton
@@ -141,11 +141,11 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
-  @PositiveScnarioRemoteUnits
+  @PositiveScnarioRemoteUnits @DeleteRmUn
   Scenario:TC_0012_007 Remote unit loeschen
-    When Benutzer erstellt Remote unit "New RemoteUnit" "Remote Unit" "NR" "Remote" "Sales Manager"
+    When Benutzer erstellt Remote unit "New RemoteUnitDlt" "Remote Unit" "NR" "Remote" "Sales Manager"
     And Benutzer klickt auf dieSchaltflaeche RemoteUnits
-    And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
-    Then Benutzer bestaetigt, dass Remote Unit  betrachtet geloescht wurde
+    And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnitDlt"
+    Then Benutzer bestaetigt, dass Remote Unit "New RemoteUnitDlt"  betrachtet geloescht wurde
     And Benutzer meldet sich ab
 
