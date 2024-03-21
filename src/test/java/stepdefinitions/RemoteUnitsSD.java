@@ -223,15 +223,16 @@ public class RemoteUnitsSD {
     }
 
 
-    @Then("Benutzer bestaetigt, dass Remote Unit  betrachtet geloescht wurde")
-    public void benutzerBestaetigtDassRemoteUnitBetrachtetGeloeschtWurde() {
+
+    @Then("Benutzer bestaetigt, dass Remote Unit {string}  betrachtet geloescht wurde")
+    public void benutzerBestaetigtDassRemoteUnitBetrachtetGeloeschtWurde(String remoteUnitDlt) {
         remoteUnitsPage=new RemoteUnitsPage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.search,10);
         remoteUnitsPage.search.clear();
-        remoteUnitsPage.search.sendKeys("New RemoteUnit");
-        Assert.assertTrue(remoteUnitsPage.remoteUnits.isEmpty());
-
-
+        ReusableMethods.waitFor(1);
+        remoteUnitsPage.search.sendKeys(remoteUnitDlt);
+        ReusableMethods.waitFor(1);
+        System.out.println("remoteUnitsPage.remoteUnitsrow.getText() = " + remoteUnitsPage.remoteUnitsrow.getText());
+        Assert.assertTrue(remoteUnitsPage.remoteUnitsrow.getText().isEmpty());
     }
-
 }
