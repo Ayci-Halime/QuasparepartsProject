@@ -24,10 +24,11 @@ public class DepartmentsPage {
     public WebElement Quality_Assurance_Department;
     @FindBy(xpath = "//b[.='personel']")
     public WebElement personel_Department;
-    @FindBy(xpath = "//input[@id='name']")
-    public WebElement Department_Name;
+   // @FindBy(xpath = "//input[@id='name']")
+     @FindBy(id = "name")
+    public WebElement Department_oder_Team_Name;
     @FindBy(xpath = "//input[@name='short_name']")
-    public WebElement Department_Short_Name;
+    public WebElement Department_oder_Team_Short_Name;
     @FindBy(xpath = "//div[@class=' css-hlgwow']")
     public WebElement Department_Type;
     @FindBy(xpath = "//button[.='Save']")
@@ -37,8 +38,10 @@ public class DepartmentsPage {
 
     @FindBy(xpath = "//span[.='Please select a type for department']")
     public WebElement Type_Leer;
-@FindBy(xpath = "(//button[@type='button'])[3]")
+//@FindBy(xpath = "(//button[@type='button'])[3]")
+    @FindBy(xpath = "//button[text()=' Edit ']")
     public WebElement Edit_Department;
+
 @FindBy(xpath = "//input[@name='description']")
     public WebElement description_Department;
 @FindBy(xpath = "//div[@class='col-12']")
