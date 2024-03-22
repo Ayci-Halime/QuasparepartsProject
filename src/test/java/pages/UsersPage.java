@@ -163,6 +163,9 @@ public class UsersPage {
     @FindBy(xpath = "//span[@class='text-danger']")
     public WebElement errorMessageInAddingMultipleMember;
 
+    @FindBy(xpath = "//div[@role='alert']") // alert olduğu için, alerte geçmek gerekebilir
+    public WebElement emailErrorMessageInAddingMultipleMember;
+
 
 
     public void changeUsernameToPreviousOne() {

@@ -121,11 +121,11 @@ public class UsersSD {
         //  ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),element,15);
         //   JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),element);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
 
         WebElement threeDots = ParallelDriver.getDriver().
                 findElement(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button"));
@@ -774,11 +774,71 @@ public class UsersSD {
                 //usersPage.removeFromOrganizaiton.click();
 
                 ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.userRemovedMessage, 10);
-                ParallelDriver.getDriver().navigate().refresh();
             }
+
+        } else {
+            ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.perPageDropDown, 15);
+            Select select = new Select(usersPage.perPageDropDown);
+            select.selectByIndex(4);
+
+            ParallelDriver.getDriver().navigate().refresh();
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(0))));
+
+            try {
+                //element.click();
+                JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
+            } catch (StaleElementReferenceException e) {
+                element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(0))));
+                JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
+                // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
+            }
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            WebElement threeDots = ParallelDriver.getDriver().
+                    findElement(By.xpath("//a[.='" + emails.get(0) + "']//parent::td//parent::tr//child::td[7]//div//button"));
+
+            try {
+                threeDots.click();
+            } catch (StaleElementReferenceException e) {
+                threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + emails.get(0) + "']//parent::td//parent::tr//child::td[7]//div//button")));
+                //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
+                threeDots.click();
+            }
+
+            WebElement removefromorganization = usersPage.removeFromOrganizaiton;
+            try {
+                removefromorganization.click();
+            } catch (StaleElementReferenceException e) {
+                // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
+                removefromorganization = usersPage.removeFromOrganizaiton;
+                removefromorganization.click();
+            }
+            //usersPage.removeFromOrganizaiton.click();
+
+            ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.userRemovedMessage, 10);
 
         }
 
+
+    }
+
+    @And("Benutzer laesst das Feld Benutzerrolle leer")
+    public void benutzerLaesstDasFeldBenutzerrolleLeer() {
+        usersPage = new UsersPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.roleInMultipleUser, 10);
+        usersPage.departmentField.click();
+        usersPage.departmentField.sendKeys(Keys.ESCAPE);
+    }
+
+    @Then("Benutzer bestaetigt dass er eine Fehlermeldung beim mehrere mitglieder Hinzufuegen erhalten hat")
+    public void benutzerBestaetigtDassErEineFehlermeldungBeimMehrereMitgliederHinzufuegenErhaltenHat() {
+        usersPage = new UsersPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.errorMessageInAddingMultipleMember, 10);
 
     }
 }

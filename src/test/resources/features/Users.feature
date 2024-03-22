@@ -350,7 +350,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer meldet sich ab
 
 
-
+  @tag12
   Scenario: TC_0017_012 Der Benutzer fügt mehrere Benutzer über die Schaltfläche "Mehrere Mitglieder hinzufügen" hinzu
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -364,7 +364,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer meldet sich ab
 
 
-
+  @tag13
   Scenario: TC_0017_013 Wenn der Benutzer beim Hinzufügen von Benutzern über die Schaltfläche "Mehrere Mitglieder hinzufügen" die Rolle nicht auswählt, kann er keine Benutzer hinzufügen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -414,7 +414,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer waehlt die Abteilung aus
     And Benutzer laesst das EMail Feld leer
     And Benutzer klickt auf die Schaltflaeche E-Mails Registrieren
-    Then Benutzer bestaetigt dass er eine Fehlermeldung beim mehrere mitglieder Hinzufuegen erhalten hat
+    Then Benutzer bestaetigt dass er eine Fehlermeldung im Email beim mehrere mitglieder Hinzufuegen erhalten hat
     And Benutzer meldet sich ab
 
 
