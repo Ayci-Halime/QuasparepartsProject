@@ -16,6 +16,7 @@ public class HomeSD {
     @Then("Benutzer bestaetigt, dass  das Nioyatech-Logo sichtbar ist")
     public void benutzerBestaetigtDassDasNioyatechLogoSichtbarIst() {
         homePage=new HomePage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.nioyaTech,10);
        Assert.assertTrue(homePage.nioyaTech.isDisplayed());
 
     }
@@ -23,17 +24,16 @@ public class HomeSD {
     @And("Benutzer klickt auf das Nioyatech-Logo")
     public void benutzerKlicktAufDasNioyatechLogo() {
         homePage=new HomePage();
+        loginPage=new LoginPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.nioyaTech,10);
         homePage.nioyaTech.click();
     }
 
     @Then("Benutzer bestaetigt, dass er die Startseite anzeigt")
     public void benutzerBestaetigtDassErDieStartseiteAnzeigt() {
         loginPage=new LoginPage();
-       // homePage=new HomePage();
-       // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.nioyaTech,10);
-
-
-       Assert.assertTrue(loginPage.login.isDisplayed());
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),loginPage.login,10);
+       Assert.assertTrue(ParallelDriver.getDriver().getCurrentUrl().contains("https://qa-gm3.quaspareparts.com/"));
 
 
     }
@@ -44,7 +44,6 @@ public class HomeSD {
         homePage=new HomePage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.menubarOk,10);
         Assert.assertTrue(homePage.menubarOk.isDisplayed());
-
 
     }
 
@@ -70,7 +69,9 @@ public class HomeSD {
     public void benutzer_bestaetigt_dass_er_die_e_mail_adresse_in_der_oberen_rechten_ecke_sieht() {
         homePage=new HomePage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profilDropDown,10);
-        String titel=homePage.profilDropDown.getText();
+        String titel=ReusableMethods.getElementText(homePage.profilDropDown);
+        System.out.println("titel = " + titel);
+        ReusableMethods.waitFor(1);
         Assert.assertTrue(titel.contains(ConfigReader.getProperty("username")));
     }
 
@@ -79,7 +80,8 @@ public class HomeSD {
 
         homePage=new HomePage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profilDropDown,10);
-        String titel=homePage.profilDropDown.getText();
+        String titel=ReusableMethods.getElementText(homePage.profilDropDown);
+        System.out.println("titel = " + titel);
         Assert.assertTrue(titel.contains("Business Owner"));
     }
 
@@ -89,8 +91,13 @@ public class HomeSD {
         homePage=new HomePage();
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profilEmailTitel,10);
-        String titel=homePage.profilEmailTitel.getText();
+
+        String titel = ReusableMethods.getElementText(homePage.profilEmailTitel);
+        System.out.println("titel = " + titel);
+
+        ReusableMethods.waitFor(1);
         Assert.assertTrue(titel.contains(ConfigReader.getProperty("username")));
+        homePage.profilDropDown.click();
 
     }
 
@@ -99,8 +106,12 @@ public class HomeSD {
         homePage=new HomePage();
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profilEmailTitel,10);
-        String titel=homePage.profilEmailTitel.getText();
+        String titel = ReusableMethods.getElementText(homePage.profilEmailTitel);
+        System.out.println("titel = " + titel);
+        //homePage.profilEmailTitel.getText();
+        ReusableMethods.waitFor(1);
         Assert.assertTrue(titel.contains("Business Owner"));
+        homePage.profilDropDown.click();
 
     }
 

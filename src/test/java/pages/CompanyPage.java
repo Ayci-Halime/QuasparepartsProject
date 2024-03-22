@@ -30,6 +30,15 @@ public class CompanyPage {
     @FindBy(xpath = "//span[@class='text-danger']")
     public WebElement warning;
 
+    @FindBy(xpath = "//input[@name='email']")
+    public WebElement companyEmail;
+
+    @FindBy(xpath = "//p[text()='Company information successfully updated']")
+    public WebElement emailWarning;
+
+
+
+
     public void companyMethod (WebDriver driver) {
 
         ReusableMethods.waitForVisibility(driver,company,10);

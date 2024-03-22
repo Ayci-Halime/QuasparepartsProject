@@ -17,7 +17,7 @@ public class ReusableMethods {
     // Edit yaparken field ları silen metot
     public static void deleteFields(WebElement element,String text) {
 
-        int size = text.length();
+        int size = text.length()*2;
         for (int i = 0; i < size; i++){
             element.sendKeys(Keys.BACK_SPACE);
         }
@@ -28,8 +28,8 @@ public class ReusableMethods {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWaitInSec));
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
-    public static List<WebElement> waitForVisibilityOfAllElements(List<WebElement> element, WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(50));
+    public static List<WebElement> waitForVisibilityOfAllElements(WebDriver driver, List<WebElement> element,int second) {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(second));
         return wait.until(ExpectedConditions.visibilityOfAllElements(element));
     }
     public static WebElement waitForClickablility(WebDriver driver, WebElement element, int timeout) {

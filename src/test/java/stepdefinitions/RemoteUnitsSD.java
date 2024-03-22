@@ -23,7 +23,7 @@ public class RemoteUnitsSD {
 
         remoteUnitsPage=new RemoteUnitsPage();
         homePage=new HomePage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),homePage.remoteUnits,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.remoteUnits,10);
         homePage.remoteUnits.click();
 
 
@@ -45,14 +45,14 @@ public class RemoteUnitsSD {
     public void benutzerKlicktAufDieSchaltflaecheAddNewRemoteUnit() {
 
         remoteUnitsPage=new RemoteUnitsPage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),remoteUnitsPage.addNewRemoteUnitButton,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.addNewRemoteUnitButton,10);
         remoteUnitsPage.addNewRemoteUnitButton.click();
     }
 
     @And("Benutzer gibt den Abteilungsnamen {string} ein")
     public void benutzerGibtDenAbteilungsnamenEin(String name) {
         remoteUnitsPage=new RemoteUnitsPage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),remoteUnitsPage.name,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.name,10);
         remoteUnitsPage.name.clear();
         remoteUnitsPage.name.sendKeys(name);
 
@@ -72,7 +72,7 @@ public class RemoteUnitsSD {
     @And("Benutzer klickt auf dieSchaltflaeche save")
     public void benutzerKlicktAufDieSchaltflaecheSave() {
         remoteUnitsPage=new RemoteUnitsPage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),remoteUnitsPage.saveButton,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.saveButton,10);
         remoteUnitsPage.saveButton.click();
 
 
@@ -174,7 +174,7 @@ public class RemoteUnitsSD {
     @And("Benutzer klickt auf die Schaltflaeche editButton")
     public void benutzerKlicktAufDieSchaltflaecheEditButton() {
         remoteUnitsPage=new RemoteUnitsPage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),remoteUnitsPage.editButton,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.editButton,10);
         remoteUnitsPage.editButton.click();
 
     }
@@ -183,7 +183,7 @@ public class RemoteUnitsSD {
     public void benutzerBestaetigtDassDieDepartmentsNameAktualisiertWurde() {
         profilePage=new ProfilePage();
         remoteUnitsPage=new RemoteUnitsPage();
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),remoteUnitsPage.acceptMessage,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.acceptMessage,10);
        Assert.assertTrue(profilePage.alertacceptMessage(ParallelDriver.getDriver(),remoteUnitsPage.acceptMessage));
         remoteUnitsPage.acceptMassageCloseButton.click();
 
@@ -192,9 +192,48 @@ public class RemoteUnitsSD {
 
     @And("Benutzer klickt auf die Shalteflaeche Change Image")
     public void benutzerKlicktAufDieShalteflaecheChangeImage() {
+        remoteUnitsPage=new RemoteUnitsPage();
+        remoteUnitsPage.imageHinzufuegen(ParallelDriver.getDriver());
+
+    }
+    @And("Benutzer klickt auf die Schalteflaeche Crop")
+    public void benutzerKlicktAufDieSchalteflaecheCrop() {
+        remoteUnitsPage=new RemoteUnitsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.cropButton,10);
+        remoteUnitsPage.cropButton.click();
+
+
     }
 
+    @And("Benutser klickt auf die Schalteflaeche ImageSave")
+    public void benutserKlicktAufDieSchalteflaecheImageSave() {
+        remoteUnitsPage=new RemoteUnitsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.saveImageButton,10);
+        remoteUnitsPage.saveImageButton.click();
+    }
     @Then("Benutzer bestaetigt, dass sich die Imageerrormessage betrachtet")
     public void benutzerBestaetigtDassSichDieImageerrormessageBetrachtet() {
+
+        remoteUnitsPage=new RemoteUnitsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.acceptMessage,10);
+
+        String errormessageText=remoteUnitsPage.acceptMessage.getText();
+        System.out.println("errormessageText = " + errormessageText);
+        Assert.assertTrue(errormessageText.contains("An error occurred. The picture could not be changed."));
+
+    }
+
+
+
+    @Then("Benutzer bestaetigt, dass Remote Unit {string}  betrachtet geloescht wurde")
+    public void benutzerBestaetigtDassRemoteUnitBetrachtetGeloeschtWurde(String remoteUnitDlt) {
+        remoteUnitsPage=new RemoteUnitsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.search,10);
+        remoteUnitsPage.search.clear();
+        ReusableMethods.waitFor(1);
+        remoteUnitsPage.search.sendKeys(remoteUnitDlt);
+        ReusableMethods.waitFor(1);
+        System.out.println("remoteUnitsPage.remoteUnitsrow.getText() = " + remoteUnitsPage.remoteUnitsrow.getText());
+        Assert.assertTrue(remoteUnitsPage.remoteUnitsrow.getText().isEmpty());
     }
 }
