@@ -99,6 +99,9 @@ public class RemoteUnitsPage {
     @FindBy(xpath = "//button[@aria-label='Close']")
     public WebElement acceptMassageCloseButton;
 
+    @FindBy(xpath = "(//div[@class='col-10']//span)[2]")
+    public WebElement abkuerzungREMOTEUnits;
+
 
 
     public  void acceptMessageCloseMethod(WebDriver driver, WebElement element){
@@ -119,7 +122,10 @@ public class RemoteUnitsPage {
         search.sendKeys(newUnit);
         ReusableMethods.waitForVisibility(driver, ilkRemoteUnit, 10);
         ilkRemoteUnit.click();
+
         ReusableMethods.waitForVisibility(driver, editRemoteUnitButton, 10);
+//        System.out.println("abkuerzungREMOTEUnits = " + abkuerzungREMOTEUnits.getText());
+//        ReusableMethods.waitForPageToLoad(2);
         editRemoteUnitButton.click();
         System.out.println("Löschen editButton");
 
@@ -138,6 +144,7 @@ public class RemoteUnitsPage {
         }
 
         ReusableMethods.waitForPageToLoad(5);
+
         ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
         deleteDepartmentButton.click();
 
@@ -209,53 +216,22 @@ public class RemoteUnitsPage {
         js.executeScript("location.reload()");
     }
 
-    public void imageHinzufuegen(WebDriver driver,WebElement imageButton){
+    public void imageHinzufuegen(WebDriver driver){
+
 
         try {
-            String path=System.getProperty("user.dir")+"\\test-output\\image.jpg";//yükleyecegimiz dosyanin yolu
+            String path=System.getProperty("user.dir")+"\\src\\test\\java\\utilities\\image.jpg";//yükleyecegimiz dosyanin yolu
             System.out.println("path = " + path);
-            //Click on Upload button.-->click yapilinca window acilacagi icin robot class gerekir.
 
-            //driver.findElement(By.xpath("(//td)[4]")).click();//Robot class kullanacagimiz icin click yaptik
+            changeImageButton.sendKeys(path);
             ReusableMethods.waitFor(3);
-            changeImageButton.click();
-            ReusableMethods.waitFor(3);
-            //girilecek dosyanin yolunu hafizaya alalim
-            StringSelection ss=new StringSelection(path);
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
-            ReusableMethods.waitFor(3);
+            changeImageButton.submit();
 
-
-            //Robot class kullanarak hafizaya alinan yolu ctrl+V ile acilan pencereye yapistirabiliriz
-            Robot robot= null;
-            try {
-                robot = new Robot();
-            } catch (AWTException e) {
-                throw new RuntimeException(e);
-            }
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyRelease(KeyEvent.VK_V);
-
-            //Enter e basalim
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-
-
-//        //click yerine sendKeys metodu ile filepath gönderecegiz
-//        WebElement chooseFileButton=driver.findElement(By.name("image.jpg"));
-//        chooseFileButton.sendKeys(path);//input type file oldugu icin bu yöntem kullanilabilir.
-//
-//        chooseFileButton.submit();//enter e bastik.
 
         }catch (Exception e) {
-
-
+            System.out.println("file not found");
         }
 
-
-        ReusableMethods.waitFor(1);
 
     }
 
