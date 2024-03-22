@@ -1,12 +1,19 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
+import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
+import java.time.Duration;
 import java.util.List;
 
 public class UsersPage {
@@ -14,7 +21,6 @@ public class UsersPage {
     public UsersPage() {
         PageFactory.initElements(ParallelDriver.getDriver(), this);
     }
-
 
     @FindBy (xpath = "//div[@class='col-12']/a/button")
     public WebElement addMultipleMembers;
@@ -31,10 +37,6 @@ public class UsersPage {
     @FindBy (xpath = "//tbody[@class='tableRows']/tr/td[2]/a")
     public WebElement newUserEmailAfterSearch;
 
-
-    @FindBy(linkText = "Reset Password")
-    public WebElement resetPassword;
-
     @FindBy(xpath = "//button[.='Reset Password']")
     public WebElement resetPasswordButtonInUserDetail;
 
@@ -46,9 +48,6 @@ public class UsersPage {
 
     @FindBy(xpath = "//button[.='Close']")
     public WebElement closeButtonAfterPasswordReset;
-
-    @FindBy(linkText = "Verify Email")
-    public WebElement verifryEmail;
 
     @FindBy(linkText = "Remove from Organization")
     public WebElement removeFromOrganizaiton;
@@ -184,6 +183,74 @@ public class UsersPage {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),saveIconInUserDetail,10);
         saveIconInUserDetail.click();
     }
+
+    public void deleteUser() {
+        HomePage homePage = new HomePage();
+        WebDriverWait wait = new WebDriverWait(ParallelDriver.getDriver(), Duration.ofSeconds(15));
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.users,15);
+        homePage.users.click();
+
+        ReusableMethods.waitForPageToLoad(5);
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), perPageDropDown, 15);
+        Select select = new Select(perPageDropDown);
+        select.selectByIndex(4);
+
+        ParallelDriver.getDriver().navigate().refresh();
+        //  WebElement element = ParallelDriver.getDriver().findElement(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']"));
+        // WebElement element = ParallelDriver.getDriver().
+//                findElement(By.xpath("//tbody[@class='tableRows']/tr/td[2]/a"));
+
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+
+        try {
+            //element.click();
+            JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
+        } catch (StaleElementReferenceException e) {
+            element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+            JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
+            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
+        }
+        //  ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),element,15);
+        //   JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),element);
+
+        ReusableMethods.waitForPageToLoad(10);
+
+        WebElement threeDots = ParallelDriver.getDriver().
+                findElement(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button"));
+        // WebElement threeDots = ParallelDriver.getDriver().findElement(By.xpath("(//div[@class='btn-group'])[2]/button"));
+        try {
+            threeDots.click();
+        } catch (StaleElementReferenceException e) {
+            threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button")));
+            JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
+            // threeDots.click();
+        }
+
+        // ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),threeDots,20);
+
+        //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
+        //   threeDots.click();
+
+
+        //ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton,10);
+        WebElement removefromorganization = removeFromOrganizaiton;
+        try {
+            removefromorganization.click();
+            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
+        } catch (Exception e) {
+            // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
+            removefromorganization = removeFromOrganizaiton;
+            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
+            removefromorganization.click();
+        }
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), userRemovedMessage, 10);
+        ParallelDriver.getDriver().navigate().refresh();
+    }
+
+
 
 
 
