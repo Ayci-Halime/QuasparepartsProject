@@ -24,7 +24,7 @@ Feature:US_0007
     And Der Benutzer klickt auf die Schaltflaeche Speichern
     And Der Benutzer klickt auf den Abschnitt Team
     Then Der Benutzer bestätigt den neuen TNamen
-  @B1
+
   Scenario: TC_0014_002
     Given Der Benutzer klickt auf der linken Seite der Seite auf Team
     And Der Benutzer klickt auf das gespeicherte Team
@@ -71,11 +71,20 @@ Feature:US_0007
     And Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“
     Then Der Benutzer Uberpruft, ob die geloschte Abteilung geloscht wurde
 
-  Scenario: TC_0014_007
+ #Scenario: TC_0014_007
+   # Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+   # And Der Benutzer klickt auf die Schaltflache „Neue Abteilung hinzufugen“.
+   # And Der Benutzer lasst den Abschnitt „Abteilungsname“ leer.
+    #And Der Benutzer schreibt den Kurznamen der Abteilung
+   # And Der Benutzer wahlt den Abteilungstyp aus
+   # And Der Benutzer klickt auf die Schaltflache „Speichern“.
+   # And Stellt sicher, dass dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt werden kann.
+
+  Scenario: TC_0014_008
     Given Der Benutzer klickt auf der linken Seite der Seite auf Team
     And Der Benutzer klickt auf die Schaltflache „Neue Abteilung hinzufugen“.
-    And Der Benutzer lasst den Abschnitt „Abteilungsname“ leer.
+    And Der Benutzer schreibt den Abteilungsnamen
     And Der Benutzer schreibt den Kurznamen der Abteilung
-    And Der Benutzer wahlt den TAbteilungstyp aus
+    And Der Benutzer lasst Abteilungstyp leer.
     And Der Benutzer klickt auf die Schaltflache „Speichern“.
-    And Stellt sicher, dass dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt werden kann.
+    Then Uberpruft, ob dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt wurde

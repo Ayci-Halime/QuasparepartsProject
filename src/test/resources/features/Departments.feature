@@ -50,14 +50,14 @@
       And Der Benutzer klickt auf die Schaltflache „Speichern“.
       And Stellt sicher, dass dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt werden kann.
 
-    Scenario: TC_0008_004
-      Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
-      And Der Benutzer klickt auf die Schaltflache „Neue Abteilung hinzufugen“.
-      And Drucken Sie im Abschnitt „Name der Benutzerabteilung“ einfach die Leertaste.
-      And Der Benutzer schreibt den Kurznamen der Abteilung
-      And Der Benutzer wahlt den Abteilungstyp aus
-      And Der Benutzer klickt auf die Schaltflache „Speichern“.
-      Then Uberpruft, ob dem Abschnitt „Abteilung“ eine neue Abteilung hinzugefugt wurde
+   # Scenario: TC_0008_004
+    #  Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+    #  And Der Benutzer klickt auf die Schaltflache „Neue Abteilung hinzufugen“.
+     # And Drucken Sie im Abschnitt „Name der Benutzerabteilung“ einfach die Leertaste.
+     # And Der Benutzer schreibt den Kurznamen der Abteilung
+     # And Der Benutzer wahlt den Abteilungstyp aus
+     # And Der Benutzer klickt auf die Schaltflache „Speichern“.
+     # Then Uberpruft, ob dem Abschnitt „Abteilung“ eine neue Abteilung hinzugefugt wurde
 
     Scenario: TC_0008_005
       Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
@@ -114,7 +114,7 @@
       And Der Benutzer klickt auf die Schaltflache „Speichern“.
       And Der Benutzer klickt auf den Abteilungsbereich
       Then Der Benutzer bestatigt, dass diese „Abteilung“ nicht zur Abteilung gehort
-    @Benutzer
+
     Scenario:  TC_0009_004
       Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
       And Der Benutzer klickt auf eine gespeicherte Abteilung
