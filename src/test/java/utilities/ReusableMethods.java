@@ -106,6 +106,7 @@ public class ReusableMethods {
             elementImage.submit();
 
         }catch (Exception e) {
+            System.out.println("Exception = " + e);
             System.out.println("file not found");
         }
 

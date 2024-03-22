@@ -60,6 +60,10 @@ public class DepartmentsPage {
     public WebElement Department_Delete_Confirm;
 @FindBy(xpath = "//input[@name='file']")
     public WebElement Department_Chance_image;
+@FindBy(xpath = "//button[text()='Crop']")
+    public WebElement Department_Crop;
+@FindBy(xpath = "//button[text()='Save']")
+    public WebElement Department_Save_Image;
 
 
 

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import pages.DepartmentsPage;
 import pages.HomePage;
+import pages.RemoteUnitsPage;
 import utilities.ConfigReader;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
@@ -18,6 +19,7 @@ import java.util.List;
 public class DepartmentsSD {
     DepartmentsPage departmentsPage;
     HomePage homePage;
+    RemoteUnitsPage remoteUnitsPage;
 
     @Given("Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.")
     public void der_benutzer_klickt_auf_der_linken_seite_der_seite_auf_abteilung() {
@@ -81,20 +83,19 @@ public class DepartmentsSD {
 
     @Then("Uberpruft, ob eine neue Abteilung zum Abschnitt „Abteilung“ hinzugefugt werden kann")
     public void uberpruftObEineNeueAbteilungZumAbschnittAbteilungHinzugefugtWerdenKann() {
-      homePage = new HomePage();
+        homePage = new HomePage();
         departmentsPage = new DepartmentsPage();
-      homePage.departments.click();
-     List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
-      boolean flag=false;
+        homePage.departments.click();
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag = false;
         for (WebElement element : list) {
-            if(element.getText().contains((ConfigReader.getProperty("Department")))){
-                flag=true;
+            if (element.getText().contains((ConfigReader.getProperty("Department")))) {
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
-        if (flag==false) Assert.fail();
-
+        if (flag == false) Assert.fail();
 
 
     }
@@ -134,16 +135,16 @@ public class DepartmentsSD {
         homePage = new HomePage();
         departmentsPage = new DepartmentsPage();
         homePage.departments.click();
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
-        boolean flag=false;
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag = false;
         for (WebElement element : list) {
-            if(element.getText().contains(" ")){
-                flag=true;
+            if (element.getText().contains(" ")) {
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
-        if (flag==false) Assert.fail();
+        if (flag == false) Assert.fail();
 
     }
 
@@ -158,16 +159,16 @@ public class DepartmentsSD {
         homePage = new HomePage();
         departmentsPage = new DepartmentsPage();
         homePage.departments.click();
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
-        boolean flag=false;
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag = false;
         for (WebElement element : list) {
-            if(element.getText().contains("1234")){
-                flag=true;
+            if (element.getText().contains("1234")) {
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
-        if (flag==false) Assert.fail();
+        if (flag == false) Assert.fail();
 
     }
 
@@ -182,16 +183,16 @@ public class DepartmentsSD {
         homePage = new HomePage();
         departmentsPage = new DepartmentsPage();
         homePage.departments.click();
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
-        boolean flag=false;
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag = false;
         for (WebElement element : list) {
-            if(element.getText().contains("**")){
-                flag=true;
+            if (element.getText().contains("**")) {
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
-        if (flag==false) Assert.fail();
+        if (flag == false) Assert.fail();
 
     }
 
@@ -207,40 +208,41 @@ public class DepartmentsSD {
     }
 
     @And("Der Benutzer klickt auf eine gespeicherte Abteilung")
-    public void derBenutzerKlicktAufEineGespeicherteAbteilung() throws InterruptedException {
+    public void derBenutzerKlicktAufEineGespeicherteAbteilung() {
         departmentsPage = new DepartmentsPage();
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
-        boolean flag=false;
-        Thread.sleep(2000);
+        ReusableMethods.waitForPageToLoad(10);
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag = false;
         for (WebElement element : list) {
-            if(element.getText().contains("P1")){
-                flag=true;
+            if (element.getText().contains("P1")) {
+                flag = true;
+                ReusableMethods.waitForPageToLoad(10);
                 element.click();
-               break;
+                break;
             }
 
         }
-        if (flag==false) Assert.fail();
+        if (flag == false) Assert.fail();
 
     }
 
     @And("Der Benutzer klickt auf „Abteilung bearbeiten“.")
-    public void derBenutzerKlicktAufAbteilungBearbeiten()  {
+    public void derBenutzerKlicktAufAbteilungBearbeiten() {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitForPageToLoad(10);
+        ReusableMethods.waitFor(5);
         departmentsPage.Edit_Department.click();
         ParallelDriver.getDriver().navigate().refresh();
-      // ParallelDriver.getDriver().navigate().refresh();
+
     }
 
     @And("Andert den Benutzernamen.")
-    public void andertDenBenutzernamen()  {
+    public void andertDenBenutzernamen() {
         departmentsPage = new DepartmentsPage();
-       // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Name,20);
+        // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Name,20);
         ReusableMethods.waitForPageToLoad(10);
-        Actions actions=new Actions(ParallelDriver.getDriver());
+        Actions actions = new Actions(ParallelDriver.getDriver());
         ReusableMethods.waitForPageToLoad(10);
-       departmentsPage.Department_oder_Team_Name.clear();
+        departmentsPage.Department_oder_Team_Name.clear();
         ReusableMethods.waitForPageToLoad(10);
         actions.click(departmentsPage.Department_oder_Team_Name).sendKeys("P1").perform();
     }
@@ -255,31 +257,32 @@ public class DepartmentsSD {
 
     @Then("Der Benutzer bestätigt den neuen Namen")
     public void derBenutzerBestatigtDenNeuenNamen() throws InterruptedException {
-Thread.sleep(5000);
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
-        boolean flag=false;
-        for (WebElement element2 : list){
+        Thread.sleep(5000);
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//div[@class='col-4']"));
+        boolean flag = false;
+        for (WebElement element2 : list) {
             System.out.println(element2.getText());
         }
         Thread.sleep(3000);
         for (WebElement element : list) {
-            if(element.getText().contains("P1")){
+            if (element.getText().contains("P1")) {
                 Thread.sleep(3000);
-                flag=true;
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
         Thread.sleep(3000);
-        if (flag==false)
-        {Assert.fail();}
+        if (flag == false) {
+            Assert.fail();
+        }
 
     }
 
     @And("Der Benutzer andert den Kurznamen.")
     public void derBenutzerAndertDenKurznamen() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_oder_Team_Short_Name,10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentsPage.Department_oder_Team_Short_Name, 10);
         Thread.sleep(2000);
         departmentsPage.Department_oder_Team_Short_Name.clear();
         Thread.sleep(2000);
@@ -293,7 +296,7 @@ Thread.sleep(5000);
 
         System.out.println("********");
         ReusableMethods.waitForPageToLoad(10);
-        String str=departmentsPage.Kurzname_Department_Personel_assert.getText();
+        String str = departmentsPage.Kurzname_Department_Personel_assert.getText();
         System.out.println(str);
         ReusableMethods.waitFor(4);
         System.out.println("********");
@@ -312,23 +315,24 @@ Thread.sleep(5000);
     @Then("Der Benutzer bestatigt, dass diese „Abteilung“ nicht zur Abteilung gehort")
     public void derBenutzerBestatigtDassDieseAbteilungNichtZurAbteilungGehort() throws InterruptedException {
         Thread.sleep(5000);
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
-        boolean flag=false;
-        for (WebElement element2 : list){
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag = false;
+        for (WebElement element2 : list) {
             System.out.println(element2.getText());
         }
         Thread.sleep(3000);
         for (WebElement element : list) {
-            if(element.getText().contains("P1")){
+            if (element.getText().contains("P1")) {
                 Thread.sleep(3000);
-                flag=true;
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
         Thread.sleep(3000);
-        if (flag==true)
-        {Assert.fail();}
+        if (flag == true) {
+            Assert.fail();
+        }
 
     }
 
@@ -354,10 +358,10 @@ Thread.sleep(5000);
     @And("Der Benutzer andert die Abteilungsrollen")
     public void derBenutzerAndertDieAbteilungsrollen() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-        Actions actions= new Actions(ParallelDriver.getDriver());
+        Actions actions = new Actions(ParallelDriver.getDriver());
         Thread.sleep(4000);
         actions.click(departmentsPage.description_Department).
-                sendKeys(Keys.TAB).sendKeys("B"+Keys.ENTER).click().perform();
+                sendKeys(Keys.TAB).sendKeys("B" + Keys.ENTER).click().perform();
         Thread.sleep(4000);
     }
 
@@ -375,7 +379,7 @@ Thread.sleep(5000);
     }
 
     @And("Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“")
-    public void derBenutzerKlicktAufDemAngezeigtenBildschirmAufBestatigen()  {
+    public void derBenutzerKlicktAufDemAngezeigtenBildschirmAufBestatigen() {
         departmentsPage = new DepartmentsPage();
         ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Department_Delete_Confirm.click();
@@ -384,33 +388,48 @@ Thread.sleep(5000);
     @Then("Der Benutzer Uberpruft, ob die geloschte Abteilung geloscht wurde")
     public void derBenutzerUberpruftObDieGeloschteAbteilungGeloschtWurde() throws InterruptedException {
         Thread.sleep(5000);
-        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
-        boolean flag=false;
-        for (WebElement element2 : list){
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag = false;
+        for (WebElement element2 : list) {
             System.out.println(element2.getText());
         }
         Thread.sleep(3000);
         for (WebElement element : list) {
-            if(element.getText().contains("P1")){
+            if (element.getText().contains("P1")) {
                 Thread.sleep(3000);
-                flag=true;
+                flag = true;
                 Assert.assertTrue(true);
             }
 
         }
         Thread.sleep(3000);
-        if (flag==true)
-        {Assert.fail();}
+        if (flag == true) {
+            Assert.fail();
+        }
     }
 
     @And("Der Benutzer klickt auf „Bild andern“")
     public void derBenutzerKlicktAufBildAndern() {
-
+        departmentsPage = new DepartmentsPage();
+        String path = System.getProperty("user.dir") + "\\src\\test\\java\\utilities\\gunes.png";
+        ReusableMethods.imageHinzufuegen(departmentsPage.Department_Chance_image, path);
+    ReusableMethods.waitFor(3);
     }
 
     @And("Der Benutzer ladt ein Bild vom Computer hoch")
-    public void derBenutzerLadtEinBildVomComputerHoch() throws AWTException {
+    public void derBenutzerLadtEinBildVomComputerHoch() {
+        departmentsPage = new DepartmentsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentsPage.Department_Crop, 20);
+        departmentsPage.Department_Crop.click();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentsPage.Department_Save_Image, 20);
+        departmentsPage.Department_Save_Image.click();
+        remoteUnitsPage = new RemoteUnitsPage();
 
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), remoteUnitsPage.acceptMessage, 10);
+
+        String errormessageText = remoteUnitsPage.acceptMessage.getText();
+        System.out.println("errormessageText = " + errormessageText);
+        Assert.assertTrue(errormessageText.contains("An error occurred. The picture could not be changed."));
 
 
     }
