@@ -1,5 +1,5 @@
 @Login@Smoke
-Feature: Login successfully with valid username and password
+Feature: Login
   Background:
     Given Benutzer geht zur URL
     And Benutzer klickt auf die Schaltflaeche Anmelden
