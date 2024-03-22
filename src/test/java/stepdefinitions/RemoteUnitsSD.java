@@ -193,7 +193,7 @@ public class RemoteUnitsSD {
     @And("Benutzer klickt auf die Shalteflaeche Change Image")
     public void benutzerKlicktAufDieShalteflaecheChangeImage() {
         remoteUnitsPage=new RemoteUnitsPage();
-        remoteUnitsPage.imageHinzufuegen(ParallelDriver.getDriver(),remoteUnitsPage.changeImageButton);
+        remoteUnitsPage.imageHinzufuegen(ParallelDriver.getDriver());
 
     }
     @And("Benutzer klickt auf die Schalteflaeche Crop")
@@ -220,6 +220,7 @@ public class RemoteUnitsSD {
         String errormessageText=remoteUnitsPage.acceptMessage.getText();
         System.out.println("errormessageText = " + errormessageText);
         Assert.assertTrue(errormessageText.contains("An error occurred. The picture could not be changed."));
+
     }
 
 

@@ -106,6 +106,7 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer waehlt als Abteilungstyp "Department" aus
     And Benutzer klickt auf dieSchaltflaeche save
     Then Benutzer bestaetigt, dass die departments name aktualisiert wurde
+    And Benutzer waehlt als Abteilungstyp "Remote Unit" aus
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
