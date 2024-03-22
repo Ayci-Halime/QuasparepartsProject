@@ -44,7 +44,7 @@ public class DepartmentsPage {
 
 @FindBy(xpath = "//input[@name='description']")
     public WebElement description_Department;
-@FindBy(xpath = "//div[@class='col-12']")
+@FindBy(xpath = "//div[text()='Personel abteilung']")
     public WebElement description_Department_assert;
 
 //@FindBy(xpath = "(//span)[8]")
@@ -53,7 +53,7 @@ public class DepartmentsPage {
 @FindBy(xpath = "//span[@class='roles-box p-2 me-2']")
     public WebElement Department_Rolle_assert;
 
-@FindBy(xpath = "//button[.='Delete Department']")
+@FindBy(xpath = "//button[text()='Delete Department']")
     public WebElement Department_Delete_button;
 
 @FindBy(xpath = "//button[.='Confirm']")

@@ -304,7 +304,7 @@ Thread.sleep(5000);
         departmentsPage = new DepartmentsPage();
         Actions actions = new Actions(ParallelDriver.getDriver());
         Thread.sleep(2000);
-        actions.click(departmentsPage.Department_Type).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+        actions.click(departmentsPage.Department_Type).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
         Thread.sleep(2000);
     }
 
@@ -334,19 +334,18 @@ Thread.sleep(5000);
     @And("Der Benutzer andert die „Abteilungsbeschreibung“.")
     public void derBenutzerAndertDieAbteilungsbeschreibung() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-      //  ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.description_Department,20);
-        Thread.sleep(8000);
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.description_Department.clear();
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.description_Department.sendKeys("Personel abteilung");
-        Thread.sleep(2000);
+
     }
 
     @Then("Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat")
     public void derBenutzerBestatigtDassSichBeschreibungInDerAbteilungGeandertHat() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-     //   ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.description_Department_assert,20);
-Thread.sleep(3000);
         System.out.println("***********************************************");
+        ReusableMethods.waitForPageToLoad(10);
         System.out.println(departmentsPage.description_Department_assert.getText());
         Assert.assertEquals("Personel abteilung", departmentsPage.description_Department_assert.getText());
     }
@@ -368,16 +367,16 @@ Thread.sleep(3000);
     }
 
     @And("Der Benutzer klickt auf die Schaltflache „Abteilung loschen“.")
-    public void derBenutzerKlicktAufDieSchaltflacheAbteilungLoschen() throws InterruptedException {
+    public void derBenutzerKlicktAufDieSchaltflacheAbteilungLoschen() {
         departmentsPage = new DepartmentsPage();
-        Thread.sleep(2000);
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Department_Delete_button.click();
     }
 
     @And("Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“")
-    public void derBenutzerKlicktAufDemAngezeigtenBildschirmAufBestatigen() throws InterruptedException {
+    public void derBenutzerKlicktAufDemAngezeigtenBildschirmAufBestatigen()  {
         departmentsPage = new DepartmentsPage();
-        Thread.sleep(2000);
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Department_Delete_Confirm.click();
     }
 

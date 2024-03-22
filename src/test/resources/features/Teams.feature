@@ -52,3 +52,21 @@ Feature:US_0007
     And Der Benutzer klickt auf die Schaltflaeche Speichern
     And Der Benutzer klickt auf den Abschnitt Team
     Then Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat
+
+  Scenario: TC_0014_005
+    Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+    And Der Benutzer klickt auf das gespeicherte Team
+    And Der Benutzer bearbeiten Teamklicks
+    And Der Benutzer andert die Abteilungsrollen
+    And Der Benutzer klickt auf die Schaltflaeche Speichern
+    And Der Benutzer klickt auf den Abschnitt Team
+    And Der Benutzer klickt auf eine gespeicherte Abteilung
+    Then Der Benutzer bestatigt, dass sich „Rollen“ in der Abteilung geandert haben
+
+  Scenario: TC_0014_006
+    Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+    And Der Benutzer klickt auf das gespeicherte Team
+    And Der Benutzer bearbeiten Teamklicks
+    And Der Benutzer klickt auf die Schaltflache „Abteilung loschen“.
+    And Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“
+    Then Der Benutzer Uberpruft, ob die geloschte Abteilung geloscht wurde
