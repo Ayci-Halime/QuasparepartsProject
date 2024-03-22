@@ -107,4 +107,20 @@ public class CompanySD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyEmail,20);
         companyPage.companyEmail.sendKeys("neueAcmegmail.com");
     }
+
+    @And("Benutzer fügt nicht E-Mail und com hinzu, sondern trägt den Namen ein.")
+    public void benutzerFugtNichtEMailUndComHinzuSondernTragtDenNamenEin() {
+        companyPage=new CompanyPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyEmail,20);
+        companyPage.companyEmail.sendKeys("neueAcme@gmail.");
+    }
+
+    @And("Benutzer gibt das Zeichen @ anstelle des Namens ein und füllt auch die E-Mail aus.")
+    public void benutzerGibtDasZeichenAnstelleDesNamensEinUndFulltAuchDieEMailAus() {
+        companyPage=new CompanyPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyName,10);
+        ReusableMethods.deleteFields(companyPage.companyName, ConfigReader.getProperty("CompanyName"));
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyName,20);
+        companyPage.companyName.sendKeys("@");
+    }
 }
