@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import pages.HomePage;
 import pages.ProfilePage;
 import pages.RemoteUnitsPage;
+import utilities.ConfigReader;
 import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
@@ -193,7 +194,11 @@ public class RemoteUnitsSD {
     @And("Benutzer klickt auf die Shalteflaeche Change Image")
     public void benutzerKlicktAufDieShalteflaecheChangeImage() {
         remoteUnitsPage=new RemoteUnitsPage();
-        remoteUnitsPage.imageHinzufuegen(ParallelDriver.getDriver());
+
+       String path=System.getProperty("user.dir")+"\\src\\test\\java\\utilities\\image.jpg";
+       String path2=ConfigReader.getProperty("pathImage");
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.changeImageButton,10);
+        ReusableMethods.imageHinzufuegen(ParallelDriver.getDriver(),remoteUnitsPage.changeImageButton);
 
     }
     @And("Benutzer klickt auf die Schalteflaeche Crop")

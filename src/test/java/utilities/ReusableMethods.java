@@ -97,7 +97,19 @@ public class ReusableMethods {
     }
 
 
+    public static void imageHinzufuegen(WebDriver driver,WebElement elementImage){
 
+        try {
+
+            elementImage.sendKeys(ConfigReader.getProperty("pathImage"));
+            ReusableMethods.waitFor(3);
+            elementImage.submit();
+
+        }catch (Exception e) {
+            System.out.println("file not found");
+        }
+
+    }
 
 
 
