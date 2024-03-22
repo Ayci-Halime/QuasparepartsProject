@@ -97,11 +97,11 @@ public class ReusableMethods {
     }
 
 
-    public static void imageHinzufuegen(WebDriver driver,WebElement elementImage){
+    public static void imageHinzufuegen(WebElement elementImage,String configText){
 
         try {
 
-            elementImage.sendKeys(ConfigReader.getProperty("pathImage"));
+            elementImage.sendKeys(configText);
             ReusableMethods.waitFor(3);
             elementImage.submit();
 
