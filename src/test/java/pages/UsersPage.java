@@ -1,11 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.ConfigReader;
 import utilities.ParallelDriver;
+import utilities.ReusableMethods;
 
 import java.util.List;
 
@@ -18,9 +18,6 @@ public class UsersPage {
 
     @FindBy (xpath = "//div[@class='col-12']/a/button")
     public WebElement addMultipleMembers;
-
-//    @FindBy (xpath = "//div[@class='col-12']/button[2]")
-//    public WebElement addNewMember;
 
     @FindBy (xpath = "//button[.='+ Add New Member']")
     public WebElement addNewMember;
@@ -38,6 +35,18 @@ public class UsersPage {
     @FindBy(linkText = "Reset Password")
     public WebElement resetPassword;
 
+    @FindBy(xpath = "//button[.='Reset Password']")
+    public WebElement resetPasswordButtonInUserDetail;
+
+    @FindBy(xpath = "//button[.='Confirm']")
+    public WebElement confirmButtonForResetPassword;
+
+    @FindBy(tagName = "h5")
+    public WebElement resetPasswordMessage;
+
+    @FindBy(xpath = "//button[.='Close']")
+    public WebElement closeButtonAfterPasswordReset;
+
     @FindBy(linkText = "Verify Email")
     public WebElement verifryEmail;
 
@@ -46,13 +55,13 @@ public class UsersPage {
 
 
     @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[1]")
-    public  WebElement departmentInAddNewMember;
+    public  WebElement departmentField;  // Add new member ve invite new member butonları ile yapılan eklemelerdeki alan
 
     @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[2]")
-    public WebElement roleInAddNewMember;
+    public WebElement roleField;  // Add new member ve invite new member butonları ile yapılan eklemelerdeki alan
 
     @FindBy (xpath = "//input[@name='email']")
-    public WebElement email;
+    public WebElement emailField;  // Add new member ve invite new member butonları ile yapılan eklemelerdeki alan
 
     @FindBy (xpath = "//button[.='Register']")
     public WebElement registerButton;
@@ -63,12 +72,6 @@ public class UsersPage {
     @FindBy (xpath = "//button[.='Invite']")
     public WebElement inviteButton;
 
-    @FindBy (xpath = "(//div[@class=' css-19bb58m'])[1]")
-    public WebElement departmentInInviteNewMember;
-
-    @FindBy (xpath = "(//div[@class=' css-19bb58m'])[2]")
-    public WebElement roleInInviteNewMember;
-
     @FindBy(xpath = "//div[@class='toast-body']/p")
     public WebElement invitationMessage;
 
@@ -76,7 +79,7 @@ public class UsersPage {
     public WebElement userRemovedMessage;
 
     @FindBy(xpath = "//strong[@class='me-auto']")
-    public WebElement addingNewMemberMessage; // bu mesajı close butonuna tıklamadan önce al
+    public WebElement addingNewMemberMessage; // Add New Member butonu ile kullanıcı eklerken gelen success mesajı. bu mesajı close butonuna tıklamadan önce al
 
 
     @FindBy(xpath = "//img[contains(@class,'cursor-pointer')]")
@@ -121,6 +124,9 @@ public class UsersPage {
     @FindBy(xpath = "//input[@name='username']")
     public WebElement usernameInUserDetail;
 
+    @FindBy(xpath = "//label[@name='username']")
+    public WebElement usernameInUserDetailAfterEditing;
+
     @FindBy(xpath = "//label[@name='email']")
     public WebElement emailInUserDetail;
 
@@ -129,6 +135,52 @@ public class UsersPage {
 
     @FindBy(xpath = "(//div[@class='btn-group'])[2]/button")
     public WebElement threeDots;
+
+    @FindBy(xpath = "//div[@class='toast-body']/p")
+    public WebElement usernameUpdateMessage;
+
+    @FindBy(xpath = "//span[@class='text-danger']")
+    public WebElement errorMessageInAddingInInviting;
+
+    @FindBy(xpath = "(//input[@type='text'])[1]")
+    public WebElement roleInMultipleUser;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement departmentTypeInMultipleUser;
+
+    @FindBy(xpath = "(//input[@type='text'])[3]")
+    public WebElement departmentInMultipleUser;
+
+    @FindBy(xpath = "//textarea[@name='newEmails']")
+    public WebElement emailFieldInMultipleUser;
+
+    @FindBy(xpath = "//button[.='Register Emails']")
+    public WebElement registerEmailsButtonInMultipleUser;
+
+    @FindBy(xpath = "//span[@class='text-success']")
+    public List<WebElement> successMessageInAddingMultipleMember; // birden fazla mail ekleyince liste şeklinde mesajları alsın diye
+
+    @FindBy(xpath = "//span[@class='text-danger']")
+    public WebElement errorMessageInAddingMultipleMember;
+
+
+
+    public void changeUsernameToPreviousOne() {
+        String text = usernameInUserDetailAfterEditing.getText();
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),editIconInUserDetail,10);
+        editIconInUserDetail.click();
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),usernameInUserDetail,10);
+        usernameInUserDetail.click();
+
+        ReusableMethods.deleteFields(usernameInUserDetail,text);
+        ReusableMethods.waitFor(3);
+
+        usernameInUserDetail.sendKeys(ConfigReader.getProperty("new_user_mail"));
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),saveIconInUserDetail,10);
+        saveIconInUserDetail.click();
+    }
 
 
 
