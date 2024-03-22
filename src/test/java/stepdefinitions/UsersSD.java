@@ -125,7 +125,7 @@ public class UsersSD {
         // WebElement threeDots = ParallelDriver.getDriver().findElement(By.xpath("(//div[@class='btn-group'])[2]/button"));
         try {
             threeDots.click();
-        } catch (StaleElementReferenceException e) {
+        } catch (Exception e) {
             threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button")));
             JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
            // threeDots.click();
@@ -789,7 +789,7 @@ public class UsersSD {
 
             ParallelDriver.getDriver().navigate().refresh();
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(0))));
-
+            ParallelDriver.getDriver().navigate().refresh();
             try {
                 //element.click();
                 JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
@@ -807,7 +807,7 @@ public class UsersSD {
             try {
                 threeDots.click();
             } catch (StaleElementReferenceException e) {
-                threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + emails.get(0) + "']//parent::td//parent::tr//child::td[7]//div//button")));
+               threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + emails.get(0) + "']//parent::td//parent::tr//child::td[7]//div//button")));
                 //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
                 threeDots.click();
             }
@@ -816,7 +816,6 @@ public class UsersSD {
             try {
                 removefromorganization.click();
             } catch (StaleElementReferenceException e) {
-                // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
                 removefromorganization = usersPage.removeFromOrganizaiton;
                 removefromorganization.click();
             }

@@ -52,7 +52,6 @@ public class UsersPage {
     @FindBy(linkText = "Remove from Organization")
     public WebElement removeFromOrganizaiton;
 
-
     @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[1]")
     public  WebElement departmentField;  // Add new member ve invite new member butonları ile yapılan eklemelerdeki alan
 
@@ -79,7 +78,6 @@ public class UsersPage {
 
     @FindBy(xpath = "//strong[@class='me-auto']")
     public WebElement addingNewMemberMessage; // Add New Member butonu ile kullanıcı eklerken gelen success mesajı. bu mesajı close butonuna tıklamadan önce al
-
 
     @FindBy(xpath = "//img[contains(@class,'cursor-pointer')]")
     public WebElement plusRoles;
@@ -131,9 +129,6 @@ public class UsersPage {
 
     @FindBy(xpath = "//span[@class='text-danger']")
     public WebElement usernameErrorMessageInUserDetail;
-
-    @FindBy(xpath = "(//div[@class='btn-group'])[2]/button")
-    public WebElement threeDots;
 
     @FindBy(xpath = "//div[@class='toast-body']/p")
     public WebElement usernameUpdateMessage;
