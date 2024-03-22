@@ -198,7 +198,7 @@ public class RemoteUnitsSD {
        String path=System.getProperty("user.dir")+"\\src\\test\\java\\utilities\\image.jpg";
        String path2=ConfigReader.getProperty("pathImage");
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.changeImageButton,10);
-        ReusableMethods.imageHinzufuegen(ParallelDriver.getDriver(),remoteUnitsPage.changeImageButton);
+        ReusableMethods.imageHinzufuegen(remoteUnitsPage.changeImageButton,path2);
 
     }
     @And("Benutzer klickt auf die Schalteflaeche Crop")
