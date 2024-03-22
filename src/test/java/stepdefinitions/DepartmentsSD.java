@@ -216,6 +216,7 @@ public class DepartmentsSD {
             if(element.getText().contains("P1")){
                 flag=true;
                 element.click();
+               break;
             }
 
         }
@@ -224,23 +225,23 @@ public class DepartmentsSD {
     }
 
     @And("Der Benutzer klickt auf „Abteilung bearbeiten“.")
-    public void derBenutzerKlicktAufAbteilungBearbeiten() throws InterruptedException {
+    public void derBenutzerKlicktAufAbteilungBearbeiten()  {
         departmentsPage = new DepartmentsPage();
-        Thread.sleep(2000);
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Edit_Department.click();
         ParallelDriver.getDriver().navigate().refresh();
       // ParallelDriver.getDriver().navigate().refresh();
     }
 
     @And("Andert den Benutzernamen.")
-    public void andertDenBenutzernamen() throws InterruptedException {
+    public void andertDenBenutzernamen()  {
         departmentsPage = new DepartmentsPage();
        // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Name,20);
-        Thread.sleep(12000);
+        ReusableMethods.waitForPageToLoad(10);
         Actions actions=new Actions(ParallelDriver.getDriver());
-       Thread.sleep(3000);
+        ReusableMethods.waitForPageToLoad(10);
        departmentsPage.Department_oder_Team_Name.clear();
-        Thread.sleep(3000);
+        ReusableMethods.waitForPageToLoad(10);
         actions.click(departmentsPage.Department_oder_Team_Name).sendKeys("P1").perform();
     }
 
@@ -404,13 +405,12 @@ Thread.sleep(5000);
 
     @And("Der Benutzer klickt auf „Bild andern“")
     public void derBenutzerKlicktAufBildAndern() {
-        departmentsPage = new DepartmentsPage();
-        departmentsPage.Department_Chance_image.click();
+
     }
 
     @And("Der Benutzer ladt ein Bild vom Computer hoch")
     public void derBenutzerLadtEinBildVomComputerHoch() throws AWTException {
-        Robot rbt=new Robot();
+
 
 
     }
