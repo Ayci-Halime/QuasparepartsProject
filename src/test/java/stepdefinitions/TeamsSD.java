@@ -138,14 +138,15 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
     public void derBenutzerKlicktAufDieSchaltflaecheSpeichern() {
         departmentsPage = new DepartmentsPage();
         departmentsPage.Department_Save.click();
-        ReusableMethods.waitFor(2);
+
     }
 
     @And("Der Benutzer klickt auf den Abschnitt Team")
     public void derBenutzerKlicktAufDenAbschnittTeam() {
         homePage = new HomePage();
+        ReusableMethods.waitForPageToLoad(10);
         homePage.teams.click();
-        ReusableMethods.waitFor(2);
+
     }
 
     @Then("Der Benutzer bestätigt den neuen TNamen")
@@ -175,9 +176,9 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
     @And("Der Benutzer andert den TKurznamen.")
     public void derBenutzerAndertDenTKurznamen() {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitFor(4);
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Department_oder_Team_Short_Name.clear();
-        ReusableMethods.waitFor(2);
+        ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Department_oder_Team_Short_Name.sendKeys("sss");
         ReusableMethods.waitFor(2);
     }
@@ -194,5 +195,36 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
         System.out.println("********");
          Assert.assertTrue(str.contains("sss"));
 
+    }
+
+    @And("Der Benutzer andert den Abteilungstyp.")
+    public void derBenutzerAndertDenAbteilungstyp() {
+        departmentsPage = new DepartmentsPage();
+        Actions actions = new Actions(ParallelDriver.getDriver());
+        ReusableMethods.waitForPageToLoad(10);
+        actions.click(departmentsPage.Department_Type).sendKeys(Keys.ARROW_UP).sendKeys(Keys.ARROW_UP).sendKeys(Keys.ENTER).perform();
+
+    }
+
+    @Then("Der Benutzer uberpruft den neuen Abteilungstyp")
+    public void derBenutzerUberpruftDenNeuenAbteilungstyp() {
+        ReusableMethods.waitForPageToLoad(10);
+        List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag=false;
+        for (WebElement element2 : list){
+            System.out.println(element2.getText());
+        }
+        ReusableMethods.waitForPageToLoad(10);
+        for (WebElement element : list) {
+            if(element.getText().contains("P1")){
+                ReusableMethods.waitForPageToLoad(10);
+                flag=true;
+                Assert.assertTrue(true);
+            }
+
+        }
+
+        if (flag==true)
+        {Assert.fail();}
     }
 }

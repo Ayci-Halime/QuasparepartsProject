@@ -34,3 +34,21 @@ Feature:US_0007
     And Der Benutzer klickt auf den Abschnitt Team
     And Der Benutzer klickt auf das gespeicherte Team
     Then Der Benutzer bestatigt den neuen TKurznamen
+
+  Scenario: TC_0014_003
+    Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+    And Der Benutzer klickt auf das gespeicherte Team
+    And Der Benutzer bearbeiten Teamklicks
+    And Der Benutzer andert den Abteilungstyp.
+    And Der Benutzer klickt auf die Schaltflaeche Speichern
+    And Der Benutzer klickt auf den Abschnitt Team
+    Then Der Benutzer uberpruft den neuen Abteilungstyp
+
+  Scenario: TC_0014_004
+    Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+    And Der Benutzer klickt auf das gespeicherte Team
+    And Der Benutzer bearbeiten Teamklicks
+    And Der Benutzer andert die „Abteilungsbeschreibung“.
+    And Der Benutzer klickt auf die Schaltflaeche Speichern
+    And Der Benutzer klickt auf den Abschnitt Team
+    Then Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat

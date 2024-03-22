@@ -289,10 +289,14 @@ Thread.sleep(5000);
     @Then("Der Benutzer bestatigt den neuen Kurznamen")
     public void derBenutzerBestatigtDenNeuenKurznamen() throws InterruptedException {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Kurzname_Department_Personel_assert,10);
-        System.out.println(departmentsPage.Kurzname_Department_Personel_assert.getText());
-       // Assert.assertTrue(departmentsPage.Kurzname_Department_Personel_assert.getText().contains("sss"));
 
+        System.out.println("********");
+        ReusableMethods.waitForPageToLoad(10);
+        String str=departmentsPage.Kurzname_Department_Personel_assert.getText();
+        System.out.println(str);
+        ReusableMethods.waitFor(4);
+        System.out.println("********");
+        Assert.assertTrue(str.contains("sss"));
     }
 
     @And("Der Benutzer andert den „Abteilungstyp“.")
