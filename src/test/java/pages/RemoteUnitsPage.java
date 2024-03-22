@@ -4,14 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-import utilities.ConfigReader;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
-
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class RemoteUnitsPage {
@@ -64,14 +58,11 @@ public class RemoteUnitsPage {
     public WebElement changeImageButton;
 
 
-    @FindBy(xpath = "//button[text()='Crop']")
+    @FindBy(xpath = "//div[@class='btn-group float-end']//button[1]")
     public WebElement cropButton;
 
     @FindBy(xpath = "(//button[@type='button'])[3]")
     public WebElement saveImageButton;
-
-    @FindBy(xpath = "//p[text()='An error occurred. The picture could not be changed.']")
-    public WebElement imageErrorButton;
 
 
     @FindBy(xpath = "(//div[@class='col-md-4 row-cols-1']//div)[1]")
@@ -83,8 +74,6 @@ public class RemoteUnitsPage {
     @FindBy(xpath = "//button[text()='Save']")
     public WebElement saveButton;
 
-    @FindBy(xpath = "//button[text()='Cancel']")
-    public WebElement cancelButton;
 
     @FindBy(xpath = "//span[text()='Please enter a name for department']")
     public WebElement nameErrorMessage;
@@ -100,47 +89,38 @@ public class RemoteUnitsPage {
     @FindBy(xpath = "//button[@aria-label='Close']")
     public WebElement acceptMassageCloseButton;
 
-    @FindBy(xpath = "(//div[@class='col-10']//span)[2]")
-    public WebElement abkuerzungREMOTEUnits;
 
 
-
-    public  void acceptMessageCloseMethod(WebDriver driver, WebElement element){
-
-        try {
-            acceptMassageCloseButton.click();
-        }catch (Exception ignored){
-
-        }
-
-    }
     public void loeschenRemoteUnit(WebDriver driver, String newUnit) {
 
         HomePage homePage = new HomePage();
+        ReusableMethods.waitForVisibility(driver,homePage.remoteUnits,10);
         homePage.remoteUnits.click();
         ReusableMethods.waitForVisibility(driver, search, 10);
-        search.clear();
+        ReusableMethods.deleteFields(search,newUnit);
         search.sendKeys(newUnit);
         ReusableMethods.waitForVisibility(driver, ilkRemoteUnit, 10);
         ilkRemoteUnit.click();
+        try {
+            acceptMassageCloseButton.click();
+        }catch (Exception e){
+            System.out.println("message not found");
+        }
 
         ReusableMethods.waitForVisibility(driver, editRemoteUnitButton, 10);
-//        System.out.println("abkuerzungREMOTEUnits = " + abkuerzungREMOTEUnits.getText());
-//        ReusableMethods.waitForPageToLoad(2);
+
         editRemoteUnitButton.click();
         System.out.println("Löschen editButton");
 
-
-
         try {
+
             driver.navigate().refresh();
 
             ReusableMethods.waitForVisibility(driver, deleteDepartmentButton, 10);
 
         } catch (Exception e) {
+
             driver.navigate().refresh();
-
-
 
         }
 
@@ -155,9 +135,6 @@ public class RemoteUnitsPage {
         System.out.println("delete confirm butonu tiklandi");
 
         ReusableMethods.waitFor(1);
-//        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profil,10);
-//        homePage.profil.click();
-//        System.out.println("profil butonu tiklandi");
 
     }
 
@@ -212,29 +189,6 @@ public class RemoteUnitsPage {
 
     }
 
-    public void executeScript(WebDriver driver) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("location.reload()");
-    }
-
-    public void imageHinzufuegen(WebDriver driver){
-
-
-        try {
-            String path=System.getProperty("user.dir")+"\\src\\test\\java\\utilities\\image.jpg";//yükleyecegimiz dosyanin yolu
-            System.out.println("path = " + path);
-
-            changeImageButton.sendKeys(path);
-            ReusableMethods.waitFor(3);
-            changeImageButton.submit();
-
-
-        }catch (Exception e) {
-            System.out.println("file not found");
-        }
-
-
-    }
 
 
 
