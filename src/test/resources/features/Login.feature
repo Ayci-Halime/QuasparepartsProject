@@ -1,5 +1,5 @@
 @Login@Smoke
-Feature: US_0001
+Feature: Login successfully with valid username and password
   Background:
     Given Benutzer geht zur URL
     And Benutzer klickt auf die Schaltflaeche Anmelden

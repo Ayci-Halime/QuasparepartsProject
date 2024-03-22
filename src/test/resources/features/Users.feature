@@ -1,5 +1,5 @@
 @Users@Regression
-Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users displayed in the Users module, US_0017 - Users can add a new user in the module
+Feature: Displays users in the Users module, Edit the users displayed in the Users module, Users can add a new user in the module
   Background:
     Given Benutzer geht zur URL
     And Benutzer meldet sich an
