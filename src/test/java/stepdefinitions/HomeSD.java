@@ -108,7 +108,6 @@ public class HomeSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profilEmailTitel,10);
         String titel = ReusableMethods.getElementText(homePage.profilEmailTitel);
         System.out.println("titel = " + titel);
-        //homePage.profilEmailTitel.getText();
         ReusableMethods.waitFor(1);
         Assert.assertTrue(titel.contains("Business Owner"));
         homePage.profilDropDown.click();

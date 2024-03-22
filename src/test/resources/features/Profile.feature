@@ -1,5 +1,5 @@
 @Profile @Regression
-Feature: US_0004 Profile
+Feature: Profile
 
   Background:
     Given Benutzer geht zur URL

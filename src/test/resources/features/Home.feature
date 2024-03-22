@@ -1,5 +1,5 @@
 @Home @Regression
-Feature: US_0002 HomePage
+Feature: HomePage
 
   Background:
     Given Benutzer geht zur URL
@@ -11,7 +11,7 @@ Feature: US_0002 HomePage
     And Benutzer meldet sich ab
 
   Scenario:TC_0002_002 Logo Klicken
-    And Benutzer klickt auf das Nioyatech-Logo
+    When Benutzer klickt auf das Nioyatech-Logo
     Then Benutzer bestaetigt, dass er die Startseite anzeigt
     And Benutzer klickt auf die Schaltflaeche Anmelden
     And Benutzer meldet sich ab
@@ -26,7 +26,7 @@ Feature: US_0002 HomePage
     And Benutzer meldet sich ab
 
   Scenario: TC_0002_005 Seitenleiste Anklickbar
-    And Benutzer klickt auf die Menubar
+    When Benutzer klickt auf die Menubar
     Then Benutzer bestaetigt, dass Menubar angezeigt wird
     And Benutzer meldet sich ab
 
@@ -41,12 +41,12 @@ Feature: US_0002 HomePage
 
 
     Scenario: TC_0003_003 Email Adresse Anzeigen in Dropdownmenu
-      And Benutzer klickt auf das Menu Benutzerr
+      When Benutzer klickt auf das Menu Benutzerr
       Then Benutzer bestaetigt, dass er die E-Mail-Adresse in der oberen in DropDown sieht.
       And Benutzer meldet sich ab
 
     Scenario:  TC_0003_004 Titel Anzeigen in Dropdownmenu
-      And Benutzer klickt auf das Menu Benutzerr
+      When Benutzer klickt auf das Menu Benutzerr
       Then Benutzer bestaetigt, dass er die Titel in der oberen in DropDown sieht.
       And Benutzer meldet sich ab
 

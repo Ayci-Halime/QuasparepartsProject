@@ -43,23 +43,6 @@ public class ProfilePage {
     public WebElement alertAccept;
 
 
-@FindBy(xpath= "//div[text()='Password must be between 8 to 20 characters long.']")
-    public WebElement alertlong;
-
-@FindBy(xpath= "//div[@role='alert']")
-    public WebElement alertUppercase;
-
-@FindBy(xpath= "//div[@role='alert']")
-    public WebElement alertLowercase;
-
-@FindBy(xpath= "//div[@role='alert']")
-    public WebElement alertSpecCharacters;
-
-@FindBy(xpath= "//div[@role='alert']")
-    public WebElement alertNegative;
-
-@FindBy(xpath= "//div[@role='alert']")
-    public WebElement alertDigit;
 
     @FindBy(xpath= "//div[@role='alert']")
     public WebElement alert;

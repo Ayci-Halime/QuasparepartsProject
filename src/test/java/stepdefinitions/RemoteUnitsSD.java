@@ -1,16 +1,13 @@
 package stepdefinitions;
 
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
 import pages.HomePage;
 import pages.ProfilePage;
 import pages.RemoteUnitsPage;
-import utilities.ConfigReader;
-import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
@@ -50,11 +47,19 @@ public class RemoteUnitsSD {
         remoteUnitsPage.addNewRemoteUnitButton.click();
     }
 
+    @And("Benutzer loest Abteilungsnamen {string} ein")
+    public void benutzerLoestAbteilungsnamenEin(String name) {
+        remoteUnitsPage=new RemoteUnitsPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.name,10);
+        ReusableMethods.deleteFields(remoteUnitsPage.name,name);
+
+    }
+
     @And("Benutzer gibt den Abteilungsnamen {string} ein")
     public void benutzerGibtDenAbteilungsnamenEin(String name) {
         remoteUnitsPage=new RemoteUnitsPage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.name,10);
-        remoteUnitsPage.name.clear();
+
         remoteUnitsPage.name.sendKeys(name);
 
     }
@@ -76,8 +81,6 @@ public class RemoteUnitsSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.saveButton,10);
         remoteUnitsPage.saveButton.click();
 
-
-       // remoteUnitsPage.acceptMessageCloseMethod(ParallelDriver.getDriver(),remoteUnitsPage.acceptMessage);
 
 
     }
@@ -150,9 +153,7 @@ public class RemoteUnitsSD {
         remoteUnitsPage.description.sendKeys(descriptionText);
 
 
-
     }
-
 
 
     @And("Benutzer wählt Role {string} aus")
@@ -195,15 +196,15 @@ public class RemoteUnitsSD {
     public void benutzerKlicktAufDieShalteflaecheChangeImage() {
         remoteUnitsPage=new RemoteUnitsPage();
 
-       String path=System.getProperty("user.dir")+"\\src\\test\\java\\utilities\\image.jpg";
-       String path2=ConfigReader.getProperty("pathImage");
+        String path=System.getProperty("user.dir")+"\\src\\test\\java\\utilities\\image.jpg";
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.changeImageButton,10);
-        ReusableMethods.imageHinzufuegen(remoteUnitsPage.changeImageButton,path2);
+        ReusableMethods.imageHinzufuegen(remoteUnitsPage.changeImageButton,path);
 
     }
     @And("Benutzer klickt auf die Schalteflaeche Crop")
     public void benutzerKlicktAufDieSchalteflaecheCrop() {
         remoteUnitsPage=new RemoteUnitsPage();
+
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.cropButton,10);
         remoteUnitsPage.cropButton.click();
 
@@ -215,16 +216,24 @@ public class RemoteUnitsSD {
         remoteUnitsPage=new RemoteUnitsPage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.saveImageButton,10);
         remoteUnitsPage.saveImageButton.click();
+
     }
     @Then("Benutzer bestaetigt, dass sich die Imageerrormessage betrachtet")
     public void benutzerBestaetigtDassSichDieImageerrormessageBetrachtet() {
 
         remoteUnitsPage=new RemoteUnitsPage();
+
+
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.acceptMessage,10);
 
-        String errormessageText=remoteUnitsPage.acceptMessage.getText();
-        System.out.println("errormessageText = " + errormessageText);
+        String errormessageText= ReusableMethods.getElementText(remoteUnitsPage.acceptMessage);
         Assert.assertTrue(errormessageText.contains("An error occurred. The picture could not be changed."));
+        try {
+            remoteUnitsPage.acceptMassageCloseButton.click();
+        }catch (Exception e){
+            System.out.println("message not found");
+        }
+
 
     }
 
@@ -241,4 +250,6 @@ public class RemoteUnitsSD {
         System.out.println("remoteUnitsPage.remoteUnitsrow.getText() = " + remoteUnitsPage.remoteUnitsrow.getText());
         Assert.assertTrue(remoteUnitsPage.remoteUnitsrow.getText().isEmpty());
     }
+
+
 }

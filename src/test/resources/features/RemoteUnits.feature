@@ -1,5 +1,5 @@
 @RemoteUnits @Regression
-Feature: US_0010, US_0011 Remote Unit
+Feature:  Remote Unit
 
   Background:
     Given Benutzer geht zur URL
@@ -12,7 +12,7 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer meldet sich ab
 
 
-  @PositiveScnarioRemoteUnits @Ef
+  @PositiveScnarioRemoteUnits
   Scenario: TC_0010_002 Remote Units Anzeigen
     When Benutzer erstellt Remote unit "New RemoteUnit"
     And Benutzer klickt auf dieSchaltflaeche RemoteUnits
@@ -82,6 +82,7 @@ Feature: US_0010, US_0011 Remote Unit
   Scenario:TC_0012_001 Abteilungsnamen aktualisieren
     When Benutzer erstellt Remote unit "New RemoteUnit" "Remote Unit" "NR" "Remote" "Sales Manager"
     And Benutzer klickt auf die Schaltflaeche editButton
+    And Benutzer loest Abteilungsnamen "New RemoteUnit" ein
     And Benutzer gibt den Abteilungsnamen "New Unit" ein
     And Benutzer klickt auf dieSchaltflaeche save
     Then Benutzer bestaetigt, dass die departments name aktualisiert wurde
@@ -106,7 +107,9 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer waehlt als Abteilungstyp "Department" aus
     And Benutzer klickt auf dieSchaltflaeche save
     Then Benutzer bestaetigt, dass die departments name aktualisiert wurde
+    And Benutzer klickt auf die Schaltflaeche editButton
     And Benutzer waehlt als Abteilungstyp "Remote Unit" aus
+    And Benutzer klickt auf dieSchaltflaeche save
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
@@ -130,19 +133,18 @@ Feature: US_0010, US_0011 Remote Unit
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
-  @NegativeScnarioRemoteUnits @Image
+  @NegativeScnarioRemoteUnits
   Scenario:TC_0012_006  image nicht aktualisieren
     When Benutzer erstellt Remote unit "New RemoteUnit" "Remote Unit" "NR" "Remote" "Sales Manager"
     And Benutzer klickt auf die Schaltflaeche editButton
     And Benutzer klickt auf die Shalteflaeche Change Image
     And Benutzer klickt auf die Schalteflaeche Crop
     And Benutser klickt auf die Schalteflaeche ImageSave
-    And Benutzer klickt auf dieSchaltflaeche save
     Then Benutzer bestaetigt, dass sich die Imageerrormessage betrachtet
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
-  @PositiveScnarioRemoteUnits @DeleteRmUn
+  @PositiveScnarioRemoteUnits
   Scenario:TC_0012_007 Remote unit loeschen
     When Benutzer erstellt Remote unit "New RemoteUnitDlt" "Remote Unit" "NR" "Remote" "Sales Manager"
     And Benutzer klickt auf dieSchaltflaeche RemoteUnits
