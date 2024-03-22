@@ -83,11 +83,8 @@ public class UsersSD {
     public void benutzer_bestaetigt_dass_der_neue_benutzer_hinzugefuegt_ist() {
         usersPage = new UsersPage();
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        ReusableMethods.waitForPageToLoad(3);
+
         ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), usersPage.newUserEmailAfterSearch, 15);
         Assert.assertTrue("New added user is not visible", usersPage.newUserEmailAfterSearch.isDisplayed());
         ParallelDriver.getDriver().navigate().refresh();
@@ -121,11 +118,7 @@ public class UsersSD {
         //  ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),element,15);
         //   JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),element);
 
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+        ReusableMethods.waitForPageToLoad(3);
 
         WebElement threeDots = ParallelDriver.getDriver().
                 findElement(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button"));
@@ -134,8 +127,8 @@ public class UsersSD {
             threeDots.click();
         } catch (StaleElementReferenceException e) {
             threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button")));
-            //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
-            threeDots.click();
+            JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
+           // threeDots.click();
         }
 
         // ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),threeDots,20);
@@ -148,12 +141,13 @@ public class UsersSD {
         WebElement removefromorganization = usersPage.removeFromOrganizaiton;
         try {
             removefromorganization.click();
-        } catch (StaleElementReferenceException e) {
+           // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
+        } catch (Exception e) {
             // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
             removefromorganization = usersPage.removeFromOrganizaiton;
+           // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
             removefromorganization.click();
         }
-        //usersPage.removeFromOrganizaiton.click();
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.userRemovedMessage, 10);
         ParallelDriver.getDriver().navigate().refresh();
@@ -306,7 +300,8 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.click();
         ReusableMethods.deleteFields(usersPage.usernameInUserDetail, ConfigReader.getProperty("new_user_mail"));
-        ReusableMethods.waitFor(5);
+       // ReusableMethods.waitFor(5);
+        ReusableMethods.waitForPageToLoad(5);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.sendKeys(ConfigReader.getProperty(new_user_username));
@@ -332,7 +327,8 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.click();
         ReusableMethods.deleteFields(usersPage.usernameInUserDetail, ConfigReader.getProperty("new_user_mail"));
-        ReusableMethods.waitFor(5);
+       // ReusableMethods.waitFor(5);
+        ReusableMethods.waitForPageToLoad(5);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.sendKeys(ConfigReader.getProperty(new_user_username1));
@@ -354,6 +350,7 @@ public class UsersSD {
     @Then("Benutzer bestaetigt dass Benutzername nicht aktualisiert wurde")
     public void benutzerBestaetigtDassBenutzernameNichtAktualisiertWurde() {
         usersPage = new UsersPage();
+        loginPage = new LoginPage();
 
         String actualResult = ReusableMethods.getElementText(usersPage.usernameInUserDetailAfterEditing);
         String expectedResult = ConfigReader.getProperty("new_user_mail");
@@ -361,6 +358,9 @@ public class UsersSD {
         System.out.println("expectedResult = " + expectedResult);
         usersPage.changeUsernameToPreviousOne();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameUpdateMessage, 10);
+
+        usersPage.deleteUser();
+        loginPage.logoutMethod(ParallelDriver.getDriver());
 
         Assert.assertEquals(expectedResult, actualResult);
 
@@ -373,7 +373,8 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.click();
         ReusableMethods.deleteFields(usersPage.usernameInUserDetail, ConfigReader.getProperty("new_user_mail"));
-        ReusableMethods.waitFor(5);
+       // ReusableMethods.waitFor(5);
+        ReusableMethods.waitForPageToLoad(5);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.sendKeys(ConfigReader.getProperty(new_user_username2));
@@ -397,7 +398,8 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.click();
         ReusableMethods.deleteFields(usersPage.usernameInUserDetail, ConfigReader.getProperty("new_user_mail"));
-        ReusableMethods.waitFor(5);
+      //  ReusableMethods.waitFor(5);
+        ReusableMethods.waitForPageToLoad(5);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.sendKeys(ConfigReader.getProperty(new_user_username3));
@@ -410,7 +412,8 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.click();
         ReusableMethods.deleteFields(usersPage.usernameInUserDetail, ConfigReader.getProperty("new_user_mail"));
-        ReusableMethods.waitFor(5);
+      //  ReusableMethods.waitFor(5);
+        ReusableMethods.waitForPageToLoad(5);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.sendKeys(ConfigReader.getProperty(new_user_username4));
@@ -424,7 +427,8 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.click();
         ReusableMethods.deleteFields(usersPage.usernameInUserDetail, ConfigReader.getProperty("new_user_mail"));
-        ReusableMethods.waitFor(5);
+     //   ReusableMethods.waitFor(5);
+        ReusableMethods.waitForPageToLoad(5);
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.usernameInUserDetail, 10);
         usersPage.usernameInUserDetail.sendKeys(new_user_username5);
@@ -648,7 +652,7 @@ public class UsersSD {
     @And("Benutzer waehld die Abteilungsart aus")
     public void benutzerWaehldDieAbteilungsartAus() {
         usersPage = new UsersPage();
-        int secim = (int) (Math.random() * 3) + 1;
+        int secim = (int) (Math.random() * 3);
         List<String> deparmentType = new ArrayList<>();
         deparmentType.add("Departments");
         deparmentType.add("Remote Units");
@@ -681,7 +685,7 @@ public class UsersSD {
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.emailFieldInMultipleUser, 10);
         usersPage.emailFieldInMultipleUser.sendKeys(email1 + Keys.ENTER);
-        usersPage.emailFieldInMultipleUser.sendKeys(email2 + Keys.ENTER);
+        usersPage.emailFieldInMultipleUser.sendKeys(email2 );
     }
 
     @And("Benutzer klickt auf die Schaltflaeche E-Mails Registrieren")
@@ -746,30 +750,32 @@ public class UsersSD {
                     // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
                 }
 
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                ReusableMethods.waitForPageToLoad(5);
 
                 WebElement threeDots = ParallelDriver.getDriver().
                         findElement(By.xpath("//a[.='" + emails.get(i) + "']//parent::td//parent::tr//child::td[7]//div//button"));
 
                 try {
+                    ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),threeDots,10);
                     threeDots.click();
+                    //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
                 } catch (StaleElementReferenceException e) {
                     threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + emails.get(i) + "']//parent::td//parent::tr//child::td[7]//div//button")));
+                    ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),threeDots,10);
                     //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
                     threeDots.click();
                 }
 
                 WebElement removefromorganization = usersPage.removeFromOrganizaiton;
                 try {
+                    ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),removefromorganization,10);
                     removefromorganization.click();
                 } catch (StaleElementReferenceException e) {
                     // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
                     removefromorganization = usersPage.removeFromOrganizaiton;
-                    removefromorganization.click();
+                    ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),removefromorganization,10);
+                 //   removefromorganization.click();
+                    JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
                 }
                 //usersPage.removeFromOrganizaiton.click();
 
@@ -793,11 +799,7 @@ public class UsersSD {
                 // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
             }
 
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            ReusableMethods.waitForPageToLoad(5);
 
             WebElement threeDots = ParallelDriver.getDriver().
                     findElement(By.xpath("//a[.='" + emails.get(0) + "']//parent::td//parent::tr//child::td[7]//div//button"));
@@ -838,7 +840,62 @@ public class UsersSD {
     @Then("Benutzer bestaetigt dass er eine Fehlermeldung beim mehrere mitglieder Hinzufuegen erhalten hat")
     public void benutzerBestaetigtDassErEineFehlermeldungBeimMehrereMitgliederHinzufuegenErhaltenHat() {
         usersPage = new UsersPage();
+        String expected = "Please select a role for the user you will add";
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.errorMessageInAddingMultipleMember, 10);
+        String actual = usersPage.errorMessageInAddingMultipleMember.getText();
+        System.out.println("expected = " + expected);
+        System.out.println("actual = " + actual);
+        Assert.assertEquals("Error mesasge is not maching",expected,actual);
+    }
+
+    @And("Benutzer laesst das Feld Abteilungstyp leer")
+    public void benutzerLaesstDasFeldAbteilungstypLeer() {
+        usersPage = new UsersPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.departmentTypeInMultipleUser, 10);
+        usersPage.departmentTypeInMultipleUser.click();
+        usersPage.departmentTypeInMultipleUser.sendKeys("Teams"+Keys.ENTER+Keys.BACK_SPACE);
+    }
+
+    @And("Benutzer laesst das Feld Abteilung leer")
+    public void benutzerLaesstDasFeldAbteilungLeer() {
+        usersPage = new UsersPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.departmentInMultipleUser, 10);
+        usersPage.departmentInMultipleUser.click();
+        usersPage.departmentInMultipleUser.sendKeys(Keys.ESCAPE);
+    }
+
+    @And("Benutzer laesst das EMail Feld leer")
+    public void benutzerLaesstDasEMailFeldLeer() {
+
+        usersPage = new UsersPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.emailFieldInMultipleUser, 10);
+        usersPage.emailFieldInMultipleUser.click();
+    }
+
+    @Then("Benutzer bestaetigt dass er eine Fehlermeldung im Email beim mehrere mitglieder Hinzufuegen erhalten hat")
+    public void benutzerBestaetigtDassErEineFehlermeldungImEmailBeimMehrereMitgliederHinzufuegenErhaltenHat() {
+        usersPage = new UsersPage();
+        String expected = "Please enter an email at least.";
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.emailErrorMessageInAddingMultipleMember, 10);
+        String actual = usersPage.emailErrorMessageInAddingMultipleMember.getText();
+
+        System.out.println("expected = " + expected);
+        System.out.println("actual = " + actual);
+
+        Assert.assertEquals("Error message does not match",expected,actual);
+    }
+
+    @And("Benutzer gibt eine E-Mail-Adresse in das E-Mail-Feld ein")
+    public void benutzerGibtEineEMailAdresseInDasEMailFeldEin() {
+        usersPage = new UsersPage();
+        String email = Faker.instance().internet().emailAddress();
+        System.out.println("email = " + email);
+
+        emails = new ArrayList<>();
+        emails.add(email);
+
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.emailFieldInMultipleUser, 10);
+        usersPage.emailFieldInMultipleUser.sendKeys(email);
 
     }
 }

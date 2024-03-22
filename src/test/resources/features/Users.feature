@@ -377,7 +377,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer meldet sich ab
 
 
-
+  @tag14
   Scenario: TC_0017_014 Wenn der Benutzer keinen Abteilungstyp nicht auswählt, kann er auch einen neunen Benutzern über die Schaltfläche 'Mehrere Mitglider Hinzufügen' hinzufügen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -391,7 +391,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer meldet sich ab
 
 
-
+  @tag15
   Scenario: TC_0017_015 Beim Hinzufügen von Benutzern über die Schaltfläche Mehrere Mitglieder hinzufügen kann der Benutzer auch Benutzer hinzufügen, ohne das Feld Abteilung auszuwählen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -405,7 +405,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer meldet sich ab
 
 
-
+  @tag16
   Scenario: TC_0017_016	Beim Hinzufügen von Benutzern über die Schaltfläche Mehrere Mitglieder hinzufügen kann der Benutzer neun Benutzer nicht hinzufügen, wenn das E-Mail Feld leer gelassen wird
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -418,7 +418,7 @@ Feature: US_0015 - Displays users in the Users module, US_0016 - Edit the users 
     And Benutzer meldet sich ab
 
 
-
+  @tag17
   Scenario: TC_0017_017	Beim Hinzufügen von Benutzern über die Schaltfläche Mehrere Mitglieder hinzufügen kann der Benutzer einen neuen Benutzer hinzufügen, wenn er in das E-Mail Feld eine E-Mail Addresse eingibt
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
