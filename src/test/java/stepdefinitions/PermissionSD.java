@@ -17,11 +17,15 @@ public class PermissionSD {
     @Given("Benutzer klickt auf der linken Seite der Seite auf „ Permissions“.")
     public void benutzerKlicktAufDerLinkenSeiteDerSeiteAufPermissions() {
 
+        homePage = new HomePage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.permissions,10);
+        homePage.permissions.click();
 
     }
 
     @And("Der Benutzer klickt links auf der Seite auf Berechtigungen.")
     public void derBenutzerKlicktLinksAufDerSeiteAufBerechtigungen() {
+
     }
 
     @Then("Der Benutzer sieht, dass der accounting_read angekommen ist.")
