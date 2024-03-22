@@ -70,3 +70,12 @@ Feature:US_0007
     And Der Benutzer klickt auf die Schaltflache „Abteilung loschen“.
     And Der Benutzer klickt auf dem angezeigten Bildschirm auf „Bestatigen“
     Then Der Benutzer Uberpruft, ob die geloschte Abteilung geloscht wurde
+
+  Scenario: TC_0014_007
+    Given Der Benutzer klickt auf der linken Seite der Seite auf Team
+    And Der Benutzer klickt auf die Schaltflache „Neue Abteilung hinzufugen“.
+    And Der Benutzer lasst den Abschnitt „Abteilungsname“ leer.
+    And Der Benutzer schreibt den Kurznamen der Abteilung
+    And Der Benutzer wahlt den TAbteilungstyp aus
+    And Der Benutzer klickt auf die Schaltflache „Speichern“.
+    And Stellt sicher, dass dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt werden kann.
