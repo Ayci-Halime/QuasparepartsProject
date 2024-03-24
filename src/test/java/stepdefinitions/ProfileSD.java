@@ -92,8 +92,12 @@ public class ProfileSD {
     @And("Benutzer klickt auf dieSchaltflaeche cancel")
     public void benutzerKlicktAufDieSchaltflaecheCancel() {
         profilePage=new ProfilePage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.cancel,10);
-        profilePage.cancel.click();
+
+        try {
+            profilePage.alertClose.click();
+        }catch (Exception e) {
+
+        }
     }
 
 
@@ -105,7 +109,8 @@ public class ProfileSD {
         String alertAcceptStr= ReusableMethods.getElementText(profilePage.alertAccept);
 
         Assert.assertTrue(alertAcceptStr.contains("Change password successfully"));
-        profilePage.alertAccept.click();
+
+
     }
 
 
@@ -123,5 +128,13 @@ public class ProfileSD {
         profilePage=new ProfilePage();
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.alert,10);
         Assert.assertTrue(profilePage.alertNegativeExpectedMessage(ParallelDriver.getDriver(),profilePage.alert));
+    }
+
+    @And("Benutzer klickt auf die dieSchaltflaeche cancel")
+    public void benutzerKlicktAufDieDieSchaltflaecheCancel() {
+        profilePage=new ProfilePage();
+        ReusableMethods.waitFor(1);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.cancel,10);
+        profilePage.cancel.click();
     }
 }

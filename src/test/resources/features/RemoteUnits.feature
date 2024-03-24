@@ -1,4 +1,4 @@
-@RemoteUnits @Regression
+@RemoteUnits @Regression @Hlm
 Feature:  Remote Unit
 
   Background:

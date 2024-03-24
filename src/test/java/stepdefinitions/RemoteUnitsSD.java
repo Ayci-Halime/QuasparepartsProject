@@ -34,7 +34,8 @@ public class RemoteUnitsSD {
         remoteUnitsPage=new RemoteUnitsPage();
 
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),remoteUnitsPage.remoteUnits.get(0),10);
-        Assert.assertTrue(remoteUnitsPage.ilkRemoteUnit.getText().contains(ActRemoteUnit));
+        String remoteUnitsText=ReusableMethods.getElementText(remoteUnitsPage.ilkRemoteUnit);
+        Assert.assertTrue(remoteUnitsText.contains(ActRemoteUnit));
 
 
     }
