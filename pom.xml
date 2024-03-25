@@ -28,7 +28,7 @@
 
 
 
-      <!--  Cucumber Java için-->
+        <!--  Cucumber Java için-->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -94,7 +94,11 @@
 
 
 
+
+    
+
  <profiles>
+
         <profile>
             <id>RunnerRegression</id>
             <build>
@@ -215,8 +219,14 @@
 
         </profile>
 
-  </profiles>
+
+    </profiles>
 
 
 </project>
+
+
+
+
+
 

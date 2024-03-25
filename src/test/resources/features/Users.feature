@@ -1,4 +1,4 @@
-@Users@Regression
+@Users @Regression
 Feature: Users
   Background:
     Given Benutzer geht zur URL
