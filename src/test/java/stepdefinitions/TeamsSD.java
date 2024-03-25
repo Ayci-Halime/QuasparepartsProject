@@ -227,4 +227,36 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
         if (flag==true)
         {Assert.fail();}
     }
+
+    @And("Delete Team")
+    public void deleteTeam() {
+
+        departmentsPage = new DepartmentsPage();
+        ReusableMethods.waitForPageToLoad(10);
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag = false;
+        for (WebElement element : list) {
+            if (element.getText().contains("1234") || element.getText().contains("P1")) {
+                flag = true;
+                ReusableMethods.waitForPageToLoad(10);
+                element.click();
+                break;
+            }
+
+        }
+        if (flag == false) Assert.fail();
+
+        ReusableMethods.waitFor(5);
+        departmentsPage.Edit_Department.click();
+        ReusableMethods.waitFor(2);
+        ParallelDriver.getDriver().navigate().refresh();
+
+
+        ReusableMethods.waitForPageToLoad(10);
+        departmentsPage.Department_Delete_button.click();
+
+        ReusableMethods.waitForPageToLoad(10);
+        departmentsPage.Department_Delete_Confirm.click();
+
+    }
 }
