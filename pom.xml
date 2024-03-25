@@ -126,7 +126,7 @@
                         <configuration>
                             <parallel>methods</parallel>
                             <forkMode>perthread</forkMode>
-                            <threadCount>3</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
+                            <threadCount>10</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
                             <reuseForks>false</reuseForks>
                             <argLine>-Duser.language=en</argLine>
                             <argLine>-Xmx1024m</argLine>
@@ -186,7 +186,7 @@
                         <configuration>
                             <parallel>methods</parallel>
                             <forkMode>perthread</forkMode>
-                            <threadCount>3</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
+                            <threadCount>10</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
                             <reuseForks>false</reuseForks>
                             <argLine>-Duser.language=en</argLine>
                             <argLine>-Xmx1024m</argLine>
