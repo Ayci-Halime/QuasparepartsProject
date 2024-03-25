@@ -97,7 +97,11 @@
 
     
 
+
+    
+
  <profiles>
+
 
         <profile>
             <id>RunnerRegression</id>
@@ -224,6 +228,13 @@
 
 
 </project>
+
+
+   
+
+
+
+
 
 
 

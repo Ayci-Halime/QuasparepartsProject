@@ -10,6 +10,7 @@ Feature:Teams
     And Der Benutzer schreibt den TKurznamen der Abteilung
     And Der Benutzer wahlt den TAbteilungstyp aus
     Then Uberpruft, ob Sie das neue Team zum Abschnitt „Team“ hinzufugen konnen
+    And Delete Team
   @Smoke
   Scenario: TC_0013_002 "Überprüft die Anklickbarkeit eines neuen Teams im Teammodul"
     Given Der Benutzer klickt auf der linken Seite der Seite auf Team
@@ -88,3 +89,6 @@ Feature:Teams
     And Der Benutzer lasst Abteilungstyp leer.
     And Der Benutzer klickt auf die Schaltflache „Speichern“.
     Then Uberpruft, ob dem Abschnitt „Abteilung“ keine neue Abteilung hinzugefugt wurde
+
+    Scenario: Delete Team
+      And Delete Team
