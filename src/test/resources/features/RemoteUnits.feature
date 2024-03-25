@@ -133,14 +133,14 @@ Feature:  Remote Unit
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
-  @NegativeScnarioRemoteUnits
-  Scenario:TC_0012_006  image nicht aktualisieren
+  @NegativeScnarioRemoteUnits @Fail @Dfg
+  Scenario:TC_0012_006  image aktualisieren
     When Benutzer erstellt Remote unit "New RemoteUnit" "Remote Unit" "NR" "Remote" "Sales Manager"
     And Benutzer klickt auf die Schaltflaeche editButton
     And Benutzer klickt auf die Shalteflaeche Change Image
     And Benutzer klickt auf die Schalteflaeche Crop
     And Benutser klickt auf die Schalteflaeche ImageSave
-    Then Benutzer bestaetigt, dass sich die Imageerrormessage betrachtet
+    Then Benutzer bestaetigt, dass sich die Image aktualisiert
     And Benutzer loescht die hinzugefuegte Remote Unit "New RemoteUnit"
     And Benutzer meldet sich ab
 
