@@ -3,15 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>org.example</groupId>
     <artifactId>QuasparepartsProject</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
+
+
+
         <!--  Selenium için-->
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
@@ -19,6 +25,9 @@
             <artifactId>selenium-java</artifactId>
             <version>4.18.1</version>
         </dependency>
+
+
+
         <!--  Cucumber Java için-->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
@@ -26,14 +35,19 @@
             <artifactId>cucumber-java</artifactId>
             <version>7.15.0</version>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
         Cucumber Junit için-->
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>7.15.0</version>
             <scope>test</scope>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi
              Excell'den dosya okuma yazma için-->
         <dependency>
@@ -41,6 +55,7 @@
             <artifactId>poi</artifactId>
             <version>5.2.4</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
         Excell'den yeniden dosya okuma yazma için-->
         <dependency>
@@ -48,12 +63,14 @@
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.4</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.aventstack/
  Bu bizim spark report için gerekli-->
         <dependency>
@@ -61,18 +78,29 @@
             <artifactId>extentreports-cucumber7-adapter</artifactId>
             <version>1.6.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.1</version>
         </dependency>
+
+
+
+
+
     </dependencies>
+
+
+
     <profiles>
         <profile>
             <id>RunnerRegression</id>
             <build>
+
                 <plugins>
+
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir
                     Bu aşağıdaki fail safe'dir. Testin güvenli bir şekilde fail olmasına yardımcı olur-->
                     <plugin>
@@ -87,6 +115,7 @@
                             </includes>
                         </configuration>
                     </plugin>
+
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir -->
                     <!-- Maven-Surefire eklentisi testleri paralel olarak çalıştırmak için kullanılır,
                     paralel çalıştırma ayarları yapılır. -->
@@ -110,6 +139,8 @@
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </plugin>
+
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
@@ -121,11 +152,15 @@
                     </plugin>
                 </plugins>
             </build>
+
         </profile>
+
         <profile>
             <id>SmokeRunner</id>
             <build>
+
                 <plugins>
+
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir
                     Bu aşağıdaki fail safe'dir. Testin güvenli bir şekilde fail olmasına yardımcı olur-->
                     <plugin>
@@ -140,6 +175,7 @@
                             </includes>
                         </configuration>
                     </plugin>
+
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir -->
                     <!-- Maven-Surefire eklentisi testleri paralel olarak çalıştırmak için kullanılır,
                     paralel çalıştırma ayarları yapılır. -->
@@ -163,6 +199,8 @@
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </plugin>
+
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
@@ -174,6 +212,10 @@
                     </plugin>
                 </plugins>
             </build>
+
         </profile>
+
     </profiles>
+
+
 </project>
