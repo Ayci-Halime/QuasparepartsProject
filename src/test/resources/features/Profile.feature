@@ -1,4 +1,4 @@
-@Profile @Regression
+@Profile @Regression @Hlm
 Feature: Profile
 
   Background:
@@ -33,7 +33,7 @@ Feature: Profile
     And Benutzer gibt   "<Password>" "<Password2>" ein
     And Benutzer klickt auf die Schaltflaeche Confirm
     Then Benutzer bestaetigt, Password wurde nicht aktualisiert
-    And Benutzer klickt auf dieSchaltflaeche cancel
+    And Benutzer klickt auf die dieSchaltflaeche cancel
     And Benutzer meldet sich ab
 
 
