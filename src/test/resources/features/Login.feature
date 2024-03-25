@@ -1,4 +1,4 @@
-@Login@Smoke
+@Login @Smoke @Regression
 Feature: Login
   Background:
     Given Benutzer geht zur URL
