@@ -1,4 +1,4 @@
-@Company
+@Company @Smoke @Regression
 Feature:US_0006
 
   Background:

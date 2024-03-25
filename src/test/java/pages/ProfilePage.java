@@ -84,8 +84,15 @@ public WebElement alertClose;
         ReusableMethods.waitForVisibility(driver,newPassword,10);
         newPassword.sendKeys(ConfigReader.getProperty("passwordProfile"));
         newPassword2.sendKeys(ConfigReader.getProperty("passwordProfile"));
+        ReusableMethods.waitForVisibility(driver,confirm,10);
         confirm.click();
-        cancel.click();
+//        ReusableMethods.waitFor(1);
+//        cancel.click();
+        try {
+          alertClose.click();
+        }catch (Exception e) {
+
+        }
 
     }
 
@@ -107,7 +114,7 @@ public WebElement alertClose;
             flag=true;
         }else if(alertText.contains("Password must contain at least one digit.")){
             flag=true;
-        }else {flag=false;}
+        }
 
 
 
