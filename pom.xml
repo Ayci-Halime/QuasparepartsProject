@@ -28,7 +28,7 @@
 
 
 
-      <!--  Cucumber Java için-->
+        <!--  Cucumber Java için-->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -94,36 +94,12 @@
 
 
 
-
-
     <profiles>
         <profile>
-            <id>RegressionRunner</id>
+            <id>RunnerRegression</id>
             <build>
 
                 <plugins>
-                    <plugin>
-                        <groupId>net.masterthought</groupId>
-                        <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>4.9.0</version>
-                        <executions>
-                            <execution>
-                                <id>execution</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <projectName>Cucumber HTML Reports</projectName>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                    <inputDirectory>${project.build.directory}</inputDirectory>
-                                    <jsonFiles>
-                                        <param>**/cucumber*.json</param>
-                                    </jsonFiles>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
 
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir
                     Bu aşağıdaki fail safe'dir. Testin güvenli bir şekilde fail olmasına yardımcı olur-->
@@ -176,6 +152,7 @@
                     </plugin>
                 </plugins>
             </build>
+
         </profile>
 
         <profile>
@@ -235,7 +212,9 @@
                     </plugin>
                 </plugins>
             </build>
+
         </profile>
+
     </profiles>
 
 
