@@ -94,20 +94,12 @@
 
 
 
-
-
-
-    
-
-
-
-    <profiles>
+ <profiles>
         <profile>
             <id>RunnerRegression</id>
             <build>
 
                 <plugins>
-
 
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir
                     Bu aşağıdaki fail safe'dir. Testin güvenli bir şekilde fail olmasına yardımcı olur-->
@@ -134,7 +126,7 @@
                         <configuration>
                             <parallel>methods</parallel>
                             <forkMode>perthread</forkMode>
-                            <threadCount>10</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
+                            <threadCount>3</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
                             <reuseForks>false</reuseForks>
                             <argLine>-Duser.language=en</argLine>
                             <argLine>-Xmx1024m</argLine>
@@ -142,8 +134,7 @@
                             <argLine>-Dfile.encoding=UTF-8</argLine>
                             <useFile>false</useFile>
                             <includes>
-                                <include>runners.RunnerRegression.java
-                                </include> <!-- Burada çalışacak Runner class belirtilir -->
+                                <include>runners.RunnerRegression.java</include> <!-- Burada çalışacak Runner class belirtilir -->
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
@@ -161,6 +152,7 @@
                     </plugin>
                 </plugins>
             </build>
+
         </profile>
 
         <profile>
@@ -194,7 +186,7 @@
                         <configuration>
                             <parallel>methods</parallel>
                             <forkMode>perthread</forkMode>
-                            <threadCount>10</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
+                            <threadCount>3</threadCount>  <!-- Burada kaç tane thread çalıştırılacak belirtilir -->
                             <reuseForks>false</reuseForks>
                             <argLine>-Duser.language=en</argLine>
                             <argLine>-Xmx1024m</argLine>
@@ -202,8 +194,7 @@
                             <argLine>-Dfile.encoding=UTF-8</argLine>
                             <useFile>false</useFile>
                             <includes>
-                                <include>runners.RunnerSmoke.java
-                                </include> <!-- Burada çalışacak Runner class belirtilir -->
+                                <include>runners.RunnerSmoke.java</include> <!-- Burada çalışacak Runner class belirtilir -->
                             </includes>
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
@@ -221,10 +212,10 @@
                     </plugin>
                 </plugins>
             </build>
+
         </profile>
-    </profiles>
 
-
+  </profiles>
 
 
 </project>
