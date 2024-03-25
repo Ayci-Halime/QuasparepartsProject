@@ -129,28 +129,6 @@
                 </executions>
             </plugin>
 
-                    <plugin>
-                        <groupId>net.masterthought</groupId>
-                        <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>4.9.0</version>
-                        <executions>
-                            <execution>
-                                <id>execution</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <projectName>Cucumber HTML Reports</projectName>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                    <inputDirectory>${project.build.directory}</inputDirectory>
-                                    <jsonFiles>
-                                        <param>**/cucumber*.json</param>
-                                    </jsonFiles>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
 
 
 
@@ -212,6 +190,30 @@
             <build>
 
                 <plugins>
+                        
+                          <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>4.9.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Cucumber HTML Reports</projectName>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <jsonFiles>
+                                <param>**/cucumber*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
 
                     <!--Bu aşağıdaki plug in parallel test için gerekli olan plugin dir
                     Bu aşağıdaki fail safe'dir. Testin güvenli bir şekilde fail olmasına yardımcı olur-->
