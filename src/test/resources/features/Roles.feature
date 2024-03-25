@@ -1,9 +1,10 @@
+@Roles @Regression
 Feature:Role
   Background:US_0018
     Given Benutzer geht zur URL
     And Benutzer meldet sich an
 
-@PositiveScenario
+
   Scenario: TC_0018_0001
     Given Benutzer klickt auf der linken Seite der Seite auf „Rolles“.
     Then Benutzer bestaetigt, dass es im Modul Alle Rollen 14 Rollen gibt.

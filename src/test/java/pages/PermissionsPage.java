@@ -16,5 +16,11 @@ public class PermissionsPage {
     @FindBy(xpath = "//div[@class='col-lg-4 col-md-6 col-12 d-grid mb-2']")
     public List<WebElement> perList;
 
+    @FindBy(xpath = "(//div[@class='col-lg-4 col-md-6 col-12 d-grid mb-2'])[1]")
+    public WebElement accountingRead;
+
+    @FindBy(xpath = "(//div[@class='col-lg-4 col-md-6 col-12 d-grid mb-2'])[2]")
+    public WebElement accountingWrite;
+
 
 }

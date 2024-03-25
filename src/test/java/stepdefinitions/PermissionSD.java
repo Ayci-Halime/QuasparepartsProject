@@ -23,13 +23,12 @@ public class PermissionSD {
 
     }
 
-    @And("Der Benutzer klickt links auf der Seite auf Berechtigungen.")
-    public void derBenutzerKlicktLinksAufDerSeiteAufBerechtigungen() {
-
-    }
-
     @Then("Der Benutzer sieht, dass der accounting_read angekommen ist.")
     public void derBenutzerSiehtDassDerAccounting_readAngekommenIst() {
+        homePage = new HomePage();
+        permissionPage = new PermissionsPage();
+        permissionPage.accountingRead.isDisplayed();
+
     }
 
     @Then("Der Benutzer wird sehen, dass {int} Permission eingegangen sind.")
@@ -40,6 +39,14 @@ public class PermissionSD {
         int size = permissionPage.perList.size();
         System.out.println(size);
         Assert.assertEquals(94,size);
+
+    }
+
+    @Then("Der Benutzer sieht, dass der accounting_write angekommen ist.")
+    public void derBenutzerSiehtDassDerAccounting_writeAngekommenIst() {
+        homePage = new HomePage();
+        permissionPage = new PermissionsPage();
+        permissionPage.accountingWrite.isDisplayed();
 
     }
 }
