@@ -105,13 +105,13 @@ public class UsersSD {
         // WebElement element = ParallelDriver.getDriver().
 //                findElement(By.xpath("//tbody[@class='tableRows']/tr/td[2]/a"));
 
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+   ConfigReader.getProperty("new_user_mail")   +"']")));
 
         try {
             //element.click();
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
         } catch (StaleElementReferenceException e) {
-            element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+   ConfigReader.getProperty("new_user_mail")  +"']")));
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
             // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
         }
@@ -121,14 +121,16 @@ public class UsersSD {
         ReusableMethods.waitForPageToLoad(3);
 
         WebElement threeDots = ParallelDriver.getDriver().
-                findElement(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button"));
+                findElement(By.xpath("//a[text()='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button"));
         // WebElement threeDots = ParallelDriver.getDriver().findElement(By.xpath("(//div[@class='btn-group'])[2]/button"));
         try {
             threeDots.click();
-        } catch (Exception e) {
-            threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button")));
+        } catch (StaleElementReferenceException e) {
+            threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button")));
             JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
-           // threeDots.click();
+          //  threeDots.click();
+        }catch (Exception e){
+            threeDots.click();
         }
 
         // ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),threeDots,20);
@@ -142,10 +144,13 @@ public class UsersSD {
         try {
             removefromorganization.click();
            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
-        } catch (Exception e) {
+        } catch (StaleElementReferenceException e) {
             // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
             removefromorganization = usersPage.removeFromOrganizaiton;
            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
+            removefromorganization.click();
+        }catch (Exception e) {
+            removefromorganization = usersPage.removeFromOrganizaiton;
             removefromorganization.click();
         }
 
@@ -193,7 +198,11 @@ public class UsersSD {
 
         usersPage.addNewRole.sendKeys(ConfigReader.getProperty(new_user_another_role) + Keys.ENTER);
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.saveButton, 10);
-        usersPage.saveButton.click();
+        try {
+            usersPage.saveButton.click();
+        }catch (Exception e){
+            usersPage.saveButton.click();
+        }
 
     }
 
