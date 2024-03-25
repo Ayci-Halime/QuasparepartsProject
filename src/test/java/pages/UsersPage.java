@@ -49,8 +49,8 @@ public class UsersPage {
     @FindBy(xpath = "//button[.='Close']")
     public WebElement closeButtonAfterPasswordReset;
 
-    @FindBy(linkText = "Remove from Organization")
-    public WebElement removeFromOrganizaiton;
+//    @FindBy(linkText = "Remove from Organization")
+//    public WebElement removeFromOrganizaiton;
 
     @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[1]")
     public  WebElement departmentField;  // Add new member ve invite new member butonları ile yapılan eklemelerdeki alan
@@ -85,7 +85,7 @@ public class UsersPage {
     @FindBy(xpath = "//input[@type='text']")
     public WebElement addNewRole;
 
-    @FindBy(xpath = "//button[.='Save']")
+    @FindBy(xpath = "//button[text()='Save']")
     public WebElement saveButton;
 
     @FindBy(xpath = "//div[@class='toast-body']/p")
@@ -197,13 +197,13 @@ public class UsersPage {
         // WebElement element = ParallelDriver.getDriver().
 //                findElement(By.xpath("//tbody[@class='tableRows']/tr/td[2]/a"));
 
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(ConfigReader.getProperty("new_user_mail"))));
 
         try {
             //element.click();
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
         } catch (StaleElementReferenceException e) {
-            element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(ConfigReader.getProperty("new_user_mail"))));
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
             // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
         }
@@ -230,13 +230,13 @@ public class UsersPage {
 
 
         //ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton,10);
-        WebElement removefromorganization = removeFromOrganizaiton;
+        WebElement removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
         try {
             removefromorganization.click();
             // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
         } catch (Exception e) {
             // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
-            removefromorganization = removeFromOrganizaiton;
+            removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
             // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
             removefromorganization.click();
         }

@@ -140,17 +140,17 @@ public class UsersSD {
 
 
         //ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton,10);
-        WebElement removefromorganization = usersPage.removeFromOrganizaiton;
+        WebElement removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
         try {
             removefromorganization.click();
            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
         } catch (StaleElementReferenceException e) {
             // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
-            removefromorganization = usersPage.removeFromOrganizaiton;
+            removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
             removefromorganization.click();
         }catch (Exception e) {
-            removefromorganization = usersPage.removeFromOrganizaiton;
+            removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
             removefromorganization.click();
         }
 
@@ -710,7 +710,7 @@ public class UsersSD {
         usersPage = new UsersPage();
         String expected = "User registered";
 
-        ReusableMethods.waitForVisibilityOfAllElements(ParallelDriver.getDriver(), usersPage.successMessageInAddingMultipleMember, 10);
+        ReusableMethods.waitForVisibilityOfAllElements(ParallelDriver.getDriver(), usersPage.successMessageInAddingMultipleMember, 20);
         List<WebElement> messages = usersPage.successMessageInAddingMultipleMember;
 
         if (messages.size() != 1) {
@@ -748,13 +748,13 @@ public class UsersSD {
 
                 ParallelDriver.getDriver().navigate().refresh();
 
-                WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(i))));
+                WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(emails.get(i))));
 
                 try {
                     //element.click();
                     JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
                 } catch (StaleElementReferenceException e) {
-                    element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(i))));
+                    element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(emails.get(i))));
                     JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
                     // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
                 }
@@ -775,13 +775,13 @@ public class UsersSD {
                     threeDots.click();
                 }
 
-                WebElement removefromorganization = usersPage.removeFromOrganizaiton;
+                WebElement removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+emails.get(i)+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
                 try {
                     ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),removefromorganization,10);
                     removefromorganization.click();
                 } catch (StaleElementReferenceException e) {
                     // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
-                    removefromorganization = usersPage.removeFromOrganizaiton;
+                    removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+emails.get(i)+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
                     ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),removefromorganization,10);
                  //   removefromorganization.click();
                     JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
@@ -797,13 +797,13 @@ public class UsersSD {
             select.selectByIndex(4);
 
             ParallelDriver.getDriver().navigate().refresh();
-            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(0))));
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(emails.get(0))));
             ParallelDriver.getDriver().navigate().refresh();
             try {
                 //element.click();
                 JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
             } catch (StaleElementReferenceException e) {
-                element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(emails.get(0))));
+                element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(emails.get(0))));
                 JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
                 // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
             }
@@ -821,11 +821,11 @@ public class UsersSD {
                 threeDots.click();
             }
 
-            WebElement removefromorganization = usersPage.removeFromOrganizaiton;
+            WebElement removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+emails.get(0)+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
             try {
                 removefromorganization.click();
             } catch (StaleElementReferenceException e) {
-                removefromorganization = usersPage.removeFromOrganizaiton;
+                removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+emails.get(0)+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
                 removefromorganization.click();
             }
             //usersPage.removeFromOrganizaiton.click();
