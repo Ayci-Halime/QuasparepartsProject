@@ -15,9 +15,9 @@ import org.junit.runner.RunWith;
         monochrome = false,
         features = "src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@Dfg",
+        tags = "@Fail",
         dryRun = false
 
 )
-public class RunnerHalime {}
+public class RunnerFail {}
 
