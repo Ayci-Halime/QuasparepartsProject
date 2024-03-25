@@ -36,6 +36,7 @@
         And Der Benutzer wahlt den Abteilungstyp aus
         And Der Benutzer klickt auf die Schaltflache „Speichern“.
         Then Uberpruft, ob eine neue Abteilung zum Abschnitt „Abteilung“ hinzugefugt werden kann
+      And Delete  Department
 
       Scenario: TC_0008_002 Überprüft, ob die Schaltfläche „Neue Abteilung hinzufügen“ im Abschnitt „Abteilung“ angezeigt wird
         Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
@@ -67,6 +68,7 @@
       And Der Benutzer wahlt den Abteilungstyp aus
       And Der Benutzer klickt auf die Schaltflache „Speichern“.
       Then Uberpruft, ob dem Abschnitt „Abteilung“(mit Zahlen) eine neue Abteilung hinzugefugt wurde
+      And Delete  Department
 
     Scenario: TC_0008_006 "Beim Hinzufügen einer neuen Abteilungzum Modul Abteilungen wirdder Abteilungsname nur durchdie Eingabe von Sonderzeichen hinzugefügt."
       Given  Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
@@ -149,3 +151,7 @@
       And Der Benutzer klickt auf „Abteilung bearbeiten“.
       And Der Benutzer klickt auf „Bild andern“
       And Der Benutzer ladt ein Bild vom Computer hoch
+
+ Scenario: Delete Personel
+   Given Der Benutzer klickt auf der linken Seite der Seite auf „Abteilung“.
+   And Delete  Department

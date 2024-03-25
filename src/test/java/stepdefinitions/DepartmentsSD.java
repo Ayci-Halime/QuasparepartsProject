@@ -231,6 +231,7 @@ public class DepartmentsSD {
         departmentsPage = new DepartmentsPage();
         ReusableMethods.waitFor(5);
         departmentsPage.Edit_Department.click();
+        ReusableMethods.waitFor(2);
         ParallelDriver.getDriver().navigate().refresh();
 
     }
@@ -419,9 +420,9 @@ public class DepartmentsSD {
     @And("Der Benutzer ladt ein Bild vom Computer hoch")
     public void derBenutzerLadtEinBildVomComputerHoch() {
         departmentsPage = new DepartmentsPage();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentsPage.Department_Crop, 20);
+        ReusableMethods.waitForPageToLoad(5);
         departmentsPage.Department_Crop.click();
-        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), departmentsPage.Department_Save_Image, 20);
+        ReusableMethods.waitForPageToLoad(5);
         departmentsPage.Department_Save_Image.click();
         remoteUnitsPage = new RemoteUnitsPage();
 
@@ -429,9 +430,42 @@ public class DepartmentsSD {
 
         String errormessageText = remoteUnitsPage.acceptMessage.getText();
         System.out.println("errormessageText = " + errormessageText);
-        Assert.assertTrue(errormessageText.contains("An error occurred. The picture could not be changed."));
+        Assert.assertFalse(errormessageText.contains("An error occurred. The picture could not be changed."));
 
 
+    }
+
+
+    @And("Delete  Department")
+    public void deleteDepartment() {
+        departmentsPage = new DepartmentsPage();
+        ReusableMethods.waitForPageToLoad(10);
+        List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
+        boolean flag = false;
+        for (WebElement element : list) {
+            if (element.getText().contains("1234") || element.getText().contains("Personel")) {
+                flag = true;
+                ReusableMethods.waitForPageToLoad(10);
+                element.click();
+                break;
+            }
+
+        }
+        if (flag == false) Assert.fail();
+
+        ReusableMethods.waitFor(5);
+        departmentsPage.Edit_Department.click();
+        ReusableMethods.waitFor(2);
+        ParallelDriver.getDriver().navigate().refresh();
+        ReusableMethods.waitFor(2);
+        ParallelDriver.getDriver().navigate().refresh();
+
+
+        ReusableMethods.waitForPageToLoad(10);
+        departmentsPage.Department_Delete_button.click();
+
+        ReusableMethods.waitForPageToLoad(10);
+        departmentsPage.Department_Delete_Confirm.click();
     }
 
 
