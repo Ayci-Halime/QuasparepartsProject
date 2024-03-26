@@ -331,7 +331,7 @@ public class DepartmentsSD {
 
         }
         Thread.sleep(3000);
-        if (flag == true) {
+        if (flag == false) {
             Assert.fail();
         }
 
