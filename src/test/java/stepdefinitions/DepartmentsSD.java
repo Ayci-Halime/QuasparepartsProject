@@ -338,22 +338,26 @@ public class DepartmentsSD {
     }
 
     @And("Der Benutzer andert die „Abteilungsbeschreibung“.")
-    public void derBenutzerAndertDieAbteilungsbeschreibung() throws InterruptedException {
+    public void derBenutzerAndertDieAbteilungsbeschreibung()  {
         departmentsPage = new DepartmentsPage();
         ReusableMethods.waitForPageToLoad(10);
-        departmentsPage.description_Department.clear();
+       // departmentsPage.description_Department.clear();
+        ReusableMethods.deleteFields(departmentsPage.description_Department,"Personel abteilung");
         ReusableMethods.waitForPageToLoad(10);
         departmentsPage.description_Department.sendKeys("Personel abteilung");
 
     }
 
     @Then("Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat")
-    public void derBenutzerBestatigtDassSichBeschreibungInDerAbteilungGeandertHat() throws InterruptedException {
+    public void derBenutzerBestatigtDassSichBeschreibungInDerAbteilungGeandertHat() {
         departmentsPage = new DepartmentsPage();
         System.out.println("***********************************************");
-        ReusableMethods.waitForPageToLoad(10);
-        System.out.println(departmentsPage.description_Department_assert.getText());
-        Assert.assertEquals("Personel abteilung", departmentsPage.description_Department_assert.getText());
+
+       ReusableMethods.waitForPageToLoad(10);
+        //ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_Personel_abteilung,10);
+        Assert.assertTrue(departmentsPage.Department_Personel_abteilung.isDisplayed());
+        ReusableMethods.waitForPageToLoad(2);
+        System.out.println("***********************************************");
     }
 
     @And("Der Benutzer andert die Abteilungsrollen")

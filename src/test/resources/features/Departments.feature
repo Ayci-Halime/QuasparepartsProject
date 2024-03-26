@@ -131,6 +131,7 @@ Feature:Departments
     And Der Benutzer klickt auf die Schaltflache „Speichern“.
     And Der Benutzer klickt auf den Abteilungsbereich
     And Der Benutzer klickt auf eine gespeicherte Abteilung
+    And Der Benutzer klickt auf „Abteilung bearbeiten“.
     Then Der Benutzer bestatigt, dass sich „Beschreibung“ in der Abteilung geandert hat
 
   Scenario:  TC_0009_005 "Im Modul „Abteilungen“ gespeicherteine Abteilung in „Rollen“austauschbar"
