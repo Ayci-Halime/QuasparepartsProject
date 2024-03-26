@@ -65,6 +65,9 @@ public class DepartmentsPage {
 @FindBy(xpath = "//button[text()='Save']")
     public WebElement Department_Save_Image;
 
+@FindBy(xpath = "//input[@value='Personel abteilung']")
+    public WebElement Department_Personel_abteilung;
+
 
 
 
