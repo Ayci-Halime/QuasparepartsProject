@@ -64,7 +64,7 @@ public class UsersSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.registerButton, 10);
         usersPage.registerButton.click();
 
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), usersPage.closeButton, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.closeButton, 10);
         usersPage.closeButton.click();
 
     }
@@ -85,7 +85,7 @@ public class UsersSD {
 
         ReusableMethods.waitForPageToLoad(3);
 
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), usersPage.newUserEmailAfterSearch, 15);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.newUserEmailAfterSearch, 15);
         Assert.assertTrue("New added user is not visible", usersPage.newUserEmailAfterSearch.isDisplayed());
         ParallelDriver.getDriver().navigate().refresh();
 
@@ -176,7 +176,7 @@ public class UsersSD {
 
 
         JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), element, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), element, 10);
         JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(), element);
         // element.click();
 
@@ -263,7 +263,7 @@ public class UsersSD {
     public void benutzerKlicktAufDasBearbeitungssymbolStiftObenRechts() {
         usersPage = new UsersPage();
 
-        ReusableMethods.waitForClickablility(ParallelDriver.getDriver(), usersPage.editIconInUserDetail, 10);
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.editIconInUserDetail, 10);
         usersPage.editIconInUserDetail.click();
 
     }
