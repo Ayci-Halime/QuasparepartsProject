@@ -86,7 +86,7 @@ public WebElement alertClose;
         newPassword2.sendKeys(ConfigReader.getProperty("passwordProfile"));
         ReusableMethods.waitForVisibility(driver,confirm,10);
         confirm.click();
-//        ReusableMethods.waitFor(1);
+        ReusableMethods.waitFor(1);
 //        cancel.click();
         try {
           alertClose.click();
