@@ -10,6 +10,7 @@ import pages.DepartmentsPage;
 import pages.HomePage;
 import pages.RemoteUnitsPage;
 import utilities.ConfigReader;
+import utilities.JavascriptUtils;
 import utilities.ParallelDriver;
 import utilities.ReusableMethods;
 
@@ -447,17 +448,23 @@ public class DepartmentsSD {
         List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
         boolean flag = false;
         for (WebElement element : list) {
-            if (element.getText().contains("1234") || element.getText().contains("Personel")) {
+            String text = element.getText();
+            System.out.println(text);
+            ReusableMethods.waitFor(2);
+            if (text.contains("1234") || text.contains("Personel")) {
                 flag = true;
-                ReusableMethods.waitForPageToLoad(10);
-                element.click();
+                // ReusableMethods.waitForPageToLoad(10);
+                // ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),element,10);
+                JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),element);
+                // element.click();
+                JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
                 break;
             }
 
         }
         if (flag == false) Assert.fail();
 
-        ReusableMethods.waitFor(5);
+        ReusableMethods.waitFor(3);
         departmentsPage.Edit_Department.click();
         ReusableMethods.waitFor(2);
         ParallelDriver.getDriver().navigate().refresh();
@@ -471,6 +478,5 @@ public class DepartmentsSD {
         ReusableMethods.waitForPageToLoad(10);
         departmentsPage.Department_Delete_Confirm.click();
     }
-
 
 }
