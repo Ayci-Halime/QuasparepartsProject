@@ -123,4 +123,16 @@ public class CompanySD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.companyName,20);
         companyPage.companyName.sendKeys("@");
     }
+
+    @Then("Benutzer prueft, dass unter dem Namen eine Warnung erscheint.")
+    public void benutzerPrueftDassUnterDemNamenEineWarnungErscheint() {
+        companyPage=new CompanyPage();
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),companyPage.warning,10);
+        List<String> errors = new ArrayList<>();
+        errors.add("Please enter a name for company");
+        errors.add("Company information successfully updated");
+        String actual = companyPage.warning.getText();
+        Assert.assertTrue("Error message is not displayed",errors.contains(actual));
+
+    }
 }

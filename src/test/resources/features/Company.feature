@@ -10,7 +10,7 @@ Feature:US_0006
     And Benutzer klickt auf der Edit.
     And Loescht den Benutzernamen
     And Benutzer klickt auf der Save.
-    Then Benutzer bestaetigt, dass unter dem Namen eine Warnung erscheint.
+    Then Benutzer prueft, dass unter dem Namen eine Warnung erscheint.
     And Benutzer meldet sich ab
 
 
@@ -28,7 +28,7 @@ Feature:US_0006
     And Benutzer klickt auf der Edit.
     And Laesst den E-Mail und das Namen leer.
     And Benutzer klickt auf der Save.
-    Then Benutzer bestaetigt, dass unter dem Namen eine Warnung erscheint.
+    Then Benutzer prueft, dass unter dem Namen eine Warnung erscheint.
     And Benutzer meldet sich ab
 
 

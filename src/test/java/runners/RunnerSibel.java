@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         monochrome = false,
         features = "src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@Probieren",
+        tags = "@Company",
         dryRun = false
 
 )
