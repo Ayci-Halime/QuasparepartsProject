@@ -34,7 +34,10 @@ public class ProfileSD {
     public void benutzerBestaetigtDassSichDieEMailAdresseNichtGeaendertHat() {
 
         profilePage=new ProfilePage();
-       Assert.assertFalse(profilePage.email.getTagName().contains("input"));
+        ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),profilePage.email,10);
+        String emailTagname=profilePage.email.getTagName();
+        ReusableMethods.waitFor(1);
+        Assert.assertFalse(emailTagname.contains("input"));
     }
 
     @When("Benutzer klickt auf dieSchaltflaeche Change Password")
