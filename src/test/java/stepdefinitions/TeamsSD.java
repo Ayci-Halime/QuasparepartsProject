@@ -85,7 +85,8 @@ public class TeamsSD {
     @And("Der Benutzer klickt auf das gespeicherte Team")
     public void derBenutzerKlicktAufDasGespeicherteTeam() {
         teamsPage=new TeamsPage();
-
+homePage=new HomePage();
+homePage.teams.click();
         List<WebElement> list= ParallelDriver.getDriver().findElements(By.xpath("//b"));
         boolean flag=false;
         ReusableMethods.waitFor(2);
@@ -125,7 +126,7 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
         departmentsPage = new DepartmentsPage();
         //ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),departmentsPage.Department_oder_Team_Short_Name,20);
        ReusableMethods.waitForPageToLoad(10);
-       ReusableMethods.deleteFields(departmentsPage.Department_oder_Team_Name,"P1");
+       ReusableMethods.deleteFields(departmentsPage.Department_oder_Team_Name,"P11");
         Actions actions=new Actions(ParallelDriver.getDriver());
 
        // departmentsPage.Department_oder_Team_Name.clear();
@@ -159,7 +160,7 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
         }
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),teamsPage.add_new_Team,20);
         for (WebElement element : list) {
-            if(element.getText().contains("P2")){
+            if(element.getText().contains("P1")){
                 ReusableMethods.waitFor(2);
                 flag=true;
                 Assert.assertTrue(true);
@@ -233,10 +234,12 @@ Assert.assertTrue(teamsPage.Teams_assert.isDisplayed());
 
         departmentsPage = new DepartmentsPage();
         ReusableMethods.waitForPageToLoad(10);
+        homePage = new HomePage();
+        homePage.teams.click();
         List<WebElement> list = ParallelDriver.getDriver().findElements(By.xpath("//b"));
         boolean flag = false;
         for (WebElement element : list) {
-            if (element.getText().contains("1234") || element.getText().contains("P1")) {
+            if (element.getText().contains("1") || element.getText().contains("P1")) {
                 flag = true;
                 ReusableMethods.waitForPageToLoad(10);
                 element.click();
