@@ -229,25 +229,25 @@ Feature: Users
       And Benutzer loescht den neuen hinzugefuegten Benutzer
       And Benutzer meldet sich ab
 
-  @tag1
+  @tag1 @K
   Scenario: TC_0017_001 Der Benutzer muss die Schaltfläche Neues Mitglied einladen im Benutzermenü anzeigen
     When Benutzer klickt auf das Menu Benutzer
     Then Benutzer bestaetigt dass die Schaltflache Neues Mitglied einladen angezeigt wird
     And Benutzer meldet sich ab
 
-  @tag2
+  @tag2 @K
   Scenario: TC_0017_002 Der Benutzer muss die Schaltfläche Neues Mitglied hinzufügen im Menü "Benutzer" anzeigen
     When Benutzer klickt auf das Menu Benutzer
     Then Benutzer bestaetigt dass die Schaltflache Neues Mitglied hinzufugen angezeigt wird
     And Benutzer meldet sich ab
 
-  @tag3
+  @tag3 @K
   Scenario: TC_0017_003 Der Benutzer muss die Schaltfläche Mehrere Mitglieder hinzufügen im Menü Benutzer anzeigen
     When Benutzer klickt auf das Menu Benutzer
     Then Benutzer bestaetigt dass die Schaltflache Mehrere Mitglieder hinzufugen angezeigt wird
     And Benutzer meldet sich ab
 
-  @tag4
+  @tag4 @K
   Scenario: TC_0017_004 Der Benutzer sollte die Möglichkeit haben, einen Benutzer per E-Mail einzuladen, um einen neuen Benutzer hinzuzufügen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied Einladen
@@ -260,7 +260,7 @@ Feature: Users
     And Benutzer loescht den neuen hinzugefuegten Benutzer
     And Benutzer meldet sich ab
 
-  @tag5
+  @tag5 @K
   Scenario: TC_0017_005 Beim Einladen eines neuen Benutzers per E-Mail sollte der Benutzer eine Fehlermeldung erhalten, wenn die Rolle leer gelassen wird
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied Einladen
@@ -273,7 +273,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag6
+  @tag6 @K
   Scenario: TC_0017_006 Beim Einladen eines neuen Benutzers per E-Mail sollte der Benutzer eine Fehlermeldung erhalten, wenn das E-Mail-Feld leer gelassen wird
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied Einladen
@@ -286,7 +286,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag7
+  @tag7 @K
   Scenario: TC_0017_007 Wenn der Benutzer beim Einladen eines neuen Benutzers das E-Mail-Feld leer laesst, sollte er die Einladung vornehmen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied Einladen
@@ -299,7 +299,7 @@ Feature: Users
     And Benutzer loescht den neuen hinzugefuegten Benutzer
     And Benutzer meldet sich ab
 
-  @tag8
+  @tag8 @K
   Scenario: TC_0017_008 Der Benutzer fügt einen neuen Benutzer hinzu, indem er auf die Schaltfläche "Neues Mitglied hinzufügen" klickt
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied hinzufugen
@@ -312,7 +312,7 @@ Feature: Users
     And Benutzer loescht den neuen hinzugefuegten Benutzer
     And Benutzer meldet sich ab
 
-  @tag9
+  @tag9 @K
   Scenario: TC_0017_009 Wenn der Benutzer beim Hinzufügen eines Benutzers über die Schaltfläche "Neues Mitglied hinzufügen" die Rolle nicht angibt, sollte der Benutzer eine Fehlermeldung erhalten
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied hinzufugen
@@ -324,7 +324,7 @@ Feature: Users
     And Benutzer klickt auf Schaltflaeche Schliessen
     And Benutzer meldet sich ab
 
-  @tag10
+  @tag10 @K
   Scenario: TC_0017_010 Wenn der Benutzer beim Hinzufügen eines Benutzers über die Schaltfläche "Neues Mitglied hinzufügen" das E-Mail-Feld nicht angibt, sollte der Benutzer eine Fehlermeldung erhalten
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied hinzufugen
@@ -336,7 +336,7 @@ Feature: Users
     And Benutzer klickt auf Schaltflaeche Schliessen
     And Benutzer meldet sich ab
 
-  @tag11
+  @tag11 @K
   Scenario: TC_0017_011 Der Benutzer sollte in der Lage sein, einen Benutzer hinzuzufügen, wenn er das Abteilungsfeld beim Hinzufügen eines Benutzers über die Schaltfläche "Neues Mitglied hinzufügen" leer lässt
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Neues Mitglied hinzufugen
@@ -350,7 +350,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag12
+  @tag12 @K
   Scenario: TC_0017_012 Der Benutzer fügt mehrere Benutzer über die Schaltfläche "Mehrere Mitglieder hinzufügen" hinzu
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -364,7 +364,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag13
+  @tag13 @K
   Scenario: TC_0017_013 Wenn der Benutzer beim Hinzufügen von Benutzern über die Schaltfläche "Mehrere Mitglieder hinzufügen" die Rolle nicht auswählt, kann er keine Benutzer hinzufügen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -377,7 +377,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag14
+  @tag14 @K
   Scenario: TC_0017_014 Wenn der Benutzer keinen Abteilungstyp nicht auswählt, kann er auch einen neunen Benutzern über die Schaltfläche 'Mehrere Mitglider Hinzufügen' hinzufügen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -391,7 +391,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag15
+  @tag15 @K
   Scenario: TC_0017_015 Beim Hinzufügen von Benutzern über die Schaltfläche Mehrere Mitglieder hinzufügen kann der Benutzer auch Benutzer hinzufügen, ohne das Feld Abteilung auszuwählen
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -405,7 +405,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag16
+  @tag16 @K
   Scenario: TC_0017_016	Beim Hinzufügen von Benutzern über die Schaltfläche Mehrere Mitglieder hinzufügen kann der Benutzer neun Benutzer nicht hinzufügen, wenn das E-Mail Feld leer gelassen wird
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen
@@ -418,7 +418,7 @@ Feature: Users
     And Benutzer meldet sich ab
 
 
-  @tag17
+  @tag17 @K
   Scenario: TC_0017_017	Beim Hinzufügen von Benutzern über die Schaltfläche Mehrere Mitglieder hinzufügen kann der Benutzer einen neuen Benutzer hinzufügen, wenn er in das E-Mail Feld eine E-Mail Addresse eingibt
     When Benutzer klickt auf das Menu Benutzer
     And Benutzer klickt auf die Schaltflaeche Mehrere Mitglieder hinzufugen

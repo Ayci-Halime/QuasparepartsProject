@@ -49,8 +49,6 @@ public class UsersPage {
     @FindBy(xpath = "//button[.='Close']")
     public WebElement closeButtonAfterPasswordReset;
 
-//    @FindBy(linkText = "Remove from Organization")
-//    public WebElement removeFromOrganizaiton;
 
     @FindBy (xpath = "(//div[@class=' css-19bb58m']/input)[1]")
     public  WebElement departmentField;  // Add new member ve invite new member butonları ile yapılan eklemelerdeki alan
@@ -193,49 +191,35 @@ public class UsersPage {
         select.selectByIndex(4);
 
         ParallelDriver.getDriver().navigate().refresh();
-        //  WebElement element = ParallelDriver.getDriver().findElement(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']"));
-        // WebElement element = ParallelDriver.getDriver().
-//                findElement(By.xpath("//tbody[@class='tableRows']/tr/td[2]/a"));
-
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(ConfigReader.getProperty("new_user_mail"))));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='" + ConfigReader.getProperty("new_user_mail") + "']")));
 
         try {
-            //element.click();
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
         } catch (StaleElementReferenceException e) {
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(ConfigReader.getProperty("new_user_mail"))));
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
-            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),element);
         }
-        //  ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),element,15);
-        //   JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(),element);
 
         ReusableMethods.waitForPageToLoad(10);
 
         WebElement threeDots = ParallelDriver.getDriver().
                 findElement(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button"));
-        // WebElement threeDots = ParallelDriver.getDriver().findElement(By.xpath("(//div[@class='btn-group'])[2]/button"));
+
         try {
+            ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),threeDots,15);
             threeDots.click();
+           // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
         } catch (StaleElementReferenceException e) {
             threeDots = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='" + ConfigReader.getProperty("new_user_mail") + "']//parent::td//parent::tr//child::td[7]//div//button")));
             JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
             // threeDots.click();
         }
 
-        // ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),threeDots,20);
-
-        //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
-        //   threeDots.click();
-
-
-        //ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton,10);
         WebElement removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
         try {
             removefromorganization.click();
             // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
         } catch (Exception e) {
-            // threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div")));
             removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
             // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
             removefromorganization.click();
