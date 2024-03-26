@@ -95,8 +95,9 @@ public class HomeSD {
         String titel = ReusableMethods.getElementText(homePage.profilEmailTitel);
         System.out.println("titel = " + titel);
 
-        ReusableMethods.waitFor(1);
+
         Assert.assertTrue(titel.contains(ConfigReader.getProperty("username")));
+        ReusableMethods.waitFor(1);
         homePage.profilDropDown.click();
 
     }
@@ -108,8 +109,9 @@ public class HomeSD {
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),homePage.profilEmailTitel,10);
         String titel = ReusableMethods.getElementText(homePage.profilEmailTitel);
         System.out.println("titel = " + titel);
-        ReusableMethods.waitFor(1);
+
         Assert.assertTrue(titel.contains("Business Owner"));
+        ReusableMethods.waitFor(1);
         homePage.profilDropDown.click();
 
     }
