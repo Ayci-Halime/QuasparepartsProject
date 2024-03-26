@@ -87,11 +87,12 @@ public WebElement alertClose;
         ReusableMethods.waitForVisibility(driver,confirm,10);
         confirm.click();
         ReusableMethods.waitFor(1);
-//        cancel.click();
+        cancel.click();
         try {
+            ReusableMethods.waitForVisibility(ParallelDriver.getDriver(),alertClose,10);
           alertClose.click();
         }catch (Exception e) {
-
+            System.out.println("file not found");
         }
 
     }

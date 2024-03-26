@@ -95,10 +95,11 @@ public class ProfileSD {
     @And("Benutzer klickt auf dieSchaltflaeche cancel")
     public void benutzerKlicktAufDieSchaltflaecheCancel() {
         profilePage=new ProfilePage();
+        profilePage.cancel.click();
 
         try {
             profilePage.alertClose.click();
-        }catch (Exception e) {
+        }catch (Exception ignored) {
 
         }
     }
