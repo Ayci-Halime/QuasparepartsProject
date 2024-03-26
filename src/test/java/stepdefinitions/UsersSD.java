@@ -106,7 +106,7 @@ public class UsersSD {
 //                findElement(By.xpath("//tbody[@class='tableRows']/tr/td[2]/a"));
 
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+   ConfigReader.getProperty("new_user_mail")   +"']")));
-
+        ReusableMethods.waitForPageToLoad(3);
         try {
             //element.click();
             JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
@@ -133,6 +133,7 @@ public class UsersSD {
             threeDots.click();
         }
 
+
         // ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),threeDots,20);
 
         //JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),threeDots);
@@ -141,6 +142,7 @@ public class UsersSD {
 
         //ReusableMethods.waitForClickablility(ParallelDriver.getDriver(),usersPage.removeFromOrganizaiton,10);
         WebElement removefromorganization = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='"+ConfigReader.getProperty("new_user_mail")+"']//parent::td//parent::tr//child::td[7]//div//ul//li[4]/a/a")));
+        ReusableMethods.waitForPageToLoad(3);
         try {
             removefromorganization.click();
            // JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(),removefromorganization);
@@ -169,7 +171,8 @@ public class UsersSD {
         select.selectByIndex(4);
 
         WebElement element = ParallelDriver.getDriver().
-                findElement(By.linkText(ConfigReader.getProperty("new_user_mail")));
+                findElement(By.xpath("//a[text()='"+ConfigReader.getProperty("new_user_mail")+"']"));
+
 
 
         JavascriptUtils.scrollIntoViewJS(ParallelDriver.getDriver(), element);
@@ -184,6 +187,7 @@ public class UsersSD {
     @And("Benutzer klickt auf das + Symbol neben den Rollen unten rechts")
     public void benutzerKlicktAufDasSymbolNebenDenRollenUntenRechts() {
         usersPage = new UsersPage();
+        ReusableMethods.waitForPageToLoad(3);
         usersRoles = usersPage.usersRoles; // burda yeni rol eklemeden önce rolleri listeye aldım
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.plusRoles, 10);
         JavascriptUtils.clickElementByJS(ParallelDriver.getDriver(), usersPage.plusRoles);
@@ -192,11 +196,15 @@ public class UsersSD {
     @And("Benutzer fuegt eine neue Rolle hinzu {string}")
     public void benutzerFuegtEineNeueRolleHinzu(String new_user_another_role) {
         usersPage = new UsersPage();
-
+        ReusableMethods.waitForPageToLoad(3);
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.addNewRole, 10);
         usersPage.addNewRole.click();
+        ReusableMethods.waitForPageToLoad(3);
 
-        usersPage.addNewRole.sendKeys(ConfigReader.getProperty(new_user_another_role) + Keys.ENTER);
+        usersPage.addNewRole.sendKeys(ConfigReader.getProperty(new_user_another_role));
+        ReusableMethods.waitForPageToLoad(3);
+        usersPage.addNewRole.sendKeys(Keys.ENTER);
+        ReusableMethods.waitForPageToLoad(2);
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.saveButton, 10);
         try {
             usersPage.saveButton.click();
@@ -243,9 +251,10 @@ public class UsersSD {
     @Then("Benutzer bestaetigt dass die Rolle geloescht wurde")
     public void benutzerBestaetigtDassDieRolleGeloeschtWurde() {
         usersPage = new UsersPage();
+        ReusableMethods.waitForPageToLoad(3);
         ReusableMethods.waitForVisibility(ParallelDriver.getDriver(), usersPage.deleteRoleMessage, 10);
         int roleListSize = usersPage.usersRoles.size();
-
+        ReusableMethods.waitForPageToLoad(3);
         Assert.assertTrue(usersPage.deleteRoleMessage.isDisplayed());
         Assert.assertEquals(usersRoles.size(), roleListSize);
     }
